@@ -1,6 +1,6 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/1377253/93661464-edf77780-fa4f-11ea-9622-86cf7e34d460.png" height="80" /></p>
 
-<h1 align="center">HaxeFlixel Game Template</h1>
+<h1 align="center">Kikiyo</h1>
 
 <h3 align="center">Everything you need to start making your HF game in 2-3 terminal commands</h3>
 
