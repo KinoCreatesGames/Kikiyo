@@ -29,17 +29,29 @@ class Player extends Actor {
 		var left = FlxG.keys.anyPressed([LEFT, A]);
 		var right = FlxG.keys.anyPressed([RIGHT, D]);
 		var direction = new FlxVector(0, 0);
-		if (up) {
-			direction.y = -1;
-		} else if (down) {
-			direction.y = 1;
+		var newAngle:Float = 0;
+		if (up || down || left || right) {
+			if (up) {
+				newAngle = -90;
+				if (left) {
+					newAngle -= 45;
+				} else if (right) {
+					newAngle += 45;
+				}
+			} else if (down) {
+				newAngle = 90;
+				if (left) {
+					newAngle += 45;
+				} else if (right) {
+					newAngle -= 45;
+				}
+			} else if (left) {
+				newAngle = 180;
+			} else if (right) {
+				newAngle = 0;
+			}
+			velocity.set(this.spd, 0);
+			velocity.rotate(FlxPoint.weak(0, 0), newAngle);
 		}
-
-		if (left) {
-			direction.x = -1;
-		} else if (right) {
-			direction.x = 1;
-		}
-		velocity.set(this.spd * direction.x, this.spd * direction.y);
 	}
 }
