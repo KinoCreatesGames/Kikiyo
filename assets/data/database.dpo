@@ -1,1 +1,101 @@
-{ "sheets": []}
+{
+    "sheets": [
+        {
+            "name": "actors",
+            "description": "List of actors and enemies in the game.",
+            "displayColumn": "id",
+            "guid": "9ee981be-907f-4a41-9014-cbac2ab9b9a4",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "8ba11619-7c80-41c3-89de-73d658298109",
+                    "name": "name",
+                    "description": "Name of the actor.",
+                    "defaultValue": "ActorName",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "740b674b-c546-4782-8b6b-73808b493ddb",
+                    "description": "Attack stat of the actor",
+                    "name": "atk",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 1,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "b8e4a129-f7c6-4c9d-a3e1-453f4cc55268",
+                    "description": "Defense of the actor",
+                    "name": "def",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "d48abf5f-8d17-4f74-b370-2f99eb897dab",
+                    "description": "Speed of the actor in game when moving around",
+                    "name": "spd",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 100,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "a5cbeb88-acd3-46aa-a15b-0a9d849078f3",
+                    "id": "0",
+                    "name": "Kikiyo",
+                    "atk": 1,
+                    "def": 0,
+                    "spd": 100
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        }
+    ]
+}

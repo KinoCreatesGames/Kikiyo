@@ -8,8 +8,10 @@ class SaveLoad extends FlxBasic {
 	 */
 	public var gameData:GameState;
 
-	public static inline var SAVE_SETTINGS = 'SoulSettings';
-	public static inline var SAVE_DATA_PREFIX = 'SoulData';
+	public static inline var SAVE_SETTINGS = 'KiSettings';
+	public static inline var SAVE_DATA_PREFIX = 'KiData';
+	public static inline var SAVE_SWITCHES = 'KiSwitches';
+
 	public static var Save(get, null):SaveLoad;
 
 	public var TextSpeed(get, null):Float;
@@ -79,6 +81,8 @@ class SaveLoad extends FlxBasic {
 		}
 		save.close();
 	}
+
+	// TODO: Add Saving Functionality and pass in all relevant information
 
 	public function createSaveData(saveId:Int):FlxSave {
 		var save = new FlxSave();

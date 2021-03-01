@@ -28,6 +28,10 @@ typedef GameState = {
 	public var gameTime:Float;
 }
 
+/**
+ * Handles the data such as player position and any active
+ * game switches.
+ */
 typedef GameSaveState = {
 	public var saveIndex:Int;
 	public var days:Int;
@@ -77,4 +81,46 @@ enum Rating {
 	Good;
 	Great;
 	Amazing;
+}
+
+enum ElementTypes {
+	Fire;
+	Water;
+	Lightning;
+	Magneto;
+	Ice;
+	Wind;
+}
+
+/**
+ * Elemental Resistances.
+ * Elemental resistance of 100 means you will not be affected by the
+ * status effect, thus making it impossible to be caught on fire.
+ */
+enum ElementalResistances {
+	FireRes(res:Float);
+	WaterRes(res:Float);
+	IceRes(res:Float);
+	MagneticRes(res:Float);
+	WindRes(res:Float);
+}
+
+/**
+ * Status effects applied when the enemy or object in the game world
+ * is attacked by a specific element.
+ */
+enum StatusEffects {
+	Burning;
+	Frozen;
+	Wet;
+	Windy;
+	Magnetized;
+}
+
+enum ObjectTypes {
+	Flammable;
+	Pourus; // Affected by
+	Iceable;
+	Wettable;
+	Magnetic;
 }
