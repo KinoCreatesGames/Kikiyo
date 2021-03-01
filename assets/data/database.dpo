@@ -69,6 +69,19 @@
                         "max": "int",
                         "defaultValue": "int"
                     }
+                },
+                {
+                    "typeStr": "image",
+                    "guid": "f7c558a9-7962-4b88-b2c6-b68237389672",
+                    "name": "sprite",
+                    "description": "THe sprite image for the actor.",
+                    "defaultValue": "",
+                    "iconName": "newImage",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
                 }
             ],
             "lines": [
@@ -78,7 +91,8 @@
                     "name": "Kikiyo",
                     "atk": 1,
                     "def": 0,
-                    "spd": 100
+                    "spd": 250,
+                    "sprite": ""
                 },
                 {
                     "guid": "817661b6-a5fb-434f-8b5f-57b72e87c913",
@@ -86,7 +100,8 @@
                     "name": "ActorName",
                     "atk": 2,
                     "def": 0,
-                    "spd": 100
+                    "spd": 100,
+                    "sprite": ""
                 }
             ],
             "hidden": false,
@@ -260,6 +275,19 @@
                         "max": "int",
                         "defaultValue": "int"
                     }
+                },
+                {
+                    "typeStr": "image",
+                    "guid": "0700894c-6ddd-47d3-96f5-a86f376e1741",
+                    "name": "sprite",
+                    "description": "The sprite image for the enemy",
+                    "defaultValue": "",
+                    "iconName": "newImage",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
                 }
             ],
             "lines": [
@@ -269,7 +297,8 @@
                     "name": "EnemyName",
                     "atk": 1,
                     "health": 5,
-                    "def": 0
+                    "def": 0,
+                    "sprite": ""
                 }
             ],
             "hidden": false,
