@@ -20,7 +20,7 @@ class BaseTileState extends FlxState {
 	public var decorationGrp:FlxTypedGroup<FlxTilemap>;
 	public var enemyGrp:FlxTypedGroup<Enemy>;
 
-	public static inline var TILESET_NAME:String = 'Tileset';
+	public static inline var TILESET_NAME:String = 'Floor_tileset';
 
 	override public function create() {
 		super.create();
@@ -133,7 +133,7 @@ class BaseTileState extends FlxState {
 
 	/**
 	 * Returns the current tileset path for the current
-	 * map.
+	 * map. This is the tileset image data path.
 	 * @return String
 	 */
 	public function tilesetPath():String {

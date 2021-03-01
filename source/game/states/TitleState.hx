@@ -112,7 +112,8 @@ class TitleState extends FlxState {
 
 	public function updatePressStart(elapsed:Float) {
 		var keyPressed = FlxG.keys.firstPressed();
-		if (keyPressed != -1) {
+		// Starts the title screen if any button or mouse pressed
+		if (keyPressed != -1 || FlxG.mouse.pressed) {
 			pressStartText.stopFlickering();
 			pressStartText.visible = false;
 		} else if (pressStartText.visible) {}
