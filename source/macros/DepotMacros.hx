@@ -43,6 +43,7 @@ class DepotMacros {
 				for (key => value in dynamicSheet) {
 					var cleanKey = ~/!|\$|-|\s+/g.replace(key, '_');
 
+					// Handles Finding Important Fields
 					var endVal = macro $v{value};
 					var includeField = true;
 					switch (endVal.expr) {
@@ -59,6 +60,7 @@ class DepotMacros {
 								pos: Context.currentPos()
 							};
 
+						// Start Of Lines and other array declarations
 						case EArrayDecl(values):
 							if (values.length < 1) {
 								includeField = false;
@@ -72,6 +74,8 @@ class DepotMacros {
 												newValues.push(arrExpr);
 											}
 										case EObjectDecl(fields):
+											// Most like creates the lines in the DepotData
+											var lineName = '';
 											var newDecl = EObjectDecl(fields.filter((field) ->
 											{
 												return
@@ -85,12 +89,31 @@ class DepotMacros {
 												.map((field -> {
 													field.field = ~/!|\$|-|\s+/g.replace(field.field,
 														'_');
+													// Name Individual Lines
+													lineName = field.field.contains('name')
+														&& lineName == '' ? field.expr.toString() : lineName;
 													return field;
 												})));
-											newValues.push({
+											// Final Result for the line
+											var objExpr = {
 												expr: newDecl,
 												pos: Context.currentPos()
-											});
+											};
+											// Take Result and Convert to individual element
+											var valueComplexType = Context.toComplexType(Context.typeof(objExpr));
+											var cleanLineName = lineName.replace("\"",
+												"");
+											var newField:Field = {
+												name: '${cleanName}_${cleanLineName}',
+												pos: Context.currentPos(),
+												kind: FVar(valueComplexType,
+													objExpr),
+												access: [Access.APublic, Access.AStatic]
+											};
+											// Push line as a class property with sheet prefix
+											buildFields.push(newField);
+											// Push Lines to their individual Sheets
+											newValues.push(objExpr);
 										case _:
 											newValues.push(arrExpr);
 									}
@@ -104,6 +127,7 @@ class DepotMacros {
 						case _:
 							// Do nothing
 					}
+					// Includes a Field in the sheet, such as lines
 					if (includeField) {
 						sheetFields.set(cleanKey, {
 							field: cleanKey,

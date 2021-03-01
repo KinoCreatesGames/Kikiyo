@@ -33,7 +33,7 @@ class BaseTileState extends FlxState {
 		this.map = map;
 
 		createGroups();
-		createLevelInformation();
+		createLevelInfo();
 		createUI();
 		addGroups();
 	}
@@ -56,7 +56,7 @@ class BaseTileState extends FlxState {
 	 * Creates the level information for the level, including
 	 		* the actual tiled level map.
 	 */
-	public function createLevelInformation() {
+	public function createLevelInfo() {
 		// createLevelMap -- use this to create your level
 		// Additional Elements Below UI
 	}
