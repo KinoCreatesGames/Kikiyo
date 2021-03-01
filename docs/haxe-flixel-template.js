@@ -869,7 +869,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "13";
+	app.meta.h["build"] = "14";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -48183,17 +48183,51 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		}
 		var this1 = new flixel_math_FlxPoint(x,y);
 		var direction = this1;
-		if(up) {
-			direction.set_y(-1);
-		} else if(down) {
-			direction.set_y(1);
+		var newAngle = 0;
+		if(up || down || left || right) {
+			if(up) {
+				newAngle = -90;
+				if(left) {
+					newAngle -= 45;
+				} else if(right) {
+					newAngle += 45;
+				}
+			} else if(down) {
+				newAngle = 90;
+				if(left) {
+					newAngle += 45;
+				} else if(right) {
+					newAngle -= 45;
+				}
+			} else if(left) {
+				newAngle = 180;
+			} else if(right) {
+				newAngle = 0;
+			}
+			this.velocity.set(this.spd,0);
+			var tmp = this.velocity;
+			var X = 0;
+			var Y = 0;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			tmp.rotate(point1,newAngle);
 		}
-		if(left) {
-			direction.set_x(-1);
-		} else if(right) {
-			direction.set_x(1);
-		}
-		this.velocity.set(this.spd * direction.x,this.spd * direction.y);
 	}
 	,__class__: game_char_Player
 });
@@ -66891,7 +66925,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 263441;
+	this.version = 215081;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
