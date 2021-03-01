@@ -41,6 +41,5 @@ class Player extends Actor {
 			direction.x = 1;
 		}
 		velocity.set(this.spd * direction.x, this.spd * direction.y);
-		trace(velocity);
 	}
 }
