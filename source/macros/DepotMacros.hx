@@ -103,6 +103,8 @@ class DepotMacros {
 											var valueComplexType = Context.toComplexType(Context.typeof(objExpr));
 											var cleanLineName = lineName.replace("\"",
 												"");
+											cleanLineName = ~/!|\$|-|\s+/g.replace(cleanLineName,
+												"_");
 											var newField:Field = {
 												name: '${cleanName}_${cleanLineName}',
 												pos: Context.currentPos(),
