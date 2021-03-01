@@ -1,7 +1,7 @@
 {
     "sheets": [
         {
-            "name": "actors",
+            "name": "Actors",
             "description": "List of actors and enemies in the game.",
             "displayColumn": "id",
             "guid": "9ee981be-907f-4a41-9014-cbac2ab9b9a4",
@@ -173,6 +173,103 @@
                     "guid": "cd45808c-7ca1-471f-b1fc-af82cc72e71a",
                     "id": "0",
                     "name": "Met Mentor Count"
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Enemies",
+            "description": "List of enemies in the game.",
+            "displayColumn": "id",
+            "guid": "082d5ceb-87de-4069-a0bc-32bbf17d7428",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "e121b8da-bd83-45fd-a636-0f053a72a667",
+                    "name": "name",
+                    "description": "Name of the enemy in game.",
+                    "defaultValue": "EnemyName",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "fa999a6d-0fe2-4519-a9ea-f6627aff9539",
+                    "description": "Attack power of the enemy",
+                    "name": "atk",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 1,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "15d8d3a0-9bce-4170-af53-be6fd77a886a",
+                    "description": "Health points of the enemy",
+                    "name": "health",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 5,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "45181cac-66f1-40b0-a731-d6d9f12f19fa",
+                    "description": "Defense points of the enemy",
+                    "name": "def",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "85bde5c6-df9e-4b9c-a08f-e8d678849bab",
+                    "id": "0",
+                    "name": "EnemyName",
+                    "atk": 1,
+                    "health": 5,
+                    "def": 0
                 }
             ],
             "hidden": false,
