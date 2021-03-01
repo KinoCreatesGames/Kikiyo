@@ -79,6 +79,100 @@
                     "atk": 1,
                     "def": 0,
                     "spd": 100
+                },
+                {
+                    "guid": "817661b6-a5fb-434f-8b5f-57b72e87c913",
+                    "id": "1",
+                    "name": "ActorName",
+                    "atk": 2,
+                    "def": 0,
+                    "spd": 100
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Switches",
+            "description": "A sheet used to define the number of switches in game",
+            "displayColumn": "id",
+            "guid": "585e7418-2ed3-4d65-a2d8-1944a6d4707b",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "0f7cf2d4-aaca-4655-ac91-f0398fc0714c",
+                    "name": "name",
+                    "description": "The name of the switch in game",
+                    "defaultValue": "Switch",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "94fc7cdb-c962-4df6-a48e-470088c50894",
+                    "id": "0",
+                    "name": "Met Mentor"
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Variables",
+            "description": "A sheet used to track the progress of variables within the game.",
+            "displayColumn": "id",
+            "guid": "90b1a923-6d73-42fc-a53a-67cc3267aaf6",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "c4abfe14-df13-4165-b63e-c3d18259408d",
+                    "name": "name",
+                    "description": "Name of the in game variable.",
+                    "defaultValue": "Name",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "cd45808c-7ca1-471f-b1fc-af82cc72e71a",
+                    "id": "0",
+                    "name": "Met Mentor Count"
                 }
             ],
             "hidden": false,

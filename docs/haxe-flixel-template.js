@@ -869,7 +869,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "8";
+	app.meta.h["build"] = "10";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4065,13 +4065,6 @@ DocumentClass.prototype = $extend(Main.prototype,{
 var DepotData = function() { };
 $hxClasses["DepotData"] = DepotData;
 DepotData.__name__ = "DepotData";
-DepotData.getActors = function() {
-	var map = new haxe_ds_StringMap();
-	Lambda.iter(DepotData.Actors.lines,function(line) {
-		map.h[line.name] = line;
-	});
-	return map;
-};
 var EReg = function(r,opt) {
 	this.r = new RegExp(r,opt.split("u").join(""));
 };
@@ -4254,7 +4247,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy42:assets%2Fmaps%2FTilemap-data-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR2i3672R3y5:SOUNDR5y32:assets%2Fsounds%2Fmouse-over.wavy9:pathGroupaR8hR6tgoR2i6900R3R7R5y31:assets%2Fsounds%2Fmenu-open.wavR9aR10hR6tgoR2i4584R3R7R5y33:assets%2Fsounds%2Fbullet-fire.wavR9aR11hR6tgoR2i8410R3R7R5y28:assets%2Fsounds%2Fimpact.wavR9aR12hR6tgoR2i19472R3R7R5y31:assets%2Fsounds%2Fpause-out.wavR9aR13hR6tgoR2i8378R3R7R5y34:assets%2Fsounds%2Fbutton-click.wavR9aR14hR6tgoR2i4578R3R7R5y31:assets%2Fsounds%2Fmenu-exit.wavR9aR15hR6tgoR2i12492R3R7R5y34:assets%2Fsounds%2Fenemy-impact.wavR9aR16hR6tgoR2i22964R3R7R5y30:assets%2Fsounds%2Fpause-in.wavR9aR17hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R18R6tgoR2i39740R3R7R5y32:assets%2Fsounds%2Flow-health.wavR9aR19hR6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3y5:IMAGER5R20R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R21R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R21R5R23R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R24R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R21R5R25R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R21R5R26R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R27R6tgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i3596R3R4R5R28R6tgoR0y34:assets%2Fdata%2Fdata-goes-here.txtR2zR3R4R5R29R6tgoR2i39706R3y5:MUSICR5y28:flixel%2Fsounds%2Fflixel.mp3R9aR31y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i2114R3R30R5y26:flixel%2Fsounds%2Fbeep.mp3R9aR33y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i5794R3R7R5R34R9aR33R34hgoR2i33629R3R7R5R32R9aR31R32hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R35R36y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R21R5R41R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R21R5R42R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy42:assets%2Fmaps%2FTilemap-data-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR2i3672R3y5:SOUNDR5y32:assets%2Fsounds%2Fmouse-over.wavy9:pathGroupaR8hR6tgoR2i6900R3R7R5y31:assets%2Fsounds%2Fmenu-open.wavR9aR10hR6tgoR2i4584R3R7R5y33:assets%2Fsounds%2Fbullet-fire.wavR9aR11hR6tgoR2i8410R3R7R5y28:assets%2Fsounds%2Fimpact.wavR9aR12hR6tgoR2i19472R3R7R5y31:assets%2Fsounds%2Fpause-out.wavR9aR13hR6tgoR2i8378R3R7R5y34:assets%2Fsounds%2Fbutton-click.wavR9aR14hR6tgoR2i4578R3R7R5y31:assets%2Fsounds%2Fmenu-exit.wavR9aR15hR6tgoR2i12492R3R7R5y34:assets%2Fsounds%2Fenemy-impact.wavR9aR16hR6tgoR2i22964R3R7R5y30:assets%2Fsounds%2Fpause-in.wavR9aR17hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R18R6tgoR2i39740R3R7R5y32:assets%2Fsounds%2Flow-health.wavR9aR19hR6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3y5:IMAGER5R20R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R21R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R21R5R23R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R24R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R21R5R25R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R21R5R26R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R27R6tgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i6893R3R4R5R28R6tgoR0y34:assets%2Fdata%2Fdata-goes-here.txtR2zR3R4R5R29R6tgoR2i39706R3y5:MUSICR5y28:flixel%2Fsounds%2Fflixel.mp3R9aR31y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i2114R3R30R5y26:flixel%2Fsounds%2Fbeep.mp3R9aR33y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i5794R3R7R5R34R9aR33R34hgoR2i33629R3R7R5R32R9aR31R32hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R35R36y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R21R5R41R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R21R5R42R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -66819,7 +66812,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 166447;
+	this.version = 753764;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -108265,7 +108258,12 @@ openfl_display_DisplayObject.__tempStack = new lime_utils_ObjectPool(function() 
 	stack.set_length(0);
 });
 DepotData.Actors_Kikiyo = { spd : 100, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", id : "0", atk : 1, def : 0};
-DepotData.Actors = { name : "actors", lines : [{ spd : 100, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", id : "0", atk : 1, def : 0}], isProps : false, hidden : false, guid : "9ee981be-907f-4a41-9014-cbac2ab9b9a4", displayColumn : "id", description : "List of actors and enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Actors_ActorName = { spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", id : "1", atk : 2, def : 0};
+DepotData.Actors = { name : "actors", lines : [{ spd : 100, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", id : "0", atk : 1, def : 0},{ spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", id : "1", atk : 2, def : 0}], isProps : false, hidden : false, guid : "9ee981be-907f-4a41-9014-cbac2ab9b9a4", displayColumn : "id", description : "List of actors and enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Switches_Met_Mentor = { name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"};
+DepotData.Switches = { name : "Switches", lines : [{ name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"}], isProps : false, hidden : false, guid : "585e7418-2ed3-4d65-a2d8-1944a6d4707b", displayColumn : "id", description : "A sheet used to define the number of switches in game", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Variables_Met_Mentor_Count = { name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"};
+DepotData.Variables = { name : "Variables", lines : [{ name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"}], isProps : false, hidden : false, guid : "90b1a923-6d73-42fc-a53a-67cc3267aaf6", displayColumn : "id", description : "A sheet used to track the progress of variables within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 Globals.GAME_TITLE = "Love Defense ";
 Globals.GAME_SAVE_SLOTS = 5;
 Globals.TEXT_START = "Start";
