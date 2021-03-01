@@ -1,9 +1,28 @@
 package game.states;
 
+import flixel.FlxObject;
+import flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling;
+import flixel.tile.FlxTilemap;
+import flixel.addons.editors.tiled.TiledTileSet;
+import flixel.addons.editors.tiled.TiledTileLayer;
+import flixel.addons.editors.tiled.TiledObjectLayer;
+import flixel.addons.editors.tiled.TiledMap;
+
 class LevelState extends BaseTileState {
 	override public function createLevelInfo() {
-		trace(DepotData.Actors.lines);
+		var tileLayer:TiledTileLayer = cast(map.getLayer('Level'));
+		createLevelMap(tileLayer);
 	}
 
 	override public function createUI() {}
+
+	override function processCollision() {
+		super.processCollision();
+	}
+
+	override function processLevel(elapsed) {}
+
+	override public function tilesetPath():String {
+		return AssetPaths.floor_tileset__png;
+	}
 }
