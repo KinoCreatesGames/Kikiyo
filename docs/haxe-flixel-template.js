@@ -869,7 +869,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "11";
+	app.meta.h["build"] = "13";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4065,6 +4065,9 @@ DocumentClass.prototype = $extend(Main.prototype,{
 var AssetPaths = function() { };
 $hxClasses["AssetPaths"] = AssetPaths;
 AssetPaths.__name__ = "AssetPaths";
+var DepotData = function() { };
+$hxClasses["DepotData"] = DepotData;
+DepotData.__name__ = "DepotData";
 var EReg = function(r,opt) {
 	this.r = new RegExp(r,opt.split("u").join(""));
 };
@@ -4247,7 +4250,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy42:assets%2Fmaps%2FTilemap-data-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i52324R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i76R3R4R5R8R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R9R6tgoR2i3672R3y5:SOUNDR5y32:assets%2Fsounds%2Fmouse-over.wavy9:pathGroupaR11hR6tgoR2i6900R3R10R5y31:assets%2Fsounds%2Fmenu-open.wavR12aR13hR6tgoR2i4584R3R10R5y33:assets%2Fsounds%2Fbullet-fire.wavR12aR14hR6tgoR2i8410R3R10R5y28:assets%2Fsounds%2Fimpact.wavR12aR15hR6tgoR2i19472R3R10R5y31:assets%2Fsounds%2Fpause-out.wavR12aR16hR6tgoR2i8378R3R10R5y34:assets%2Fsounds%2Fbutton-click.wavR12aR17hR6tgoR2i4578R3R10R5y31:assets%2Fsounds%2Fmenu-exit.wavR12aR18hR6tgoR2i12492R3R10R5y34:assets%2Fsounds%2Fenemy-impact.wavR12aR19hR6tgoR2i22964R3R10R5y30:assets%2Fsounds%2Fpause-in.wavR12aR20hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R21R6tgoR2i39740R3R10R5y32:assets%2Fsounds%2Flow-health.wavR12aR22hR6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3y5:IMAGER5R23R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R24R5R25R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R24R5R26R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R24R5R27R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R28R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R24R5R29R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R24R5R30R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R31R6tgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i10457R3R4R5R32R6tgoR0y34:assets%2Fdata%2Fdata-goes-here.txtR2zR3R4R5R33R6tgoR2i39706R3y5:MUSICR5y28:flixel%2Fsounds%2Fflixel.mp3R12aR35y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i2114R3R34R5y26:flixel%2Fsounds%2Fbeep.mp3R12aR37y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i5794R3R10R5R38R12aR37R38hgoR2i33629R3R10R5R36R12aR35R36hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R39R40y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R24R5R45R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R24R5R46R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy42:assets%2Fmaps%2FTilemap-data-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i54449R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R8R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R9R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i2006R3R4R5R10R6tgoR2i3672R3y5:SOUNDR5y32:assets%2Fsounds%2Fmouse-over.wavy9:pathGroupaR12hR6tgoR2i6900R3R11R5y31:assets%2Fsounds%2Fmenu-open.wavR13aR14hR6tgoR2i4584R3R11R5y33:assets%2Fsounds%2Fbullet-fire.wavR13aR15hR6tgoR2i8410R3R11R5y28:assets%2Fsounds%2Fimpact.wavR13aR16hR6tgoR2i19472R3R11R5y31:assets%2Fsounds%2Fpause-out.wavR13aR17hR6tgoR2i8378R3R11R5y34:assets%2Fsounds%2Fbutton-click.wavR13aR18hR6tgoR2i4578R3R11R5y31:assets%2Fsounds%2Fmenu-exit.wavR13aR19hR6tgoR2i12492R3R11R5y34:assets%2Fsounds%2Fenemy-impact.wavR13aR20hR6tgoR2i22964R3R11R5y30:assets%2Fsounds%2Fpause-in.wavR13aR21hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R22R6tgoR2i39740R3R11R5y32:assets%2Fsounds%2Flow-health.wavR13aR23hR6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3y5:IMAGER5R24R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R25R5R26R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R25R5R27R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R25R5R28R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R29R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R25R5R30R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R25R5R31R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R32R6tgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i11620R3R4R5R33R6tgoR0y34:assets%2Fdata%2Fdata-goes-here.txtR2zR3R4R5R34R6tgoR2i39706R3y5:MUSICR5y28:flixel%2Fsounds%2Fflixel.mp3R13aR36y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i2114R3R35R5y26:flixel%2Fsounds%2Fbeep.mp3R13aR38y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i5794R3R11R5R39R13aR38R39hgoR2i33629R3R11R5R37R13aR36R37hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R40R41y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R25R5R46R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R25R5R47R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -48145,6 +48148,55 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 	}
 	,__class__: game_char_Enemy
 });
+var game_char_Player = function(x,y,actorData) {
+	game_char_Actor.call(this,x,y,actorData);
+	this.create();
+};
+$hxClasses["game.char.Player"] = game_char_Player;
+game_char_Player.__name__ = "game.char.Player";
+game_char_Player.__super__ = game_char_Actor;
+game_char_Player.prototype = $extend(game_char_Actor.prototype,{
+	create: function() {
+		this.makeGraphic(16,16,-1);
+		this.drag.set_x(this.drag.set_y(1600));
+		this.maxVelocity.set(300,300);
+	}
+	,assignStats: function() {
+		game_char_Actor.prototype.assignStats.call(this);
+	}
+	,update: function(elapsed) {
+		game_char_Actor.prototype.update.call(this,elapsed);
+		this.updateMovement(elapsed);
+	}
+	,updateMovement: function(elapsed) {
+		var down = flixel_FlxG.keys.checkKeyArrayState([40,83],1);
+		var up = flixel_FlxG.keys.checkKeyArrayState([38,87],1);
+		var left = flixel_FlxG.keys.checkKeyArrayState([37,65],1);
+		var right = flixel_FlxG.keys.checkKeyArrayState([39,68],1);
+		var x = 0;
+		var y = 0;
+		if(y == null) {
+			y = 0;
+		}
+		if(x == null) {
+			x = 0;
+		}
+		var this1 = new flixel_math_FlxPoint(x,y);
+		var direction = this1;
+		if(up) {
+			direction.set_y(-1);
+		} else if(down) {
+			direction.set_y(1);
+		}
+		if(left) {
+			direction.set_x(-1);
+		} else if(right) {
+			direction.set_x(1);
+		}
+		this.velocity.set(this.spd * direction.x,this.spd * direction.y);
+	}
+	,__class__: game_char_Player
+});
 var game_ext_KColor = {};
 var game_ext_MathExt = function() { };
 $hxClasses["game.ext.MathExt"] = game_ext_MathExt;
@@ -48293,7 +48345,12 @@ game_states_LevelState.__super__ = game_states_BaseTileState;
 game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 	createLevelInfo: function() {
 		var tileLayer = this.map.getLayer("Level");
+		this.player = new game_char_Player(60,60,DepotData.Actors_Kikiyo);
 		this.createLevelMap(tileLayer);
+	}
+	,addGroups: function() {
+		game_states_BaseTileState.prototype.addGroups.call(this);
+		this.add(this.player);
 	}
 	,createUI: function() {
 	}
@@ -48316,7 +48373,7 @@ game_states_LevelOneState.__super__ = game_states_LevelState;
 game_states_LevelOneState.prototype = $extend(game_states_LevelState.prototype,{
 	create: function() {
 		game_states_LevelState.prototype.create.call(this);
-		this.createLevel("assets/maps/kikiyo/tiled/Level.tmx");
+		this.createLevel("assets/maps/kikiyo/tiled/LevelOne.tmx");
 	}
 	,__class__: game_states_LevelOneState
 });
@@ -66834,7 +66891,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 822941;
+	this.version = 263441;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -108283,6 +108340,7 @@ AssetPaths.Tilemap_data_goes_here__txt = "assets/maps/Tilemap-data-goes-here.txt
 AssetPaths.kikiyo__ldtk = "assets/maps/kikiyo.ldtk";
 AssetPaths.kikiyo__world = "assets/maps/kikiyo/tiled/kikiyo.world";
 AssetPaths.Level__tmx = "assets/maps/kikiyo/tiled/Level.tmx";
+AssetPaths.LevelOne__tmx = "assets/maps/kikiyo/tiled/LevelOne.tmx";
 AssetPaths.mouse_over__wav = "assets/sounds/mouse-over.wav";
 AssetPaths.menu_open__wav = "assets/sounds/menu-open.wav";
 AssetPaths.bullet_fire__wav = "assets/sounds/bullet-fire.wav";
@@ -108304,6 +108362,15 @@ AssetPaths.dialog_arrow__png = "assets/images/dialog-arrow.png";
 AssetPaths.music_goes_here__txt = "assets/music/music-goes-here.txt";
 AssetPaths.database__dpo = "assets/data/database.dpo";
 AssetPaths.data_goes_here__txt = "assets/data/data-goes-here.txt";
+DepotData.Actors_Kikiyo = { spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, def : 0};
+DepotData.Actors_ActorName = { spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, def : 0};
+DepotData.Actors = { name : "Actors", lines : [{ spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, def : 0},{ spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, def : 0}], isProps : false, hidden : false, guid : "9ee981be-907f-4a41-9014-cbac2ab9b9a4", displayColumn : "id", description : "List of actors and enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Switches_Met_Mentor = { name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"};
+DepotData.Switches = { name : "Switches", lines : [{ name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"}], isProps : false, hidden : false, guid : "585e7418-2ed3-4d65-a2d8-1944a6d4707b", displayColumn : "id", description : "A sheet used to define the number of switches in game", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Variables_Met_Mentor_Count = { name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"};
+DepotData.Variables = { name : "Variables", lines : [{ name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"}], isProps : false, hidden : false, guid : "90b1a923-6d73-42fc-a53a-67cc3267aaf6", displayColumn : "id", description : "A sheet used to track the progress of variables within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Enemies_EnemyName = { name : "EnemyName", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "", id : "0", atk : 1, health : 5, def : 0};
+DepotData.Enemies = { name : "Enemies", lines : [{ name : "EnemyName", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "", id : "0", atk : 1, health : 5, def : 0}], isProps : false, hidden : false, guid : "082d5ceb-87de-4069-a0bc-32bbf17d7428", displayColumn : "id", description : "List of enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 Globals.GAME_TITLE = "Love Defense ";
 Globals.GAME_SAVE_SLOTS = 5;
 Globals.TEXT_START = "Start";
