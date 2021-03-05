@@ -17,11 +17,10 @@ typedef MonsterData = {
 
 typedef SceneText = {
 	public var text:String;
-
 	/**
 	 * Delay in seconds
 	 */
-	public var delay:Int;
+	// public var delay:Int;
 }
 
 typedef GameState = {
