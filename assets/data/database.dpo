@@ -316,6 +316,95 @@
                     ]
                 }
             }
+        },
+        {
+            "name": "Cutscenes",
+            "description": "The cutscenes text and information used within the game.",
+            "displayColumn": "id",
+            "guid": "5f3be929-2687-431b-bccd-fde8ef51fc7c",
+            "columns": [
+                {
+                    "typeStr": "text",
+                    "guid": "2159e0fb-bebe-413b-83c4-5f888dc487db",
+                    "name": "name",
+                    "description": "The name of the cutscenes",
+                    "defaultValue": "Intro",
+                    "iconName": "newText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "text"
+                    }
+                },
+                {
+                    "typeStr": "list",
+                    "guid": "1f9f2a40-6db1-4de9-b99b-b4a39475abb1",
+                    "name": "cutsceneText",
+                    "description": "The text information for a cutscene",
+                    "sheet": "19e4a318-d45d-46ec-95f1-2f83ae5b5c31",
+                    "defaultValue": [],
+                    "iconName": "newList",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "8dec0f29-1d42-4e4b-aaa0-5e199e87b146",
+                    "id": "0",
+                    "name": "Intro",
+                    "cutsceneText": [
+                        {
+                            "guid": "765fee60-83ba-4af7-90c3-7baeff89fdf3",
+                            "text": "And so begins the story of our aimless hero.",
+                            "id": "0"
+                        }
+                    ]
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "cutsceneText",
+            "description": "list@5f3be929-2687-431b-bccd-fde8ef51fc7c",
+            "displayColumn": "id",
+            "guid": "19e4a318-d45d-46ec-95f1-2f83ae5b5c31",
+            "columns": [
+                {
+                    "typeStr": "longtext",
+                    "guid": "268f4fa8-e4b3-47c6-81d8-eb37b610dea5",
+                    "name": "text",
+                    "description": "Line of text in a cutscene.",
+                    "defaultValue": "Text",
+                    "iconName": "newLongText",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "defaultValue": "longtext"
+                    }
+                }
+            ],
+            "lines": [],
+            "hidden": true,
+            "isProps": false,
+            "parentSheetGUID": "5f3be929-2687-431b-bccd-fde8ef51fc7c",
+            "columnGUID": "1f9f2a40-6db1-4de9-b99b-b4a39475abb1"
         }
     ]
 }
