@@ -1,7 +1,7 @@
 package game.char;
 
 // Note we'll be using tiles so don't go over the tile limit
-class Actor extends FlxSprite {
+class Actor extends SystemicEntity {
 	public var name:String;
 	public var data:ActorData;
 	public var atk:Int;

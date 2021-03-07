@@ -91,6 +91,16 @@ enum ElementTypes {
 	Wind;
 }
 
+enum ElementalAtk {
+	FireAtk(?dmg:Int);
+	WaterAtk(?dmg:Int);
+	LightningAtk(?dmg:Int);
+	MagnetoAtk(?dmg:Int);
+	IceAtk(?dmg:Int);
+	WindAtk(?dmg:Int);
+	PhysAtk(?dmg:Int);
+}
+
 /**
  * Elemental Resistances.
  * Elemental resistance of 100 means you will not be affected by the
@@ -101,7 +111,9 @@ enum ElementalResistances {
 	WaterRes(res:Float);
 	IceRes(res:Float);
 	MagneticRes(res:Float);
+	LightningRes(res:Float);
 	WindRes(res:Float);
+	PhysRes(res:Float);
 }
 
 /**
@@ -110,10 +122,12 @@ enum ElementalResistances {
  */
 enum StatusEffects {
 	Burning;
+	Icy;
 	Frozen;
 	Wet;
 	Windy;
 	Magnetized;
+	Charged; // For when hit with electricity
 }
 
 enum ObjectTypes {
