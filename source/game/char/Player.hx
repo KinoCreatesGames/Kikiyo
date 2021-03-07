@@ -21,6 +21,14 @@ class Player extends Actor {
 	override public function update(elapsed:Float) {
 		super.update(elapsed);
 		updateMovement(elapsed);
+		updateStatusEffectResponse(elapsed);
+	}
+
+	public function updateStatusEffectResponse(elapsed:Float) {
+		if (envStatusEffect == Burning) {
+			// Change Color to Red
+			color = KColor.RED;
+		}
 	}
 
 	public function updateMovement(elapsed) {
