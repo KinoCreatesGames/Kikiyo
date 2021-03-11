@@ -869,7 +869,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "20";
+	app.meta.h["build"] = "21";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49611,22 +49611,21 @@ game_states_LevelOneState.prototype = $extend(game_states_LevelState.prototype,{
 		game_states_LevelState.prototype.create.call(this);
 		this.createLevel("assets/maps/kikiyo/tiled/LevelOne.tmx");
 		this.torch = new game_objects_Torch(300,200,4);
-		this.rain = new game_objects_Rain(0,-100,1);
-		this.snow = new game_objects_Snow(0,-100,1);
-		this.snow.start(false,0.035,0);
-		this.add(this.rain);
+		this.rainGrp = new game_objects_Rain(0,-100,1);
+		this.snowGrp = new game_objects_Snow(0,-100,1);
+		this.snowGrp.start(false,0.035,0);
+		this.add(this.rainGrp);
 		this.add(this.torch);
-		this.add(this.snow);
+		this.add(this.snowGrp);
 	}
 	,processCollision: function() {
 		game_states_LevelState.prototype.processCollision.call(this);
 		if(flixel_FlxG.keys.checkKeyArrayState([90],2)) {
-			this.rain.emitting = false;
+			this.rainGrp.emitting = false;
 		}
 		flixel_FlxG.overlap(this.player,this.torch.torchLight,$bind(this,this.playerTouchFire));
 		flixel_FlxG.overlap(this.systemicEntitiesGrp,this.torch.torchLight,$bind(this,this.systemEntityTouchFire));
-		flixel_FlxG.overlap(this.systemicEntitiesGrp,this.rain,$bind(this,this.systemEntityTouchRain));
-		flixel_FlxG.overlap(this.player,this.snow,$bind(this,this.playerTouchSnow));
+		flixel_FlxG.overlap(this.systemicEntitiesGrp,this.rainGrp,$bind(this,this.systemEntityTouchRain));
 	}
 	,systemEntityTouchFire: function(entity,fire) {
 		entity.handleElement(game_ElementalAtk.FireAtk(0));
@@ -68150,7 +68149,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 384605;
+	this.version = 326344;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
