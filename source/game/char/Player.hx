@@ -28,6 +28,10 @@ class Player extends Actor {
 		if (envStatusEffect == Burning) {
 			// Change Color to Red
 			color = KColor.RED;
+		} else if (envStatusEffect == Wet) {
+			color = KColor.BLUE;
+		} else if (envStatusEffect == Icy) {
+			color = KColor.BEAU_BLUE;
 		}
 	}
 

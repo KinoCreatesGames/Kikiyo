@@ -33,12 +33,7 @@ class LevelOneState extends LevelState {
 		FlxG.overlap(systemicEntitiesGrp, torch.torchLight,
 			systemEntityTouchFire);
 		FlxG.overlap(systemicEntitiesGrp, rain, systemEntityTouchRain);
-	}
-
-	public function playerTouchFire(player:Player, fireGrp:Fire) {
-		FlxG.camera.shake(0.1, 0.1);
-		player.handleElement(FireAtk(0));
-		// Do Fire Attack on player
+		FlxG.overlap(player, snow, playerTouchSnow);
 	}
 
 	public function systemEntityTouchFire(entity:SystemicEntity, fire:Fire) {
