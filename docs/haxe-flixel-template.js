@@ -869,7 +869,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "18";
+	app.meta.h["build"] = "19";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49217,6 +49217,24 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 			tmp.rotate(point1,newAngle);
 		}
 	}
+	,handleFireAtk: function(dmg,res) {
+		game_char_Actor.prototype.handleFireAtk.call(this,dmg,res);
+	}
+	,handleWaterAtk: function(dmg,res) {
+		game_char_Actor.prototype.handleWaterAtk.call(this,dmg,res);
+	}
+	,handleMagnetoAtk: function(dmg,res) {
+		game_char_Actor.prototype.handleMagnetoAtk.call(this,dmg,res);
+	}
+	,handleIceAtk: function(dmg,res) {
+		game_char_Actor.prototype.handleIceAtk.call(this,dmg,res);
+	}
+	,handleWindAtk: function(dmg,res) {
+		game_char_Actor.prototype.handleWindAtk.call(this,dmg,res);
+	}
+	,handleLightningAtk: function(dmg,res) {
+		game_char_Actor.prototype.handleLightningAtk.call(this,dmg,res);
+	}
 	,__class__: game_char_Player
 });
 var game_ext_KColor = {};
@@ -68105,7 +68123,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 994433;
+	this.version = 349777;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
