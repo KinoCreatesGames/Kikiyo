@@ -105,6 +105,7 @@ class SystemicEntity extends FlxSprite {
 	 */
 	public function handleFireAtk(dmg:Int, res:Float) {
 		envStatusEffect = Burning;
+		this.health -= calculateElementalDamage(dmg, res);
 	}
 
 	/**
@@ -115,6 +116,7 @@ class SystemicEntity extends FlxSprite {
 	 */
 	public function handleWaterAtk(dmg:Int, res:Float) {
 		envStatusEffect = Wet;
+		this.health -= calculateElementalDamage(dmg, res);
 	}
 
 	/**
@@ -125,6 +127,7 @@ class SystemicEntity extends FlxSprite {
 	 */
 	public function handleLightningAtk(dmg:Int, res:Float) {
 		envStatusEffect = Charged;
+		this.health -= calculateElementalDamage(dmg, res);
 	}
 
 	/**
@@ -135,17 +138,22 @@ class SystemicEntity extends FlxSprite {
 	 */
 	public function handleMagnetoAtk(dmg:Int, res:Float) {
 		envStatusEffect = Magnetized;
+		this.health -= calculateElementalDamage(dmg, res);
 	}
 
 	public function handleIceAtk(dmg:Int, res:Float) {
 		envStatusEffect = Icy;
+		this.health -= calculateElementalDamage(dmg, res);
 	}
 
 	public function handleWindAtk(dmg:Int, res:Float) {
 		envStatusEffect = Windy;
+		this.health -= calculateElementalDamage(dmg, res);
 	}
 
-	public function handlePhysAtk(dmg:Int, res:Float) {}
+	public function handlePhysAtk(dmg:Int, res:Float) {
+		this.health -= calculateElementalDamage(dmg, res);
+	}
 
 	/**
 	 * Used to calculate the damage. Should be used in the 

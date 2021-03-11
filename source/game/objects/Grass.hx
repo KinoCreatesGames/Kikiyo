@@ -2,9 +2,11 @@ package game.objects;
 
 class Grass extends SystemicEntity {
 	public var burningTimer:Float = 0;
+	public var wetTimer:Float = 0;
 	public var ai:State;
 
 	public static inline var BURN_TIME = 6;
+	public static inline var WET_TIME = 12;
 
 	public var burnt:Bool;
 
@@ -48,6 +50,19 @@ class Grass extends SystemicEntity {
 				animation.play('idle');
 			}
 		}
+
+		if (envStatusEffect == Wet) {
+			ai.currentState = wet;
+		}
+	}
+
+	public function wet(elapsed:Float) {
+		if (wetTimer >= 0) {
+			wetTimer -= elapsed;
+		}
+		if (envStatusEffect == Burning && wetTimer <= 0) {
+			ai.currentState = burning;
+		}
 	}
 
 	override public function handleFireAtk(dmg:Int, res:Float) {
@@ -55,5 +70,10 @@ class Grass extends SystemicEntity {
 		if (burningTimer <= 0 && !burnt) {
 			burningTimer = BURN_TIME;
 		}
+	}
+
+	override public function handleWaterAtk(dmg:Int, res:Float) {
+		super.handleWaterAtk(dmg, res);
+		wetTimer = WET_TIME;
 	}
 }
