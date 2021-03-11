@@ -869,7 +869,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "17";
+	app.meta.h["build"] = "18";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4250,7 +4250,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy42:assets%2Fmaps%2FTilemap-data-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i56627R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R8R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R9R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i3695R3R4R5R10R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i106R3y5:IMAGER5R11R6tgoR2i3672R3y5:SOUNDR5y32:assets%2Fsounds%2Fmouse-over.wavy9:pathGroupaR14hR6tgoR2i6900R3R13R5y31:assets%2Fsounds%2Fmenu-open.wavR15aR16hR6tgoR2i4584R3R13R5y33:assets%2Fsounds%2Fbullet-fire.wavR15aR17hR6tgoR2i8410R3R13R5y28:assets%2Fsounds%2Fimpact.wavR15aR18hR6tgoR2i19472R3R13R5y31:assets%2Fsounds%2Fpause-out.wavR15aR19hR6tgoR2i8378R3R13R5y34:assets%2Fsounds%2Fbutton-click.wavR15aR20hR6tgoR2i4578R3R13R5y31:assets%2Fsounds%2Fmenu-exit.wavR15aR21hR6tgoR2i12492R3R13R5y34:assets%2Fsounds%2Fenemy-impact.wavR15aR22hR6tgoR2i22964R3R13R5y30:assets%2Fsounds%2Fpause-in.wavR15aR23hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R24R6tgoR2i39740R3R13R5y32:assets%2Fsounds%2Flow-health.wavR15aR25hR6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R12R5R26R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R12R5R27R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R12R5R28R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R12R5R29R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R30R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R12R5R31R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R12R5R32R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R12R5R33R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R34R6tgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i15012R3R4R5R35R6tgoR0y34:assets%2Fdata%2Fdata-goes-here.txtR2zR3R4R5R36R6tgoR2i39706R3y5:MUSICR5y28:flixel%2Fsounds%2Fflixel.mp3R15aR38y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i2114R3R37R5y26:flixel%2Fsounds%2Fbeep.mp3R15aR40y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i5794R3R13R5R41R15aR40R41hgoR2i33629R3R13R5R39R15aR38R39hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R42R43y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R12R5R48R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R12R5R49R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i15012R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i3695R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i106R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i56627R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R21R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R22R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R23R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR25hR6tgoR2i4578R3R24R5y31:assets%2Fsounds%2Fmenu-exit.wavR26aR27hR6tgoR2i39740R3R24R5y32:assets%2Fsounds%2Flow-health.wavR26aR28hR6tgoR2i6900R3R24R5y31:assets%2Fsounds%2Fmenu-open.wavR26aR29hR6tgoR2i3672R3R24R5y32:assets%2Fsounds%2Fmouse-over.wavR26aR30hR6tgoR2i8378R3R24R5y34:assets%2Fsounds%2Fbutton-click.wavR26aR31hR6tgoR2i8410R3R24R5y28:assets%2Fsounds%2Fimpact.wavR26aR32hR6tgoR2i19472R3R24R5y31:assets%2Fsounds%2Fpause-out.wavR26aR33hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R34R6tgoR2i22964R3R24R5y30:assets%2Fsounds%2Fpause-in.wavR26aR35hR6tgoR2i4584R3R24R5y33:assets%2Fsounds%2Fbullet-fire.wavR26aR36hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R26aR38y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R37R5y28:flixel%2Fsounds%2Fflixel.mp3R26aR40y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R24R5R41R26aR40R41hgoR2i5794R3R24R5R39R26aR38R39hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R42R43y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R48R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R49R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -49064,23 +49064,30 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 	}
 	,handleFireAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Burning;
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleWaterAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Wet;
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleLightningAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Charged;
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleMagnetoAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Magnetized;
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleIceAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Icy;
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleWindAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Windy;
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handlePhysAtk: function(dmg,res) {
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,calculateElementalDamage: function(dmg,res) {
 		var resLeft = 1 - res;
@@ -49299,6 +49306,7 @@ game_objects_Fire.prototype = $extend(flixel_effects_particles_FlxTypedEmitter.p
 	__class__: game_objects_Fire
 });
 var game_objects_Grass = function(x,y) {
+	this.wetTimer = 0;
 	this.burningTimer = 0;
 	game_char_SystemicEntity.call(this,x,y);
 	this.ai = new game_State($bind(this,this.idle));
@@ -49341,6 +49349,17 @@ game_objects_Grass.prototype = $extend(game_char_SystemicEntity.prototype,{
 				}
 			}
 		}
+		if(this.envStatusEffect == game_StatusEffects.Wet) {
+			this.ai.currentState = $bind(this,this.wet);
+		}
+	}
+	,wet: function(elapsed) {
+		if(this.wetTimer >= 0) {
+			this.wetTimer -= elapsed;
+		}
+		if(this.envStatusEffect == game_StatusEffects.Burning && this.wetTimer <= 0) {
+			this.ai.currentState = $bind(this,this.burning);
+		}
 	}
 	,handleFireAtk: function(dmg,res) {
 		game_char_SystemicEntity.prototype.handleFireAtk.call(this,dmg,res);
@@ -49348,7 +49367,53 @@ game_objects_Grass.prototype = $extend(game_char_SystemicEntity.prototype,{
 			this.burningTimer = 6;
 		}
 	}
+	,handleWaterAtk: function(dmg,res) {
+		game_char_SystemicEntity.prototype.handleWaterAtk.call(this,dmg,res);
+		this.wetTimer = 12;
+	}
 	,__class__: game_objects_Grass
+});
+var game_objects_Rain = function(x,y,intensitiy) {
+	if(intensitiy == null) {
+		intensitiy = 1.0;
+	}
+	flixel_effects_particles_FlxTypedEmitter.call(this,x,y);
+	this.makeParticles(2,8,-1,Math.floor(2500 * intensitiy));
+	this.width = 400;
+	this.height = this.height;
+	this.set_solid(true);
+	this.lifespan.set(0.85,1.25);
+	this.launchAngle.set(90,90);
+	var rainAccl = 400;
+	this.speed.set(rainAccl);
+	this.alpha.set(1,1);
+	this.scale.set(1,0.25,1,1.25);
+};
+$hxClasses["game.objects.Rain"] = game_objects_Rain;
+game_objects_Rain.__name__ = "game.objects.Rain";
+game_objects_Rain.__super__ = flixel_effects_particles_FlxTypedEmitter;
+game_objects_Rain.prototype = $extend(flixel_effects_particles_FlxTypedEmitter.prototype,{
+	__class__: game_objects_Rain
+});
+var game_objects_Snow = function(x,y,intensity) {
+	if(intensity == null) {
+		intensity = 1.0;
+	}
+	flixel_effects_particles_FlxTypedEmitter.call(this,x,y);
+	this.makeParticles(2,2,-1,Math.floor(2500 * intensity));
+	this.set_solid(true);
+	this.width = flixel_FlxG.width;
+	this.height = this.height;
+	this.lifespan.set(0.85,3);
+	this.launchAngle.set(90,105);
+	this.speed.set(150,200,100,250);
+	this.scale.set(0.5,0.5,1,1);
+};
+$hxClasses["game.objects.Snow"] = game_objects_Snow;
+game_objects_Snow.__name__ = "game.objects.Snow";
+game_objects_Snow.__super__ = flixel_effects_particles_FlxTypedEmitter;
+game_objects_Snow.prototype = $extend(flixel_effects_particles_FlxTypedEmitter.prototype,{
+	__class__: game_objects_Snow
 });
 var game_objects_Torch = function(x,y,size) {
 	flixel_group_FlxTypedGroup.call(this,size);
@@ -49498,12 +49563,21 @@ game_states_LevelOneState.prototype = $extend(game_states_LevelState.prototype,{
 		game_states_LevelState.prototype.create.call(this);
 		this.createLevel("assets/maps/kikiyo/tiled/LevelOne.tmx");
 		this.torch = new game_objects_Torch(300,200,4);
+		this.rain = new game_objects_Rain(0,-100,1);
+		this.snow = new game_objects_Snow(0,-100,1);
+		this.snow.start(false,0.035,0);
+		this.add(this.rain);
 		this.add(this.torch);
+		this.add(this.snow);
 	}
 	,processCollision: function() {
 		game_states_LevelState.prototype.processCollision.call(this);
+		if(flixel_FlxG.keys.checkKeyArrayState([90],2)) {
+			this.rain.emitting = false;
+		}
 		flixel_FlxG.overlap(this.player,this.torch.torchLight,$bind(this,this.playerTouchFire));
 		flixel_FlxG.overlap(this.systemicEntitiesGrp,this.torch.torchLight,$bind(this,this.systemEntityTouchFire));
+		flixel_FlxG.overlap(this.systemicEntitiesGrp,this.rain,$bind(this,this.systemEntityTouchRain));
 	}
 	,playerTouchFire: function(player,fireGrp) {
 		flixel_FlxG.camera.shake(0.1,0.1);
@@ -49511,6 +49585,9 @@ game_states_LevelOneState.prototype = $extend(game_states_LevelState.prototype,{
 	}
 	,systemEntityTouchFire: function(entity,fire) {
 		entity.handleElement(game_ElementalAtk.FireAtk(0));
+	}
+	,systemEntityTouchRain: function(entity,rain) {
+		entity.handleElement(game_ElementalAtk.WaterAtk(0));
 	}
 	,__class__: game_states_LevelOneState
 });
@@ -68028,7 +68105,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 962900;
+	this.version = 994433;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -109473,34 +109550,34 @@ openfl_display_DisplayObject.__tempStack = new lime_utils_ObjectPool(function() 
 },function(stack) {
 	stack.set_length(0);
 });
-AssetPaths.Tilemap_data_goes_here__txt = "assets/maps/Tilemap-data-goes-here.txt";
-AssetPaths.kikiyo__ldtk = "assets/maps/kikiyo.ldtk";
-AssetPaths.kikiyo__world = "assets/maps/kikiyo/tiled/kikiyo.world";
-AssetPaths.Level__tmx = "assets/maps/kikiyo/tiled/Level.tmx";
+AssetPaths.data_goes_here__txt = "assets/data/data-goes-here.txt";
+AssetPaths.database__dpo = "assets/data/database.dpo";
 AssetPaths.LevelOne__tmx = "assets/maps/kikiyo/tiled/LevelOne.tmx";
+AssetPaths.kikiyo__world = "assets/maps/kikiyo/tiled/kikiyo.world";
 AssetPaths.Regions__intgrid__png = "assets/maps/kikiyo/tiled/Regions.intgrid.png";
-AssetPaths.mouse_over__wav = "assets/sounds/mouse-over.wav";
+AssetPaths.Level__tmx = "assets/maps/kikiyo/tiled/Level.tmx";
+AssetPaths.kikiyo__ldtk = "assets/maps/kikiyo.ldtk";
+AssetPaths.Tilemap_data_goes_here__txt = "assets/maps/Tilemap-data-goes-here.txt";
+AssetPaths.images_go_here__txt = "assets/images/images-go-here.txt";
+AssetPaths.grass_out__png = "assets/images/grass-out.png";
+AssetPaths.cog_two__png = "assets/images/cog-two.png";
+AssetPaths.floor_tileset__png = "assets/images/floor-tileset.png";
+AssetPaths.button__png = "assets/images/button.png";
+AssetPaths.dialog_arrow__png = "assets/images/dialog-arrow.png";
+AssetPaths.affection_heart__png = "assets/images/affection-heart.png";
+AssetPaths.exit_door__png = "assets/images/exit-door.png";
+AssetPaths.music_goes_here__txt = "assets/music/music-goes-here.txt";
+AssetPaths.enemy_impact__wav = "assets/sounds/enemy-impact.wav";
+AssetPaths.menu_exit__wav = "assets/sounds/menu-exit.wav";
+AssetPaths.low_health__wav = "assets/sounds/low-health.wav";
 AssetPaths.menu_open__wav = "assets/sounds/menu-open.wav";
-AssetPaths.bullet_fire__wav = "assets/sounds/bullet-fire.wav";
+AssetPaths.mouse_over__wav = "assets/sounds/mouse-over.wav";
+AssetPaths.button_click__wav = "assets/sounds/button-click.wav";
 AssetPaths.impact__wav = "assets/sounds/impact.wav";
 AssetPaths.pause_out__wav = "assets/sounds/pause-out.wav";
-AssetPaths.button_click__wav = "assets/sounds/button-click.wav";
-AssetPaths.menu_exit__wav = "assets/sounds/menu-exit.wav";
-AssetPaths.enemy_impact__wav = "assets/sounds/enemy-impact.wav";
-AssetPaths.pause_in__wav = "assets/sounds/pause-in.wav";
 AssetPaths.sounds_go_here__txt = "assets/sounds/sounds-go-here.txt";
-AssetPaths.low_health__wav = "assets/sounds/low-health.wav";
-AssetPaths.floor_tileset__png = "assets/images/floor-tileset.png";
-AssetPaths.cog_two__png = "assets/images/cog-two.png";
-AssetPaths.button__png = "assets/images/button.png";
-AssetPaths.exit_door__png = "assets/images/exit-door.png";
-AssetPaths.images_go_here__txt = "assets/images/images-go-here.txt";
-AssetPaths.affection_heart__png = "assets/images/affection-heart.png";
-AssetPaths.dialog_arrow__png = "assets/images/dialog-arrow.png";
-AssetPaths.grass_out__png = "assets/images/grass-out.png";
-AssetPaths.music_goes_here__txt = "assets/music/music-goes-here.txt";
-AssetPaths.database__dpo = "assets/data/database.dpo";
-AssetPaths.data_goes_here__txt = "assets/data/data-goes-here.txt";
+AssetPaths.pause_in__wav = "assets/sounds/pause-in.wav";
+AssetPaths.bullet_fire__wav = "assets/sounds/bullet-fire.wav";
 DepotData.Actors_Kikiyo = { spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, def : 0};
 DepotData.Actors_ActorName = { spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, def : 0};
 DepotData.Actors = { name : "Actors", lines : [{ spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, def : 0},{ spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, def : 0}], isProps : false, hidden : false, guid : "9ee981be-907f-4a41-9014-cbac2ab9b9a4", displayColumn : "id", description : "List of actors and enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
@@ -110746,7 +110823,11 @@ game_ext_KColor.DARK_BYZANTIUM = -11392185;
 game_ext_KColor.MORNING_BLUE = -7492963;
 game_ext_KColor.PRETTY_PINK = -37993;
 game_ext_KColor.LIGHT_ORANGE = -28314;
+game_ext_KColor.GRAY_BLUE = -10052185;
 game_objects_Grass.BURN_TIME = 6;
+game_objects_Grass.WET_TIME = 12;
+game_objects_Rain.BASE_RAIN = 2500;
+game_objects_Snow.BASE_SNOW = 2500;
 game_states_BaseTileState.TILESET_NAME = "Floor_tileset";
 game_states_LevelState.REGION_TILESET_NAME = "Regions";
 game_states_LevelState.GRASS_TILE = 26;
