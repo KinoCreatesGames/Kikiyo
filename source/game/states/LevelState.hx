@@ -1,5 +1,8 @@
 package game.states;
 
+import game.objects.Snow;
+import game.objects.Rain;
+import game.objects.Fire;
 import game.objects.Grass;
 import flixel.FlxObject;
 import flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling;
@@ -12,6 +15,10 @@ import flixel.addons.editors.tiled.TiledMap;
 class LevelState extends BaseTileState {
 	public var player:Player;
 	public var systemicEntitiesGrp:FlxTypedGroup<SystemicEntity>;
+	// Could be generic later if necessary
+	public var fireGrp:Fire;
+	public var rainGrp:Rain;
+	public var snowGrp:Snow;
 
 	public static inline var REGION_TILESET_NAME = 'Regions';
 	public static inline var GRASS_TILE = 26;
@@ -60,6 +67,40 @@ class LevelState extends BaseTileState {
 
 	override function processCollision() {
 		super.processCollision();
+		processPlayerCollisions();
+	}
+
+	public function processPlayerCollisions() {
+		FlxG.overlap(enemyGrp, player, enemyTouchPlayer);
+		// Weather Handling for game
+		FlxG.overlap(player, fireGrp, playerTouchFire);
+		FlxG.overlap(player, rainGrp, playerTouchRain);
+		FlxG.overlap(player, snowGrp, playerTouchSnow);
+	}
+
+	public function enemyTouchPlayer(enemy:Enemy, player:Player) {
+		FlxG.camera.shake(0.1, 0.1);
+		if (enemy.health <= 0) {
+			enemy.kill();
+		}
+
+		if (player.health <= 0) {
+			player.kill();
+		}
+	}
+
+	public function playerTouchFire(player:Player, fireGrp:Fire) {
+		FlxG.camera.shake(0.1, 0.1);
+		player.handleElement(FireAtk(0));
+		// Do Fire Attack on player
+	}
+
+	public function playerTouchRain(player:Player, rainGrp:Rain) {
+		player.handleElement(WaterAtk(0));
+	}
+
+	public function playerTouchSnow(player:Player, snowGrp:Snow) {
+		player.handleElement(IceAtk(0));
 	}
 
 	override function processLevel(elapsed) {}
