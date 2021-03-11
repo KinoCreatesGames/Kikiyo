@@ -869,7 +869,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "19";
+	app.meta.h["build"] = "20";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49154,6 +49154,10 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 	,updateStatusEffectResponse: function(elapsed) {
 		if(this.envStatusEffect == game_StatusEffects.Burning) {
 			this.set_color(-65536);
+		} else if(this.envStatusEffect == game_StatusEffects.Wet) {
+			this.set_color(-16776961);
+		} else if(this.envStatusEffect == game_StatusEffects.Icy) {
+			this.set_color(-4532238);
 		}
 	}
 	,updateMovement: function(elapsed) {
@@ -49562,6 +49566,32 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 	}
 	,processCollision: function() {
 		game_states_BaseTileState.prototype.processCollision.call(this);
+		this.processPlayerCollisions();
+	}
+	,processPlayerCollisions: function() {
+		flixel_FlxG.overlap(this.enemyGrp,this.player,$bind(this,this.enemyTouchPlayer));
+		flixel_FlxG.overlap(this.player,this.fireGrp,$bind(this,this.playerTouchFire));
+		flixel_FlxG.overlap(this.player,this.rainGrp,$bind(this,this.playerTouchRain));
+		flixel_FlxG.overlap(this.player,this.snowGrp,$bind(this,this.playerTouchSnow));
+	}
+	,enemyTouchPlayer: function(enemy,player) {
+		flixel_FlxG.camera.shake(0.1,0.1);
+		if(enemy.health <= 0) {
+			enemy.kill();
+		}
+		if(player.health <= 0) {
+			player.kill();
+		}
+	}
+	,playerTouchFire: function(player,fireGrp) {
+		flixel_FlxG.camera.shake(0.1,0.1);
+		player.handleElement(game_ElementalAtk.FireAtk(0));
+	}
+	,playerTouchRain: function(player,rainGrp) {
+		player.handleElement(game_ElementalAtk.WaterAtk(0));
+	}
+	,playerTouchSnow: function(player,snowGrp) {
+		player.handleElement(game_ElementalAtk.IceAtk(0));
 	}
 	,processLevel: function(elapsed) {
 	}
@@ -49596,10 +49626,7 @@ game_states_LevelOneState.prototype = $extend(game_states_LevelState.prototype,{
 		flixel_FlxG.overlap(this.player,this.torch.torchLight,$bind(this,this.playerTouchFire));
 		flixel_FlxG.overlap(this.systemicEntitiesGrp,this.torch.torchLight,$bind(this,this.systemEntityTouchFire));
 		flixel_FlxG.overlap(this.systemicEntitiesGrp,this.rain,$bind(this,this.systemEntityTouchRain));
-	}
-	,playerTouchFire: function(player,fireGrp) {
-		flixel_FlxG.camera.shake(0.1,0.1);
-		player.handleElement(game_ElementalAtk.FireAtk(0));
+		flixel_FlxG.overlap(this.player,this.snow,$bind(this,this.playerTouchSnow));
 	}
 	,systemEntityTouchFire: function(entity,fire) {
 		entity.handleElement(game_ElementalAtk.FireAtk(0));
@@ -68123,7 +68150,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 349777;
+	this.version = 384605;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
