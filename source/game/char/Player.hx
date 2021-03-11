@@ -62,4 +62,28 @@ class Player extends Actor {
 			velocity.rotate(FlxPoint.weak(0, 0), newAngle);
 		}
 	}
+
+	override public function handleFireAtk(dmg:Int, res:Float) {
+		super.handleFireAtk(dmg, res);
+	}
+
+	override public function handleWaterAtk(dmg:Int, res:Float) {
+		super.handleWaterAtk(dmg, res);
+	}
+
+	override public function handleMagnetoAtk(dmg:Int, res:Float) {
+		super.handleMagnetoAtk(dmg, res);
+	}
+
+	override public function handleIceAtk(dmg:Int, res:Float) {
+		super.handleIceAtk(dmg, res);
+	}
+
+	override public function handleWindAtk(dmg:Int, res:Float) {
+		super.handleWindAtk(dmg, res);
+	}
+
+	override public function handleLightningAtk(dmg:Int, res:Float) {
+		super.handleLightningAtk(dmg, res);
+	}
 }
