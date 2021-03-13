@@ -25,13 +25,18 @@ class Player extends Actor {
 	}
 
 	public function updateStatusEffectResponse(elapsed:Float) {
-		if (envStatusEffect == Burning) {
-			// Change Color to Red
-			color = KColor.RED;
-		} else if (envStatusEffect == Wet) {
-			color = KColor.BLUE;
-		} else if (envStatusEffect == Icy) {
-			color = KColor.BEAU_BLUE;
+		switch (envStatusEffect) {
+			case Burning:
+				color = KColor.RED;
+			case Icy:
+				color = KColor.BEAU_BLUE;
+			case Wet:
+				color = KColor.BLUE;
+			case None:
+				color = KColor.WHITE;
+			case _:
+				// Do nothing
+				// color = KColor.WHITE;
 		}
 	}
 

@@ -24,4 +24,9 @@ class Actor extends SystemicEntity {
 		def = data.def;
 		spd = data.spd;
 	}
+
+	override public function update(elapsed:Float) {
+		super.update(elapsed);
+		ai.currentState(elapsed);
+	}
 }

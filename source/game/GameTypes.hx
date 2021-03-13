@@ -128,6 +128,7 @@ enum StatusEffects {
 	Windy;
 	Magnetized;
 	Charged; // For when hit with electricity
+	None;
 }
 
 enum ObjectTypes {
