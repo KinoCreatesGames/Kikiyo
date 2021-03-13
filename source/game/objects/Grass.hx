@@ -61,10 +61,15 @@ class Grass extends SystemicEntity {
 	}
 
 	override public function handleFireAtk(dmg:Int, res:Float) {
-		super.handleFireAtk(dmg, res);
-		if (burningTimer <= 0 && !burnt) {
-			burningTimer = SystemicEntity.BURN_TIME;
+		if (envStatusEffect == Wet) {
+			// Do nothing
+		} else {
+			envStatusEffect = Burning;
+			if (burningTimer <= 0 && !burnt) {
+				burningTimer = SystemicEntity.BURN_TIME;
+			}
 		}
+		this.health -= calculateElementalDamage(dmg, res);
 	}
 
 	override public function handleWaterAtk(dmg:Int, res:Float) {
