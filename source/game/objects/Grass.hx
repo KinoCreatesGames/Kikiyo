@@ -1,13 +1,6 @@
 package game.objects;
 
 class Grass extends SystemicEntity {
-	public var burningTimer:Float = 0;
-	public var wetTimer:Float = 0;
-	public var ai:State;
-
-	public static inline var BURN_TIME = 6;
-	public static inline var WET_TIME = 12;
-
 	public var burnt:Bool;
 
 	public function new(x:Float, y:Float) {
@@ -31,13 +24,13 @@ class Grass extends SystemicEntity {
 		ai.update(elapsed);
 	}
 
-	public function idle(elapsed:Float) {
+	override public function idle(elapsed:Float) {
 		if (!burnt && envStatusEffect == Burning) {
 			ai.currentState = burning;
 		}
 	}
 
-	public function burning(elapsed:Float) {
+	override public function burning(elapsed:Float) {
 		if (burningTimer >= 0) {
 			burningTimer -= elapsed;
 			// Change the Sprite Frame with each
@@ -56,7 +49,7 @@ class Grass extends SystemicEntity {
 		}
 	}
 
-	public function wet(elapsed:Float) {
+	override public function wet(elapsed:Float) {
 		if (wetTimer >= 0) {
 			wetTimer -= elapsed;
 		}
@@ -68,12 +61,12 @@ class Grass extends SystemicEntity {
 	override public function handleFireAtk(dmg:Int, res:Float) {
 		super.handleFireAtk(dmg, res);
 		if (burningTimer <= 0 && !burnt) {
-			burningTimer = BURN_TIME;
+			burningTimer = SystemicEntity.BURN_TIME;
 		}
 	}
 
 	override public function handleWaterAtk(dmg:Int, res:Float) {
 		super.handleWaterAtk(dmg, res);
-		wetTimer = WET_TIME;
+		wetTimer = SystemicEntity.WET_TIME;
 	}
 }

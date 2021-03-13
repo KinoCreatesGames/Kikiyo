@@ -23,8 +23,24 @@ class SystemicEntity extends FlxSprite {
 	public var lightningRes:Float = 0.5;
 	public var physRes:Float = 0.5;
 
+	public var burningTimer:Float = 0;
+	public var wetTimer:Float = 0;
+	public var iceyTimer:Float = 0;
+	public var freezeTimer:Float = 0;
+	public var chargedTimer:Float = 0;
+
+	public static inline var BURN_TIME = 6;
+	public static inline var WET_TIME = 6;
+	public static inline var ICE_TIME = 6;
+	public static inline var FREEZE_TIME = 3;
+	public static inline var CHARGE_TIME = 6;
+
+	public var ai:State;
+
 	public function new(x:Float, y:Float) {
 		super(x, y);
+		envStatusEffect = None;
+		ai = new State(idle);
 		assignRes();
 	}
 
@@ -104,7 +120,12 @@ class SystemicEntity extends FlxSprite {
 	 * @param res 
 	 */
 	public function handleFireAtk(dmg:Int, res:Float) {
-		envStatusEffect = Burning;
+		if (envStatusEffect == Wet) {
+			// Do nothing
+		} else {
+			envStatusEffect = Burning;
+			burningTimer = BURN_TIME;
+		}
 		this.health -= calculateElementalDamage(dmg, res);
 	}
 
@@ -115,7 +136,13 @@ class SystemicEntity extends FlxSprite {
 	 * @param res 
 	 */
 	public function handleWaterAtk(dmg:Int, res:Float) {
-		envStatusEffect = Wet;
+		if (envStatusEffect == Icy) {
+			envStatusEffect = Frozen;
+			freezeTimer = FREEZE_TIME;
+		} else {
+			envStatusEffect = Wet;
+			wetTimer = WET_TIME;
+		}
 		this.health -= calculateElementalDamage(dmg, res);
 	}
 
@@ -128,6 +155,7 @@ class SystemicEntity extends FlxSprite {
 	public function handleLightningAtk(dmg:Int, res:Float) {
 		envStatusEffect = Charged;
 		this.health -= calculateElementalDamage(dmg, res);
+		chargedTimer = CHARGE_TIME;
 	}
 
 	/**
@@ -141,16 +169,42 @@ class SystemicEntity extends FlxSprite {
 		this.health -= calculateElementalDamage(dmg, res);
 	}
 
+	/**
+	 * Handles the dmg based on the resistance and adds the
+	 		* status effect.
+	 * @param dmg 
+	 * @param res 
+	 */
 	public function handleIceAtk(dmg:Int, res:Float) {
-		envStatusEffect = Icy;
+		if (envStatusEffect == Wet) {
+			envStatusEffect = Frozen;
+			freezeTimer = FREEZE_TIME;
+		} else if (envStatusEffect == Burning) {
+			// Do nothing
+		} else {
+			envStatusEffect = Icy;
+			iceyTimer = ICE_TIME;
+		}
 		this.health -= calculateElementalDamage(dmg, res);
 	}
 
+	/**
+	 * Handles the dmg based on the resistance adds the
+	 		* status effect.
+	 * @param dmg 
+	 * @param res 
+	 */
 	public function handleWindAtk(dmg:Int, res:Float) {
 		envStatusEffect = Windy;
 		this.health -= calculateElementalDamage(dmg, res);
 	}
 
+	/**
+	 * Handles the dmg based on the resistance and doesn't have any
+	 		* particular status effect.
+	 * @param dmg 
+	 * @param res 
+	 */
 	public function handlePhysAtk(dmg:Int, res:Float) {
 		this.health -= calculateElementalDamage(dmg, res);
 	}
@@ -167,5 +221,81 @@ class SystemicEntity extends FlxSprite {
 	public function calculateElementalDamage(dmg:Int, res:Float):Int {
 		var resLeft = 1 - res;
 		return Math.floor(dmg * resLeft);
+	}
+
+	// Elemental States
+
+	public function idle(elapsed:Float) {
+		switch (envStatusEffect) {
+			case Burning:
+				ai.currentState = burning;
+			case Wet:
+				ai.currentState = wet;
+			case Frozen:
+				ai.currentState = frozen;
+			case Icy:
+				ai.currentState = icey;
+			case Charged:
+				ai.currentState = charged;
+			case _:
+				// Do nothing
+		}
+	}
+
+	public function burning(elapsed:Float) {
+		// Drains fixed amount of hp every second
+		if (burningTimer >= 0) {
+			burningTimer -= elapsed;
+		}
+		if (burningTimer % 1 == 0) {
+			health -= 1;
+		}
+
+		if (burningTimer <= 0) {
+			envStatusEffect = None;
+			ai.currentState = idle;
+		}
+	}
+
+	public function wet(elapsed:Float) {
+		if (wetTimer >= 0) {
+			wetTimer -= elapsed;
+		}
+		if (wetTimer <= 0) {
+			envStatusEffect = None;
+			ai.currentState = idle;
+		}
+	}
+
+	public function charged(elapsed:Float) {
+		if (chargedTimer >= 0) {
+			chargedTimer -= elapsed;
+		}
+
+		if (chargedTimer <= 0) {
+			envStatusEffect = None;
+			ai.currentState = idle;
+		}
+	}
+
+	public function icey(elapsed:Float) {
+		if (iceyTimer >= 0) {
+			iceyTimer -= elapsed;
+		}
+		if (iceyTimer <= 0) {
+			ai.currentState = idle;
+			envStatusEffect = None;
+		}
+	}
+
+	public function frozen(elapsed:Float) {
+		if (freezeTimer >= 0) {
+			freezeTimer -= elapsed;
+		}
+
+		if (freezeTimer <= 0) {
+			envStatusEffect = None;
+			ai.currentState = idle;
+		}
 	}
 }
