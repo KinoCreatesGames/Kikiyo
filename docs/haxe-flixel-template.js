@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "23";
+	app.meta.h["build"] = "24";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4269,7 +4269,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i15012R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i3695R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i106R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i56627R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R21R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R22R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R23R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR25hR6tgoR2i4578R3R24R5y31:assets%2Fsounds%2Fmenu-exit.wavR26aR27hR6tgoR2i39740R3R24R5y32:assets%2Fsounds%2Flow-health.wavR26aR28hR6tgoR2i6900R3R24R5y31:assets%2Fsounds%2Fmenu-open.wavR26aR29hR6tgoR2i3672R3R24R5y32:assets%2Fsounds%2Fmouse-over.wavR26aR30hR6tgoR2i8378R3R24R5y34:assets%2Fsounds%2Fbutton-click.wavR26aR31hR6tgoR2i8410R3R24R5y28:assets%2Fsounds%2Fimpact.wavR26aR32hR6tgoR2i19472R3R24R5y31:assets%2Fsounds%2Fpause-out.wavR26aR33hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R34R6tgoR2i22964R3R24R5y30:assets%2Fsounds%2Fpause-in.wavR26aR35hR6tgoR2i4584R3R24R5y33:assets%2Fsounds%2Fbullet-fire.wavR26aR36hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R26aR38y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R37R5y28:flixel%2Fsounds%2Fflixel.mp3R26aR40y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R24R5R41R26aR40R41hgoR2i5794R3R24R5R39R26aR38R39hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R42R43y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R48R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R49R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i16855R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i4034R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i106R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i56968R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y39:assets%2Fimages%2Flove-flame-turret.pngR2i265R3R11R5R21R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R23R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R24R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR26hR6tgoR2i4578R3R25R5y31:assets%2Fsounds%2Fmenu-exit.wavR27aR28hR6tgoR2i39740R3R25R5y32:assets%2Fsounds%2Flow-health.wavR27aR29hR6tgoR2i6900R3R25R5y31:assets%2Fsounds%2Fmenu-open.wavR27aR30hR6tgoR2i3672R3R25R5y32:assets%2Fsounds%2Fmouse-over.wavR27aR31hR6tgoR2i8378R3R25R5y34:assets%2Fsounds%2Fbutton-click.wavR27aR32hR6tgoR2i8410R3R25R5y28:assets%2Fsounds%2Fimpact.wavR27aR33hR6tgoR2i19472R3R25R5y31:assets%2Fsounds%2Fpause-out.wavR27aR34hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R35R6tgoR2i22964R3R25R5y30:assets%2Fsounds%2Fpause-in.wavR27aR36hR6tgoR2i4584R3R25R5y33:assets%2Fsounds%2Fbullet-fire.wavR27aR37hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R27aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R27aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R25R5R42R27aR41R42hgoR2i5794R3R25R5R40R27aR39R40hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R43R44y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R50R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -48929,13 +48929,6 @@ var game_Splash = $hxEnums["game.Splash"] = { __ename__ : "game.Splash", __const
 	,Click: ($_=function(imageName) { return {_hx_index:1,imageName:imageName,__enum__:"game.Splash",toString:$estr}; },$_.__params__ = ["imageName"],$_)
 	,ClickDelay: ($_=function(imageName,seconds) { return {_hx_index:2,imageName:imageName,seconds:seconds,__enum__:"game.Splash",toString:$estr}; },$_.__params__ = ["imageName","seconds"],$_)
 };
-var game_Stat = $hxEnums["game.Stat"] = { __ename__ : "game.Stat", __constructs__ : ["Atk","Def","Intl","Agi","Dex"]
-	,Atk: ($_=function(value) { return {_hx_index:0,value:value,__enum__:"game.Stat",toString:$estr}; },$_.__params__ = ["value"],$_)
-	,Def: ($_=function(value) { return {_hx_index:1,value:value,__enum__:"game.Stat",toString:$estr}; },$_.__params__ = ["value"],$_)
-	,Intl: ($_=function(value) { return {_hx_index:2,value:value,__enum__:"game.Stat",toString:$estr}; },$_.__params__ = ["value"],$_)
-	,Agi: ($_=function(value) { return {_hx_index:3,value:value,__enum__:"game.Stat",toString:$estr}; },$_.__params__ = ["value"],$_)
-	,Dex: ($_=function(value) { return {_hx_index:4,value:value,__enum__:"game.Stat",toString:$estr}; },$_.__params__ = ["value"],$_)
-};
 var game_Rating = $hxEnums["game.Rating"] = { __ename__ : "game.Rating", __constructs__ : ["Good","Great","Amazing"]
 	,Good: {_hx_index:0,__enum__:"game.Rating",toString:$estr}
 	,Great: {_hx_index:1,__enum__:"game.Rating",toString:$estr}
@@ -49231,6 +49224,47 @@ game_char_Actor.prototype = $extend(game_char_SystemicEntity.prototype,{
 	}
 	,__class__: game_char_Actor
 });
+var game_char_Bullet = function(X,Y,SimpleGraphic) {
+	this.bulletSize = 4;
+	this.atk = 1;
+	flixel_FlxSprite.call(this,X,Y,SimpleGraphic);
+};
+$hxClasses["game.char.Bullet"] = game_char_Bullet;
+game_char_Bullet.__name__ = "game.char.Bullet";
+game_char_Bullet.__super__ = flixel_FlxSprite;
+game_char_Bullet.prototype = $extend(flixel_FlxSprite.prototype,{
+	setBulletType: function(elAtk) {
+		switch(elAtk._hx_index) {
+		case 0:
+			var dmg = elAtk.dmg;
+			this.atk = dmg;
+			this.makeGraphic(this.bulletSize,this.bulletSize,-65536);
+			break;
+		case 1:
+			var dmg = elAtk.dmg;
+			this.atk = dmg;
+			this.makeGraphic(this.bulletSize,this.bulletSize,-16776961);
+			break;
+		case 2:
+			var dmg = elAtk.dmg;
+			this.atk = dmg;
+			this.makeGraphic(this.bulletSize,this.bulletSize,-8388480);
+			break;
+		case 4:
+			var dmg = elAtk.dmg;
+			this.atk = dmg;
+			this.makeGraphic(this.bulletSize,this.bulletSize,-4532238);
+			break;
+		case 5:
+			var dmg = elAtk.dmg;
+			this.atk = dmg;
+			this.makeGraphic(this.bulletSize,this.bulletSize,-16744448);
+			break;
+		default:
+		}
+	}
+	,__class__: game_char_Bullet
+});
 var game_char_Enemy = function(x,y,path,monsterData) {
 	game_char_Actor.call(this,x,y,monsterData);
 	this.walkPath = path;
@@ -49239,6 +49273,16 @@ var game_char_Enemy = function(x,y,path,monsterData) {
 };
 $hxClasses["game.char.Enemy"] = game_char_Enemy;
 game_char_Enemy.__name__ = "game.char.Enemy";
+game_char_Enemy.createEnemy = function(x,y,path,enemyName) {
+	switch(enemyName) {
+	case "Fire Turret":
+		return new game_char_Turret(x,y,DepotData.Enemies_Fire_Turret,null);
+	case "Water Turret":
+		return new game_char_Turret(x,y,DepotData.Enemies_Water_Turret,null);
+	default:
+		return null;
+	}
+};
 game_char_Enemy.__super__ = game_char_Actor;
 game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 	update: function(elapsed) {
@@ -49372,6 +49416,87 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		game_char_Actor.prototype.handleLightningAtk.call(this,dmg,res);
 	}
 	,__class__: game_char_Player
+});
+var game_char_Turret = function(x,y,data,bulletGrp) {
+	game_char_Enemy.call(this,x,y,null,data);
+	this.fireCD = 0;
+	this.fireSound = flixel_FlxG.sound.load("assets/sounds/bullet-fire.wav");
+	this.bullets = bulletGrp;
+};
+$hxClasses["game.char.Turret"] = game_char_Turret;
+game_char_Turret.__name__ = "game.char.Turret";
+game_char_Turret.__super__ = game_char_Enemy;
+game_char_Turret.prototype = $extend(game_char_Enemy.prototype,{
+	assignStats: function() {
+		game_char_Enemy.prototype.assignStats.call(this);
+		var monData = this.data;
+		this.atkSpd = monData.atkSpd;
+		this.range = monData.range;
+		var sprite = StringTools.replace(monData.sprite,"../../","assets/");
+		this.loadGraphic(sprite,true,16,16,true);
+		this.animation.add("idle",[0]);
+		this.animation.add("fire",[0,1,2],6);
+	}
+	,update: function(elapsed) {
+		game_char_Enemy.prototype.update.call(this,elapsed);
+	}
+	,idle: function(elapsed) {
+		var player = this.playerInRange();
+		if(player != null) {
+			this.ai.currentState = $bind(this,this.attack);
+		}
+		this.animation.play("idle");
+		this.handleCD(elapsed);
+	}
+	,attack: function(elapsed) {
+		var player = this.playerInRange();
+		if(player != null) {
+			this.fireAtPlayer();
+			this.animation.play("fire");
+		} else {
+			this.ai.currentState = $bind(this,this.idle);
+		}
+		this.handleCD(elapsed);
+	}
+	,fireAtPlayer: function() {
+		var player = this.playerInRange();
+		if(this.fireCD >= this.atkSpd) {
+			this.fireSound.play();
+			var bullet = this.bullets.recycle(game_char_Bullet);
+			bullet.setBulletType(this.bulletType());
+			bullet.setPosition(this.getMidpoint().x,this.y);
+			bullet.velocity.set(0,0);
+			flixel_math_FlxVelocity.accelerateTowardsObject(bullet,player,600,600);
+			this.bullets.add(bullet);
+			this.fireCD = 0;
+		}
+	}
+	,playerInRange: function() {
+		var currPlayer = null;
+		if(this.player != null) {
+			if(this.player.getMidpoint().distanceTo(this.getMidpoint()) < this.range && this.player.alive) {
+				currPlayer = this.player;
+			}
+		}
+		return currPlayer;
+	}
+	,handleCD: function(elapsed) {
+		if(this.fireCD >= this.atkSpd) {
+			this.fireCD = this.atkSpd;
+		}
+		this.fireCD += elapsed;
+	}
+	,bulletType: function() {
+		switch(this.name) {
+		case "Fire Turret":
+			return game_ElementalAtk.FireAtk(this.atk);
+		case "Water Turret":
+			return game_ElementalAtk.WaterAtk(this.atk);
+		default:
+			return game_ElementalAtk.PhysAtk(this.atk);
+		}
+	}
+	,__class__: game_char_Turret
 });
 var game_ext_KColor = {};
 var game_ext_MathExt = function() { };
@@ -49668,6 +49793,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		this.player = new game_char_Player(60,60,DepotData.Actors_Kikiyo);
 		this.createLevelMap(tileLayer);
 		this.createRegionEntities();
+		this.createEnemies();
 	}
 	,createRegionEntities: function() {
 		var tileset = this.map.getTileSet("Regions");
@@ -49684,6 +49810,15 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 				this.systemicEntitiesGrp.add(new game_objects_Grass(coords.x,coords.y));
 			}
 		}
+	}
+	,createEnemies: function() {
+		var _gthis = this;
+		var tileLayer = this.map.getLayer("Enemy");
+		Lambda.iter(tileLayer.objects,function(enemy) {
+			var enemyName = enemy.properties.keys.h["name"];
+			var newEnemy = game_char_Enemy.createEnemy(enemy.x,enemy.y,null,enemyName);
+			_gthis.enemyGrp.add(newEnemy);
+		});
 	}
 	,createGroups: function() {
 		game_states_BaseTileState.prototype.createGroups.call(this);
@@ -68439,7 +68574,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 312198;
+	this.version = 389729;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -109898,6 +110033,7 @@ AssetPaths.cog_two__png = "assets/images/cog-two.png";
 AssetPaths.floor_tileset__png = "assets/images/floor-tileset.png";
 AssetPaths.button__png = "assets/images/button.png";
 AssetPaths.dialog_arrow__png = "assets/images/dialog-arrow.png";
+AssetPaths.love_flame_turret__png = "assets/images/love-flame-turret.png";
 AssetPaths.affection_heart__png = "assets/images/affection-heart.png";
 AssetPaths.exit_door__png = "assets/images/exit-door.png";
 AssetPaths.music_goes_here__txt = "assets/music/music-goes-here.txt";
@@ -109919,8 +110055,9 @@ DepotData.Switches_Met_Mentor = { name : "Met Mentor", guid : "94fc7cdb-c962-4df
 DepotData.Switches = { name : "Switches", lines : [{ name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"}], isProps : false, hidden : false, guid : "585e7418-2ed3-4d65-a2d8-1944a6d4707b", displayColumn : "id", description : "A sheet used to define the number of switches in game", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Variables_Met_Mentor_Count = { name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"};
 DepotData.Variables = { name : "Variables", lines : [{ name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"}], isProps : false, hidden : false, guid : "90b1a923-6d73-42fc-a53a-67cc3267aaf6", displayColumn : "id", description : "A sheet used to track the progress of variables within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
-DepotData.Enemies_EnemyName = { name : "EnemyName", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "", id : "0", atk : 1, health : 5, def : 0};
-DepotData.Enemies = { name : "Enemies", lines : [{ name : "EnemyName", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "", id : "0", atk : 1, health : 5, def : 0}], isProps : false, hidden : false, guid : "082d5ceb-87de-4069-a0bc-32bbf17d7428", displayColumn : "id", description : "List of enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Enemies_Fire_Turret = { atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, range : 50};
+DepotData.Enemies_Water_Turret = { atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, range : 50};
+DepotData.Enemies = { name : "Enemies", lines : [{ atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, range : 50},{ atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, range : 50}], isProps : false, hidden : false, guid : "082d5ceb-87de-4069-a0bc-32bbf17d7428", displayColumn : "id", description : "List of enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Cutscenes_Intro = { name : "Intro", guid : "8dec0f29-1d42-4e4b-aaa0-5e199e87b146", cutsceneText : [{ text : "And so begins the story of our aimless hero.", guid : "765fee60-83ba-4af7-90c3-7baeff89fdf3", id : "0"}], id : "0"};
 DepotData.Cutscenes = { name : "Cutscenes", lines : [{ name : "Intro", guid : "8dec0f29-1d42-4e4b-aaa0-5e199e87b146", cutsceneText : [{ text : "And so begins the story of our aimless hero.", guid : "765fee60-83ba-4af7-90c3-7baeff89fdf3", id : "0"}], id : "0"}], isProps : false, hidden : false, guid : "5f3be929-2687-431b-bccd-fde8ef51fc7c", displayColumn : "id", description : "The cutscenes text and information used within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.CutsceneText = { parentSheetGUID : "5f3be929-2687-431b-bccd-fde8ef51fc7c", name : "cutsceneText", isProps : false, hidden : true, guid : "19e4a318-d45d-46ec-95f1-2f83ae5b5c31", displayColumn : "id", description : "list@5f3be929-2687-431b-bccd-fde8ef51fc7c", columnGUID : "1f9f2a40-6db1-4de9-b99b-b4a39475abb1"};
@@ -111149,6 +111286,7 @@ game_char_SystemicEntity.WET_TIME = 6;
 game_char_SystemicEntity.ICE_TIME = 6;
 game_char_SystemicEntity.FREEZE_TIME = 3;
 game_char_SystemicEntity.CHARGE_TIME = 6;
+game_char_Turret.PROJECTILE_SPEED = 600;
 game_ext_KColor.WINTER_SKY = -14651649;
 game_ext_KColor.RICH_BLACK = -15986934;
 game_ext_KColor.EMERALD = -14430613;
