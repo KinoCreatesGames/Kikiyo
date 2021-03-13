@@ -11,7 +11,7 @@ typedef ActorData = {
 
 typedef MonsterData = {
 	> ActorData,
-	public var points:Int;
+	public var ?points:Int;
 
 	/**
 	 * Used for turret enemies
@@ -71,14 +71,6 @@ enum Splash {
 	Delay(imageName:String, seconds:Int);
 	Click(imageName:String);
 	ClickDelay(imageName:String, seconds:Int);
-}
-
-enum Stat {
-	Atk(?value:Int);
-	Def(?value:Int);
-	Intl(?value:Int);
-	Agi(?value:Int);
-	Dex(?value:Int);
 }
 
 /**
@@ -148,4 +140,10 @@ enum ObjectTypes {
 	Iceable;
 	Wettable;
 	Magnetic;
+}
+
+enum abstract EnemyType(String) from String to String {
+	var FIRE_TURRET = 'Fire Turret';
+	var WATER_TURRET = 'Water Turret';
+	var DRAGGY = 'Draggy';
 }

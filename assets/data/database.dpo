@@ -288,17 +288,64 @@
                         "description": "text",
                         "defaultValue": "text"
                     }
+                },
+                {
+                    "typeStr": "float",
+                    "guid": "1aba1b77-0bbf-440a-b27e-f8e1eab3eddf",
+                    "description": "Attack speed of turret type enemies",
+                    "name": "atkSpd",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 2.5,
+                    "iconName": "newFloat",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "float",
+                        "max": "float",
+                        "defaultValue": "float"
+                    }
+                },
+                {
+                    "typeStr": "float",
+                    "guid": "0fcddd09-7e0c-4993-b845-fcbd63fd111a",
+                    "description": "Range of turret type enemies",
+                    "name": "range",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 50,
+                    "iconName": "newFloat",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "float",
+                        "max": "float",
+                        "defaultValue": "float"
+                    }
                 }
             ],
             "lines": [
                 {
                     "guid": "85bde5c6-df9e-4b9c-a08f-e8d678849bab",
                     "id": "0",
-                    "name": "EnemyName",
+                    "name": "Fire Turret",
                     "atk": 1,
                     "health": 5,
                     "def": 0,
-                    "sprite": ""
+                    "sprite": "../../images/love-flame-turret.png",
+                    "atkSpd": 2.5,
+                    "range": 50
+                },
+                {
+                    "guid": "4de45aee-d708-4dfe-96f8-0890fcdb68d4",
+                    "id": "1",
+                    "name": "Water Turret",
+                    "atk": 1,
+                    "health": 5,
+                    "def": 0,
+                    "sprite": "",
+                    "atkSpd": 2.5,
+                    "range": 50
                 }
             ],
             "hidden": false,

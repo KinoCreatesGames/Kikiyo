@@ -342,7 +342,16 @@
 					"autoLayerTiles": [],
 					"seed": 2020981,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [{ "__identifier": "Enemy", "__grid": [10,6], "__pivot": [0,0], "__tile": null, "defUid": 6, "px": [160,96], "fieldInstances": [{
+						"__identifier": "name",
+						"__value": "Fire Turret",
+						"__type": "String",
+						"defUid": 9,
+						"realEditorValues": [{
+							"id": "V_String",
+							"params": ["Fire Turret"]
+						}]
+					}] }]
 				},
 				{
 					"__identifier": "Decoration",
