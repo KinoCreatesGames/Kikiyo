@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "24";
+	app.meta.h["build"] = "25";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49273,15 +49273,21 @@ var game_char_Enemy = function(x,y,path,monsterData) {
 };
 $hxClasses["game.char.Enemy"] = game_char_Enemy;
 game_char_Enemy.__name__ = "game.char.Enemy";
-game_char_Enemy.createEnemy = function(x,y,path,enemyName) {
+game_char_Enemy.createEnemy = function(x,y,player,bulletGrp,path,enemyName) {
+	var enemy;
 	switch(enemyName) {
 	case "Fire Turret":
-		return new game_char_Turret(x,y,DepotData.Enemies_Fire_Turret,null);
+		enemy = new game_char_Turret(x,y,DepotData.Enemies_Fire_Turret,bulletGrp);
+		break;
 	case "Water Turret":
-		return new game_char_Turret(x,y,DepotData.Enemies_Water_Turret,null);
+		return new game_char_Turret(x,y,DepotData.Enemies_Water_Turret,bulletGrp);
 	default:
-		return null;
+		enemy = null;
 	}
+	if(enemy != null) {
+		enemy.player = player;
+	}
+	return enemy;
 };
 game_char_Enemy.__super__ = game_char_Actor;
 game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
@@ -49816,18 +49822,20 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		var tileLayer = this.map.getLayer("Enemy");
 		Lambda.iter(tileLayer.objects,function(enemy) {
 			var enemyName = enemy.properties.keys.h["name"];
-			var newEnemy = game_char_Enemy.createEnemy(enemy.x,enemy.y,null,enemyName);
+			var newEnemy = game_char_Enemy.createEnemy(enemy.x,enemy.y,_gthis.player,_gthis.enemyBulletGrp,null,enemyName);
 			_gthis.enemyGrp.add(newEnemy);
 		});
 	}
 	,createGroups: function() {
 		game_states_BaseTileState.prototype.createGroups.call(this);
 		this.systemicEntitiesGrp = new flixel_group_FlxTypedGroup();
+		this.enemyBulletGrp = new flixel_group_FlxTypedGroup();
 	}
 	,addGroups: function() {
 		game_states_BaseTileState.prototype.addGroups.call(this);
 		this.add(this.systemicEntitiesGrp);
 		this.add(this.player);
+		this.add(this.enemyBulletGrp);
 	}
 	,createUI: function() {
 	}
@@ -68574,7 +68582,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 389729;
+	this.version = 879266;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
