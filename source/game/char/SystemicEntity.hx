@@ -35,11 +35,13 @@ class SystemicEntity extends FlxSprite {
 	public static inline var FREEZE_TIME = 3;
 	public static inline var CHARGE_TIME = 6;
 
+	public var elementalAi:State;
 	public var ai:State;
 
 	public function new(x:Float, y:Float) {
 		super(x, y);
 		envStatusEffect = None;
+		elementalAi = new State(elementalIdle);
 		ai = new State(idle);
 		assignRes();
 	}
@@ -74,6 +76,12 @@ class SystemicEntity extends FlxSprite {
 				physRes = res;
 		}
 	}
+
+	/**
+	 * Idle function for enemies and actors.
+	 * @param elapsed 
+	 */
+	public function idle(elapsed:Float) {}
 
 	/**
 	 * Handles Elemental Infliction for each element.
@@ -225,18 +233,18 @@ class SystemicEntity extends FlxSprite {
 
 	// Elemental States
 
-	public function idle(elapsed:Float) {
+	public function elementalIdle(elapsed:Float) {
 		switch (envStatusEffect) {
 			case Burning:
-				ai.currentState = burning;
+				elementalAi.currentState = burning;
 			case Wet:
-				ai.currentState = wet;
+				elementalAi.currentState = wet;
 			case Frozen:
-				ai.currentState = frozen;
+				elementalAi.currentState = frozen;
 			case Icy:
-				ai.currentState = icey;
+				elementalAi.currentState = icey;
 			case Charged:
-				ai.currentState = charged;
+				elementalAi.currentState = charged;
 			case _:
 				// Do nothing
 		}
@@ -253,7 +261,7 @@ class SystemicEntity extends FlxSprite {
 
 		if (burningTimer <= 0) {
 			envStatusEffect = None;
-			ai.currentState = idle;
+			elementalAi.currentState = elementalIdle;
 		}
 	}
 
@@ -263,7 +271,7 @@ class SystemicEntity extends FlxSprite {
 		}
 		if (wetTimer <= 0) {
 			envStatusEffect = None;
-			ai.currentState = idle;
+			elementalAi.currentState = elementalIdle;
 		}
 	}
 
@@ -274,7 +282,7 @@ class SystemicEntity extends FlxSprite {
 
 		if (chargedTimer <= 0) {
 			envStatusEffect = None;
-			ai.currentState = idle;
+			elementalAi.currentState = elementalIdle;
 		}
 	}
 
@@ -283,7 +291,7 @@ class SystemicEntity extends FlxSprite {
 			iceyTimer -= elapsed;
 		}
 		if (iceyTimer <= 0) {
-			ai.currentState = idle;
+			elementalAi.currentState = elementalIdle;
 			envStatusEffect = None;
 		}
 	}
@@ -295,7 +303,7 @@ class SystemicEntity extends FlxSprite {
 
 		if (freezeTimer <= 0) {
 			envStatusEffect = None;
-			ai.currentState = idle;
+			elementalAi.currentState = elementalIdle;
 		}
 	}
 }

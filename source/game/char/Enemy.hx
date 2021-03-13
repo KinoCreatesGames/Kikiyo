@@ -15,12 +15,13 @@ class Enemy extends game.char.Actor {
 		super(x, y, monsterData);
 		walkPath = path;
 		points = monsterData.points;
-		ai.currentState = idle;
+		elementalAi.currentState = elementalIdle;
 	}
 
 	override public function update(elapsed:Float) {
 		super.update(elapsed);
 		ai.update(elapsed);
+		elementalAi.update(elapsed);
 		updateMovement(elapsed);
 	}
 
