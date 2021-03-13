@@ -30,4 +30,18 @@ class Enemy extends game.char.Actor {
 	override public function handleFireAtk(dmg:Int, res:Float) {
 		super.handleFireAtk(dmg, res);
 	}
+
+	public static function createEnemy(x:Float, y:Float, path:Array<FlxPoint>,
+			enemyName:String):Enemy {
+		switch (enemyName) {
+			case EnemyType.FIRE_TURRET:
+				return new Turret(x, y, cast DepotData.Enemies_Fire_Turret,
+					null);
+			case EnemyType.WATER_TURRET:
+				return new Turret(x, y, cast DepotData.Enemies_Water_Turret,
+					null);
+			case _:
+				return null;
+		}
+	}
 }

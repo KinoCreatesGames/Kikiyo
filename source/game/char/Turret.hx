@@ -25,6 +25,10 @@ class Turret extends Enemy {
 		var monData:MonsterData = cast data;
 		atkSpd = monData.atkSpd;
 		range = monData.range;
+		var sprite = monData.sprite.replace('../../', 'assets/');
+		loadGraphic(sprite, true, 16, 16, true);
+		animation.add('idle', [0]);
+		animation.add('fire', [0, 1, 2], 6);
 	}
 
 	override public function update(elapsed:Float) {
@@ -60,7 +64,7 @@ class Turret extends Enemy {
 		if (fireCD >= atkSpd) {
 			fireSound.play();
 			var bullet = bullets.recycle(Bullet);
-			bullet.setBulletType(PhysAtk(1));
+			bullet.setBulletType(bulletType());
 			bullet.setPosition(this.getMidpoint().x, y);
 			bullet.velocity.set(0, 0);
 			FlxVelocity.accelerateTowardsObject(bullet, player,
@@ -86,5 +90,17 @@ class Turret extends Enemy {
 			fireCD = atkSpd;
 		}
 		fireCD += elapsed;
+	}
+
+	public function bulletType():ElementalAtk {
+		switch (name) {
+			case FIRE_TURRET:
+				return FireAtk(atk);
+			case WATER_TURRET:
+				return WaterAtk(atk);
+
+			case _:
+				return PhysAtk(atk);
+		}
 	}
 }

@@ -28,6 +28,7 @@ class LevelState extends BaseTileState {
 		player = new Player(60, 60, cast DepotData.Actors_Kikiyo);
 		createLevelMap(tileLayer);
 		createRegionEntities();
+		createEnemies();
 	}
 
 	/**
@@ -50,6 +51,18 @@ class LevelState extends BaseTileState {
 				systemicEntitiesGrp.add(new Grass(coords.x, coords.y));
 			}
 		}
+	}
+
+	public function createEnemies() {
+		var tileLayer:TiledObjectLayer = cast(map.getLayer('Enemy'));
+
+		tileLayer.objects.iter((enemy) -> {
+			var enemyName = enemy.properties.get('name');
+			// TODO: Add Pathing variable for enemies with paths
+			var newEnemy:Enemy = Enemy.createEnemy(enemy.x, enemy.y, null,
+				enemyName);
+			enemyGrp.add(newEnemy);
+		});
 	}
 
 	override public function createGroups() {
