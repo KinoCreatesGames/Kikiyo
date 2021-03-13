@@ -12,6 +12,17 @@ typedef ActorData = {
 typedef MonsterData = {
 	> ActorData,
 	public var points:Int;
+
+	/**
+	 * Used for turret enemies
+	 */
+	public var ?atkSpd:Float;
+
+	/**
+	 * Used for turret enemies
+	 */
+	public var ?range:Float;
+
 	// public var patrol:Array<FlxPoint>;
 }
 

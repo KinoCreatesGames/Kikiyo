@@ -6,6 +6,7 @@ class Grass extends SystemicEntity {
 	public function new(x:Float, y:Float) {
 		super(x, y);
 		ai = new State(idle);
+		elementalAi = new State(elementalIdle);
 		burnt = false;
 		loadGraphic(AssetPaths.grass_out__png, true, 16, 16, true);
 		animation.add('idle', [0]);
@@ -22,9 +23,10 @@ class Grass extends SystemicEntity {
 	override public function update(elapsed:Float) {
 		super.update(elapsed);
 		ai.update(elapsed);
+		elementalAi.update(elapsed);
 	}
 
-	override public function idle(elapsed:Float) {
+	override public function elementalIdle(elapsed:Float) {
 		if (!burnt && envStatusEffect == Burning) {
 			ai.currentState = burning;
 		}
