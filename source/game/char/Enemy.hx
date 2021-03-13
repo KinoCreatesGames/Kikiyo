@@ -9,6 +9,7 @@ import flixel.math.FlxVelocity;
 class Enemy extends game.char.Actor {
 	public var walkPath:Array<FlxPoint>;
 	public var points:Int;
+	public var player:Player;
 
 	public function new(x:Float, y:Float, path:Array<FlxPoint>,
 			monsterData:MonsterData) {
@@ -31,17 +32,21 @@ class Enemy extends game.char.Actor {
 		super.handleFireAtk(dmg, res);
 	}
 
-	public static function createEnemy(x:Float, y:Float, path:Array<FlxPoint>,
+	public static function createEnemy(x:Float, y:Float, player,
+			bulletGrp:FlxTypedGroup<Bullet>, path:Array<FlxPoint>,
 			enemyName:String):Enemy {
-		switch (enemyName) {
+		var enemy = switch (enemyName) {
 			case EnemyType.FIRE_TURRET:
-				return new Turret(x, y, cast DepotData.Enemies_Fire_Turret,
-					null);
+				new Turret(x, y, cast DepotData.Enemies_Fire_Turret, bulletGrp);
 			case EnemyType.WATER_TURRET:
 				return new Turret(x, y, cast DepotData.Enemies_Water_Turret,
-					null);
+					bulletGrp);
 			case _:
-				return null;
+				null;
 		}
+		if (enemy != null) {
+			enemy.player = player;
+		}
+		return enemy;
 	}
 }

@@ -16,6 +16,7 @@ class LevelState extends BaseTileState {
 	public var player:Player;
 	public var systemicEntitiesGrp:FlxTypedGroup<SystemicEntity>;
 	// Could be generic later if necessary
+	public var enemyBulletGrp:FlxTypedGroup<Bullet>;
 	public var fireGrp:Fire;
 	public var rainGrp:Rain;
 	public var snowGrp:Snow;
@@ -59,8 +60,8 @@ class LevelState extends BaseTileState {
 		tileLayer.objects.iter((enemy) -> {
 			var enemyName = enemy.properties.get('name');
 			// TODO: Add Pathing variable for enemies with paths
-			var newEnemy:Enemy = Enemy.createEnemy(enemy.x, enemy.y, null,
-				enemyName);
+			var newEnemy:Enemy = Enemy.createEnemy(enemy.x, enemy.y, player,
+				enemyBulletGrp, null, enemyName);
 			enemyGrp.add(newEnemy);
 		});
 	}
@@ -68,12 +69,14 @@ class LevelState extends BaseTileState {
 	override public function createGroups() {
 		super.createGroups();
 		systemicEntitiesGrp = new FlxTypedGroup<SystemicEntity>();
+		enemyBulletGrp = new FlxTypedGroup<Bullet>();
 	}
 
 	override public function addGroups() {
 		super.addGroups();
 		add(systemicEntitiesGrp);
 		add(player);
+		add(enemyBulletGrp);
 	}
 
 	override public function createUI() {}

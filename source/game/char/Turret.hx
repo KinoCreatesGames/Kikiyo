@@ -6,7 +6,6 @@ class Turret extends Enemy {
 	public var atkSpd:Float;
 	public var range:Float;
 	public var bullets:FlxTypedGroup<Bullet>;
-	public var player:Player;
 	public var fireSound:FlxSound;
 	public var fireCD:Float;
 
