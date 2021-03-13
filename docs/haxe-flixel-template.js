@@ -376,15 +376,34 @@ lime__$internal_backend_html5_HTML5Application.prototype = {
 			case "beforeunload":
 				break;
 			case "blur":
-				this.parent.__window.onFocusOut.dispatch();
-				this.parent.__window.onDeactivate.dispatch();
+				if(!this.hidden) {
+					this.parent.__window.onFocusOut.dispatch();
+					this.parent.__window.onDeactivate.dispatch();
+					this.hidden = true;
+				}
 				break;
 			case "focus":
-				this.parent.__window.onFocusIn.dispatch();
-				this.parent.__window.onActivate.dispatch();
+				if(this.hidden) {
+					this.parent.__window.onFocusIn.dispatch();
+					this.parent.__window.onActivate.dispatch();
+					this.hidden = false;
+				}
 				break;
 			case "resize":
 				this.parent.__window.__backend.handleResizeEvent(event);
+				break;
+			case "visibilitychange":
+				if(window.document.hidden) {
+					if(!this.hidden) {
+						this.parent.__window.onFocusOut.dispatch();
+						this.parent.__window.onDeactivate.dispatch();
+						this.hidden = true;
+					}
+				} else if(this.hidden) {
+					this.parent.__window.onFocusIn.dispatch();
+					this.parent.__window.onActivate.dispatch();
+					this.hidden = false;
+				}
 				break;
 			}
 		}
@@ -869,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "21";
+	app.meta.h["build"] = "22";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -48948,7 +48967,7 @@ var game_ElementalResistances = $hxEnums["game.ElementalResistances"] = { __enam
 	,WindRes: ($_=function(res) { return {_hx_index:5,res:res,__enum__:"game.ElementalResistances",toString:$estr}; },$_.__params__ = ["res"],$_)
 	,PhysRes: ($_=function(res) { return {_hx_index:6,res:res,__enum__:"game.ElementalResistances",toString:$estr}; },$_.__params__ = ["res"],$_)
 };
-var game_StatusEffects = $hxEnums["game.StatusEffects"] = { __ename__ : "game.StatusEffects", __constructs__ : ["Burning","Icy","Frozen","Wet","Windy","Magnetized","Charged"]
+var game_StatusEffects = $hxEnums["game.StatusEffects"] = { __ename__ : "game.StatusEffects", __constructs__ : ["Burning","Icy","Frozen","Wet","Windy","Magnetized","Charged","None"]
 	,Burning: {_hx_index:0,__enum__:"game.StatusEffects",toString:$estr}
 	,Icy: {_hx_index:1,__enum__:"game.StatusEffects",toString:$estr}
 	,Frozen: {_hx_index:2,__enum__:"game.StatusEffects",toString:$estr}
@@ -48956,6 +48975,7 @@ var game_StatusEffects = $hxEnums["game.StatusEffects"] = { __ename__ : "game.St
 	,Windy: {_hx_index:4,__enum__:"game.StatusEffects",toString:$estr}
 	,Magnetized: {_hx_index:5,__enum__:"game.StatusEffects",toString:$estr}
 	,Charged: {_hx_index:6,__enum__:"game.StatusEffects",toString:$estr}
+	,None: {_hx_index:7,__enum__:"game.StatusEffects",toString:$estr}
 };
 var game_ObjectTypes = $hxEnums["game.ObjectTypes"] = { __ename__ : "game.ObjectTypes", __constructs__ : ["Flammable","Pourus","Iceable","Wettable","Magnetic"]
 	,Flammable: {_hx_index:0,__enum__:"game.ObjectTypes",toString:$estr}
@@ -48976,6 +48996,11 @@ game_State.prototype = {
 	,__class__: game_State
 };
 var game_char_SystemicEntity = function(x,y) {
+	this.chargedTimer = 0;
+	this.freezeTimer = 0;
+	this.iceyTimer = 0;
+	this.wetTimer = 0;
+	this.burningTimer = 0;
 	this.physRes = 0.5;
 	this.lightningRes = 0.5;
 	this.magneticRes = 0.5;
@@ -48984,6 +49009,8 @@ var game_char_SystemicEntity = function(x,y) {
 	this.waterRes = 0.5;
 	this.fireRes = 0.5;
 	flixel_FlxSprite.call(this,x,y);
+	this.envStatusEffect = game_StatusEffects.None;
+	this.ai = new game_State($bind(this,this.idle));
 	this.assignRes();
 };
 $hxClasses["game.char.SystemicEntity"] = game_char_SystemicEntity;
@@ -49063,23 +49090,39 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 		}
 	}
 	,handleFireAtk: function(dmg,res) {
-		this.envStatusEffect = game_StatusEffects.Burning;
+		if(this.envStatusEffect != game_StatusEffects.Wet) {
+			this.envStatusEffect = game_StatusEffects.Burning;
+			this.burningTimer = 6;
+		}
 		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleWaterAtk: function(dmg,res) {
-		this.envStatusEffect = game_StatusEffects.Wet;
+		if(this.envStatusEffect == game_StatusEffects.Icy) {
+			this.envStatusEffect = game_StatusEffects.Frozen;
+			this.freezeTimer = 3;
+		} else {
+			this.envStatusEffect = game_StatusEffects.Wet;
+			this.wetTimer = 6;
+		}
 		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleLightningAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Charged;
 		this.health -= this.calculateElementalDamage(dmg,res);
+		this.chargedTimer = 6;
 	}
 	,handleMagnetoAtk: function(dmg,res) {
 		this.envStatusEffect = game_StatusEffects.Magnetized;
 		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleIceAtk: function(dmg,res) {
-		this.envStatusEffect = game_StatusEffects.Icy;
+		if(this.envStatusEffect == game_StatusEffects.Wet) {
+			this.envStatusEffect = game_StatusEffects.Frozen;
+			this.freezeTimer = 3;
+		} else if(this.envStatusEffect != game_StatusEffects.Burning) {
+			this.envStatusEffect = game_StatusEffects.Icy;
+			this.iceyTimer = 6;
+		}
 		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleWindAtk: function(dmg,res) {
@@ -49092,6 +49135,74 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 	,calculateElementalDamage: function(dmg,res) {
 		var resLeft = 1 - res;
 		return Math.floor(dmg * resLeft);
+	}
+	,idle: function(elapsed) {
+		switch(this.envStatusEffect._hx_index) {
+		case 0:
+			this.ai.currentState = $bind(this,this.burning);
+			break;
+		case 1:
+			this.ai.currentState = $bind(this,this.icey);
+			break;
+		case 2:
+			this.ai.currentState = $bind(this,this.frozen);
+			break;
+		case 3:
+			this.ai.currentState = $bind(this,this.wet);
+			break;
+		case 6:
+			this.ai.currentState = $bind(this,this.charged);
+			break;
+		default:
+		}
+	}
+	,burning: function(elapsed) {
+		if(this.burningTimer >= 0) {
+			this.burningTimer -= elapsed;
+		}
+		if(this.burningTimer % 1 == 0) {
+			this.health -= 1;
+		}
+		if(this.burningTimer <= 0) {
+			this.envStatusEffect = game_StatusEffects.None;
+			this.ai.currentState = $bind(this,this.idle);
+		}
+	}
+	,wet: function(elapsed) {
+		if(this.wetTimer >= 0) {
+			this.wetTimer -= elapsed;
+		}
+		if(this.wetTimer <= 0) {
+			this.envStatusEffect = game_StatusEffects.None;
+			this.ai.currentState = $bind(this,this.idle);
+		}
+	}
+	,charged: function(elapsed) {
+		if(this.chargedTimer >= 0) {
+			this.chargedTimer -= elapsed;
+		}
+		if(this.chargedTimer <= 0) {
+			this.envStatusEffect = game_StatusEffects.None;
+			this.ai.currentState = $bind(this,this.idle);
+		}
+	}
+	,icey: function(elapsed) {
+		if(this.iceyTimer >= 0) {
+			this.iceyTimer -= elapsed;
+		}
+		if(this.iceyTimer <= 0) {
+			this.ai.currentState = $bind(this,this.idle);
+			this.envStatusEffect = game_StatusEffects.None;
+		}
+	}
+	,frozen: function(elapsed) {
+		if(this.freezeTimer >= 0) {
+			this.freezeTimer -= elapsed;
+		}
+		if(this.freezeTimer <= 0) {
+			this.envStatusEffect = game_StatusEffects.None;
+			this.ai.currentState = $bind(this,this.idle);
+		}
 	}
 	,__class__: game_char_SystemicEntity
 });
@@ -49111,12 +49222,17 @@ game_char_Actor.prototype = $extend(game_char_SystemicEntity.prototype,{
 		this.def = this.data.def;
 		this.spd = this.data.spd;
 	}
+	,update: function(elapsed) {
+		game_char_SystemicEntity.prototype.update.call(this,elapsed);
+		this.ai.currentState(elapsed);
+	}
 	,__class__: game_char_Actor
 });
 var game_char_Enemy = function(x,y,path,monsterData) {
 	game_char_Actor.call(this,x,y,monsterData);
 	this.walkPath = path;
 	this.points = monsterData.points;
+	this.ai.currentState = $bind(this,this.idle);
 };
 $hxClasses["game.char.Enemy"] = game_char_Enemy;
 game_char_Enemy.__name__ = "game.char.Enemy";
@@ -49124,9 +49240,13 @@ game_char_Enemy.__super__ = game_char_Actor;
 game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 	update: function(elapsed) {
 		game_char_Actor.prototype.update.call(this,elapsed);
+		this.ai.update(elapsed);
 		this.updateMovement(elapsed);
 	}
 	,updateMovement: function(elapsed) {
+	}
+	,handleFireAtk: function(dmg,res) {
+		game_char_Actor.prototype.handleFireAtk.call(this,dmg,res);
 	}
 	,__class__: game_char_Enemy
 });
@@ -49152,12 +49272,20 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		this.updateStatusEffectResponse(elapsed);
 	}
 	,updateStatusEffectResponse: function(elapsed) {
-		if(this.envStatusEffect == game_StatusEffects.Burning) {
+		switch(this.envStatusEffect._hx_index) {
+		case 0:
 			this.set_color(-65536);
-		} else if(this.envStatusEffect == game_StatusEffects.Wet) {
-			this.set_color(-16776961);
-		} else if(this.envStatusEffect == game_StatusEffects.Icy) {
+			break;
+		case 1:
 			this.set_color(-4532238);
+			break;
+		case 3:
+			this.set_color(-16776961);
+			break;
+		case 7:
+			this.set_color(-1);
+			break;
+		default:
 		}
 	}
 	,updateMovement: function(elapsed) {
@@ -49328,8 +49456,6 @@ game_objects_Fire.prototype = $extend(flixel_effects_particles_FlxTypedEmitter.p
 	__class__: game_objects_Fire
 });
 var game_objects_Grass = function(x,y) {
-	this.wetTimer = 0;
-	this.burningTimer = 0;
 	game_char_SystemicEntity.call(this,x,y);
 	this.ai = new game_State($bind(this,this.idle));
 	this.burnt = false;
@@ -49391,7 +49517,7 @@ game_objects_Grass.prototype = $extend(game_char_SystemicEntity.prototype,{
 	}
 	,handleWaterAtk: function(dmg,res) {
 		game_char_SystemicEntity.prototype.handleWaterAtk.call(this,dmg,res);
-		this.wetTimer = 12;
+		this.wetTimer = 6;
 	}
 	,__class__: game_objects_Grass
 });
@@ -53725,6 +53851,7 @@ lime__$internal_backend_html5_HTML5HTTPRequest.prototype = {
 	,__class__: lime__$internal_backend_html5_HTML5HTTPRequest
 };
 var lime__$internal_backend_html5_HTML5Window = function(parent) {
+	this.inputing = false;
 	this.unusedTouchesPool = new haxe_ds_List();
 	this.scale = 1.0;
 	this.currentTouches = new haxe_ds_IntMap();
@@ -53861,7 +53988,7 @@ lime__$internal_backend_html5_HTML5Window.prototype = {
 				var options = Object.prototype.hasOwnProperty.call(contextAttributes,"antialiasing") && contextAttributes.antialiasing > 0;
 				var options1 = Object.prototype.hasOwnProperty.call(contextAttributes,"depth") ? contextAttributes.depth : true;
 				var options2 = Object.prototype.hasOwnProperty.call(contextAttributes,"stencil") && contextAttributes.stencil;
-				var options3 = { alpha : transparentBackground || colorDepth > 16, antialias : options, depth : options1, premultipliedAlpha : true, stencil : options2, preserveDrawingBuffer : false, failIfMajorPerformanceCaveat : true};
+				var options3 = { alpha : transparentBackground || colorDepth > 16, antialias : options, depth : options1, premultipliedAlpha : true, stencil : options2, preserveDrawingBuffer : false, failIfMajorPerformanceCaveat : false};
 				var glContextType = ["webgl","experimental-webgl"];
 				if(allowWebGL2) {
 					glContextType.unshift("webgl2");
@@ -54029,6 +54156,9 @@ lime__$internal_backend_html5_HTML5Window.prototype = {
 		}
 	}
 	,handleInputEvent: function(event) {
+		if(this.inputing) {
+			return;
+		}
 		if(lime__$internal_backend_html5_HTML5Window.textInput.value != lime__$internal_backend_html5_HTML5Window.dummyCharacter) {
 			var value = StringTools.replace(lime__$internal_backend_html5_HTML5Window.textInput.value,lime__$internal_backend_html5_HTML5Window.dummyCharacter,"");
 			if(value.length > 0) {
@@ -54466,6 +54596,8 @@ lime__$internal_backend_html5_HTML5Window.prototype = {
 				lime__$internal_backend_html5_HTML5Window.textInput.addEventListener("cut",$bind(this,this.handleCutOrCopyEvent),true);
 				lime__$internal_backend_html5_HTML5Window.textInput.addEventListener("copy",$bind(this,this.handleCutOrCopyEvent),true);
 				lime__$internal_backend_html5_HTML5Window.textInput.addEventListener("paste",$bind(this,this.handlePasteEvent),true);
+				lime__$internal_backend_html5_HTML5Window.textInput.addEventListener("compositionstart",$bind(this,this.handleCompositionstartEvent),true);
+				lime__$internal_backend_html5_HTML5Window.textInput.addEventListener("compositionend",$bind(this,this.handleCompositionendEvent),true);
 			}
 			lime__$internal_backend_html5_HTML5Window.textInput.focus();
 			lime__$internal_backend_html5_HTML5Window.textInput.select();
@@ -54475,9 +54607,18 @@ lime__$internal_backend_html5_HTML5Window.prototype = {
 			lime__$internal_backend_html5_HTML5Window.textInput.removeEventListener("cut",$bind(this,this.handleCutOrCopyEvent),true);
 			lime__$internal_backend_html5_HTML5Window.textInput.removeEventListener("copy",$bind(this,this.handleCutOrCopyEvent),true);
 			lime__$internal_backend_html5_HTML5Window.textInput.removeEventListener("paste",$bind(this,this.handlePasteEvent),true);
+			lime__$internal_backend_html5_HTML5Window.textInput.removeEventListener("compositionstart",$bind(this,this.handleCompositionstartEvent),true);
+			lime__$internal_backend_html5_HTML5Window.textInput.removeEventListener("compositionend",$bind(this,this.handleCompositionendEvent),true);
 			lime__$internal_backend_html5_HTML5Window.textInput.blur();
 		}
 		return this.textInputEnabled = value;
+	}
+	,handleCompositionstartEvent: function(e) {
+		this.inputing = true;
+	}
+	,handleCompositionendEvent: function(e) {
+		this.inputing = false;
+		this.handleInputEvent(e);
 	}
 	,setTitle: function(value) {
 		if(value != null) {
@@ -55178,16 +55319,16 @@ lime__$internal_graphics_ImageDataUtil.displaceMap = function(target,source,map,
 	var mapView = new lime__$internal_graphics__$ImageDataUtil_ImageDataView(map);
 	var row;
 	var sourceOffset;
-	var sourcePixel;
-	var mapPixel;
-	var targetPixel;
+	var sourcePixel = 0;
+	var mapPixel = 0;
+	var targetPixel = 0;
 	var mapPixelX;
 	var mapPixelY;
 	var mapPixelA;
-	var s1;
-	var s2;
-	var s3;
-	var s4;
+	var s1 = 0;
+	var s2 = 0;
+	var s3 = 0;
+	var s4 = 0;
 	var mPointXFloor;
 	var mPointYFloor;
 	var disOffsetXFloor;
@@ -55528,8 +55669,7 @@ lime__$internal_graphics_ImageDataUtil.bilinear = function(s1,s2,s3,s4,su,sv) {
 	return lime__$internal_graphics_ImageDataUtil.lerpRGBA(lime__$internal_graphics_ImageDataUtil.lerpRGBA(s4,s2,su),lime__$internal_graphics_ImageDataUtil.lerpRGBA(s1,s3,su),sv);
 };
 lime__$internal_graphics_ImageDataUtil.lerpRGBA = function(v0,v1,x) {
-	var this1 = 0;
-	var result = this1;
+	var result = 0;
 	var value = Math.floor(lime__$internal_graphics_ImageDataUtil.lerp(v0 >>> 24 & 255,v1 >>> 24 & 255,x));
 	result = (value & 255) << 24 | (result >>> 16 & 255 & 255) << 16 | (result >>> 8 & 255 & 255) << 8 | result & 255 & 255;
 	var value = Math.floor(lime__$internal_graphics_ImageDataUtil.lerp(v0 >>> 16 & 255,v1 >>> 16 & 255,x));
@@ -55560,7 +55700,7 @@ lime__$internal_graphics_ImageDataUtil.colorTransform = function(image,rect,colo
 	var blueTable = lime_math_ColorMatrix.getBlueTable(colorMatrix);
 	var row;
 	var offset;
-	var pixel;
+	var pixel = 0;
 	var _g = 0;
 	var _g1 = dataView.height;
 	while(_g < _g1) {
@@ -55684,8 +55824,8 @@ lime__$internal_graphics_ImageDataUtil.copyChannel = function(image,sourceImage,
 	var destPremultiplied = image.buffer.premultiplied;
 	var srcPosition;
 	var destPosition;
-	var srcPixel;
-	var destPixel;
+	var srcPixel = 0;
+	var destPixel = 0;
 	var value = 0;
 	var _g = 0;
 	var _g1 = destView.height;
@@ -55843,8 +55983,8 @@ lime__$internal_graphics_ImageDataUtil.copyPixels = function(image,sourceImage,s
 		var destAlpha;
 		var oneMinusSourceAlpha;
 		var blendAlpha;
-		var sourcePixel;
-		var destPixel;
+		var sourcePixel = 0;
+		var destPixel = 0;
 		var sourcePremultiplied = sourceImage.buffer.premultiplied;
 		var destPremultiplied = image.buffer.premultiplied;
 		var sourceBytesPerPixel = sourceImage.buffer.bitsPerPixel / 8 | 0;
@@ -56063,7 +56203,7 @@ lime__$internal_graphics_ImageDataUtil.copyPixels = function(image,sourceImage,s
 			var alphaData = alphaImage.buffer.data;
 			var alphaFormat = alphaImage.buffer.format;
 			var alphaPosition;
-			var alphaPixel;
+			var alphaPixel = 0;
 			var alphaView = new lime__$internal_graphics__$ImageDataUtil_ImageDataView(alphaImage,new lime_math_Rectangle(sourceView.x + (alphaPoint == null ? 0 : alphaPoint.x),sourceView.y + (alphaPoint == null ? 0 : alphaPoint.y),sourceView.width,sourceView.height));
 			destView.clip(destPoint.x | 0,destPoint.y | 0,alphaView.width,alphaView.height);
 			if(blend) {
@@ -56428,7 +56568,7 @@ lime__$internal_graphics_ImageDataUtil.floodFill = function(image,x,y,color,form
 	var format = image.buffer.format;
 	var premultiplied = image.buffer.premultiplied;
 	var fillColor = color;
-	var hitColor;
+	var hitColor = 0;
 	var offset = (y + image.offsetY) * (image.buffer.width * 4) + (x + image.offsetX) * 4;
 	var format1 = format;
 	var premultiplied1 = premultiplied;
@@ -56486,7 +56626,7 @@ lime__$internal_graphics_ImageDataUtil.floodFill = function(image,x,y,color,form
 	var nextPointX;
 	var nextPointY;
 	var nextPointOffset;
-	var readColor;
+	var readColor = 0;
 	while(queue.length > 0) {
 		curPointY = queue.pop();
 		curPointX = queue.pop();
@@ -56759,7 +56899,7 @@ lime__$internal_graphics_ImageDataUtil.getColorBoundsRect = function(image,mask,
 	return new lime_math_Rectangle(left,top,w,h);
 };
 lime__$internal_graphics_ImageDataUtil.getPixel = function(image,x,y,format) {
-	var pixel;
+	var pixel = 0;
 	var data = image.buffer.data;
 	var offset = 4 * (y + image.offsetY) * image.buffer.width + (x + image.offsetX) * 4;
 	var format1 = image.buffer.format;
@@ -56804,7 +56944,7 @@ lime__$internal_graphics_ImageDataUtil.getPixel = function(image,x,y,format) {
 	}
 };
 lime__$internal_graphics_ImageDataUtil.getPixel32 = function(image,x,y,format) {
-	var pixel;
+	var pixel = 0;
 	var data = image.buffer.data;
 	var offset = 4 * (y + image.offsetY) * image.buffer.width + (x + image.offsetX) * 4;
 	var format1 = image.buffer.format;
@@ -56858,9 +56998,9 @@ lime__$internal_graphics_ImageDataUtil.getPixels = function(image,rect,format) {
 	var premultiplied = image.buffer.premultiplied;
 	var dataView = new lime__$internal_graphics__$ImageDataUtil_ImageDataView(image,rect);
 	var position;
-	var argb;
-	var bgra;
-	var pixel;
+	var argb = 0;
+	var bgra = 0;
+	var pixel = 0;
 	var destPosition = 0;
 	var _g = 0;
 	var _g1 = dataView.height;
@@ -56936,8 +57076,8 @@ lime__$internal_graphics_ImageDataUtil.merge = function(image,sourceImage,source
 	var destPremultiplied = image.buffer.premultiplied;
 	var sourcePosition;
 	var destPosition;
-	var sourcePixel;
-	var destPixel;
+	var sourcePixel = 0;
+	var destPixel = 0;
 	var _g = 0;
 	var _g1 = destView.height;
 	while(_g < _g1) {
@@ -57058,7 +57198,7 @@ lime__$internal_graphics_ImageDataUtil.multiplyAlpha = function(image) {
 	}
 	var format = image.buffer.format;
 	var length = data.length / 4 | 0;
-	var pixel;
+	var pixel = 0;
 	var _g = 0;
 	var _g1 = length;
 	while(_g < _g1) {
@@ -57694,8 +57834,8 @@ lime__$internal_graphics_ImageDataUtil.threshold = function(image,sourceImage,so
 	var destPremultiplied = image.buffer.premultiplied;
 	var srcPosition;
 	var destPosition;
-	var srcPixel;
-	var destPixel;
+	var srcPixel = 0;
+	var destPixel = 0;
 	var pixelMask;
 	var test;
 	var value;
@@ -57875,7 +58015,7 @@ lime__$internal_graphics_ImageDataUtil.unmultiplyAlpha = function(image) {
 	}
 	var format = image.buffer.format;
 	var length = data.length / 4 | 0;
-	var pixel;
+	var pixel = 0;
 	var _g = 0;
 	var _g1 = length;
 	while(_g < _g1) {
@@ -58750,6 +58890,12 @@ lime_app_Event.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,__class__: lime_app_Event
 };
 var lime_app_Future = function(work,async) {
@@ -58848,7 +58994,7 @@ lime_app_Future.prototype = {
 		if(this.isComplete || this.isError) {
 			return this;
 		} else {
-			lime_utils_Log.warn("Cannot block thread in JavaScript",{ fileName : "lime/app/Future.hx", lineNumber : 209, className : "lime.app.Future", methodName : "ready"});
+			lime_utils_Log.warn("Cannot block thread in JavaScript",{ fileName : "lime/app/Future.hx", lineNumber : 208, className : "lime.app.Future", methodName : "ready"});
 			return this;
 		}
 	}
@@ -59036,6 +59182,12 @@ lime_app__$Event_$Dynamic_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -59108,6 +59260,12 @@ lime_app__$Event_$Float_$Float_$Float_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a,a1,a2) {
 		this.canceled = false;
@@ -59182,6 +59340,12 @@ lime_app__$Event_$Float_$Float_$Int_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a,a1,a2) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -59254,6 +59418,12 @@ lime_app__$Event_$Float_$Float_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a,a1) {
 		this.canceled = false;
@@ -59328,6 +59498,12 @@ lime_app__$Event_$Float_$Float_$lime_$ui_$MouseButton_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a,a1,a2) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -59400,6 +59576,12 @@ lime_app__$Event_$Float_$Float_$lime_$ui_$MouseWheelMode_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a,a1,a2) {
 		this.canceled = false;
@@ -59474,6 +59656,12 @@ lime_app__$Event_$Int_$Float_$Float_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a,a1,a2) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -59546,6 +59734,12 @@ lime_app__$Event_$Int_$Float_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a,a1) {
 		this.canceled = false;
@@ -59620,6 +59814,12 @@ lime_app__$Event_$Int_$Int_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a,a1) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -59692,6 +59892,12 @@ lime_app__$Event_$Int_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a) {
 		this.canceled = false;
@@ -59766,6 +59972,12 @@ lime_app__$Event_$Int_$lime_$ui_$JoystickHatPosition_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a,a1) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -59838,6 +60050,12 @@ lime_app__$Event_$String_$Int_$Int_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a,a1,a2) {
 		this.canceled = false;
@@ -59912,6 +60130,12 @@ lime_app__$Event_$String_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -59984,6 +60208,12 @@ lime_app__$Event_$Void_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function() {
 		this.canceled = false;
@@ -60058,6 +60288,12 @@ lime_app__$Event_$lime_$graphics_$RenderContext_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -60130,6 +60366,12 @@ lime_app__$Event_$lime_$ui_$GamepadAxis_$Float_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a,a1) {
 		this.canceled = false;
@@ -60204,6 +60446,12 @@ lime_app__$Event_$lime_$ui_$GamepadButton_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -60276,6 +60524,12 @@ lime_app__$Event_$lime_$ui_$Gamepad_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a) {
 		this.canceled = false;
@@ -60350,6 +60604,12 @@ lime_app__$Event_$lime_$ui_$Joystick_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -60422,6 +60682,12 @@ lime_app__$Event_$lime_$ui_$KeyCode_$lime_$ui_$KeyModifier_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a,a1) {
 		this.canceled = false;
@@ -60496,6 +60762,12 @@ lime_app__$Event_$lime_$ui_$Touch_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -60569,6 +60841,12 @@ lime_app__$Event_$lime_$ui_$Window_$Void.prototype = {
 			this.__repeat.splice(i,1);
 		}
 	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
+	}
 	,dispatch: function(a) {
 		this.canceled = false;
 		var listeners = this.__listeners;
@@ -60641,6 +60919,12 @@ lime_app__$Event_$ofEvents_$T_$Void.prototype = {
 			this.__priorities.splice(i,1);
 			this.__repeat.splice(i,1);
 		}
+	}
+	,removeAll: function() {
+		var len = this.__listeners.length;
+		this.__listeners.splice(0,len);
+		this.__priorities.splice(0,len);
+		this.__repeat.splice(0,len);
 	}
 	,dispatch: function(a) {
 		this.canceled = false;
@@ -68149,7 +68433,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 326344;
+	this.version = 771681;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -110854,6 +111138,11 @@ flixel_util_FlxSort.DESCENDING = 1;
 flixel_util_FlxSpriteUtil.flashGfxSprite = new openfl_display_Sprite();
 flixel_util_FlxSpriteUtil.flashGfx = flixel_util_FlxSpriteUtil.flashGfxSprite.get_graphics();
 flixel_util_LabelValuePair._pool = new flixel_util_FlxPool_$flixel_$util_$LabelValuePair(flixel_util_LabelValuePair);
+game_char_SystemicEntity.BURN_TIME = 6;
+game_char_SystemicEntity.WET_TIME = 6;
+game_char_SystemicEntity.ICE_TIME = 6;
+game_char_SystemicEntity.FREEZE_TIME = 3;
+game_char_SystemicEntity.CHARGE_TIME = 6;
 game_ext_KColor.WINTER_SKY = -14651649;
 game_ext_KColor.RICH_BLACK = -15986934;
 game_ext_KColor.EMERALD = -14430613;
@@ -110868,8 +111157,6 @@ game_ext_KColor.MORNING_BLUE = -7492963;
 game_ext_KColor.PRETTY_PINK = -37993;
 game_ext_KColor.LIGHT_ORANGE = -28314;
 game_ext_KColor.GRAY_BLUE = -10052185;
-game_objects_Grass.BURN_TIME = 6;
-game_objects_Grass.WET_TIME = 12;
 game_objects_Rain.BASE_RAIN = 2500;
 game_objects_Snow.BASE_SNOW = 2500;
 game_states_BaseTileState.TILESET_NAME = "Floor_tileset";
