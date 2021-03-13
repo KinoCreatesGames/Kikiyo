@@ -132,7 +132,9 @@ class SystemicEntity extends FlxSprite {
 			// Do nothing
 		} else {
 			envStatusEffect = Burning;
-			burningTimer = BURN_TIME;
+			if (burningTimer <= 0) {
+				burningTimer = BURN_TIME;
+			}
 		}
 		this.health -= calculateElementalDamage(dmg, res);
 	}
