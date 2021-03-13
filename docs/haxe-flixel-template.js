@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "22";
+	app.meta.h["build"] = "23";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49010,6 +49010,7 @@ var game_char_SystemicEntity = function(x,y) {
 	this.fireRes = 0.5;
 	flixel_FlxSprite.call(this,x,y);
 	this.envStatusEffect = game_StatusEffects.None;
+	this.elementalAi = new game_State($bind(this,this.elementalIdle));
 	this.ai = new game_State($bind(this,this.idle));
 	this.assignRes();
 };
@@ -49050,6 +49051,8 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 			this.physRes = res1;
 			break;
 		}
+	}
+	,idle: function(elapsed) {
 	}
 	,handleElement: function(elementAtk) {
 		var inflictEl = function(resistance) {
@@ -49136,22 +49139,22 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 		var resLeft = 1 - res;
 		return Math.floor(dmg * resLeft);
 	}
-	,idle: function(elapsed) {
+	,elementalIdle: function(elapsed) {
 		switch(this.envStatusEffect._hx_index) {
 		case 0:
-			this.ai.currentState = $bind(this,this.burning);
+			this.elementalAi.currentState = $bind(this,this.burning);
 			break;
 		case 1:
-			this.ai.currentState = $bind(this,this.icey);
+			this.elementalAi.currentState = $bind(this,this.icey);
 			break;
 		case 2:
-			this.ai.currentState = $bind(this,this.frozen);
+			this.elementalAi.currentState = $bind(this,this.frozen);
 			break;
 		case 3:
-			this.ai.currentState = $bind(this,this.wet);
+			this.elementalAi.currentState = $bind(this,this.wet);
 			break;
 		case 6:
-			this.ai.currentState = $bind(this,this.charged);
+			this.elementalAi.currentState = $bind(this,this.charged);
 			break;
 		default:
 		}
@@ -49165,7 +49168,7 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 		}
 		if(this.burningTimer <= 0) {
 			this.envStatusEffect = game_StatusEffects.None;
-			this.ai.currentState = $bind(this,this.idle);
+			this.elementalAi.currentState = $bind(this,this.elementalIdle);
 		}
 	}
 	,wet: function(elapsed) {
@@ -49174,7 +49177,7 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 		}
 		if(this.wetTimer <= 0) {
 			this.envStatusEffect = game_StatusEffects.None;
-			this.ai.currentState = $bind(this,this.idle);
+			this.elementalAi.currentState = $bind(this,this.elementalIdle);
 		}
 	}
 	,charged: function(elapsed) {
@@ -49183,7 +49186,7 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 		}
 		if(this.chargedTimer <= 0) {
 			this.envStatusEffect = game_StatusEffects.None;
-			this.ai.currentState = $bind(this,this.idle);
+			this.elementalAi.currentState = $bind(this,this.elementalIdle);
 		}
 	}
 	,icey: function(elapsed) {
@@ -49191,7 +49194,7 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 			this.iceyTimer -= elapsed;
 		}
 		if(this.iceyTimer <= 0) {
-			this.ai.currentState = $bind(this,this.idle);
+			this.elementalAi.currentState = $bind(this,this.elementalIdle);
 			this.envStatusEffect = game_StatusEffects.None;
 		}
 	}
@@ -49201,7 +49204,7 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 		}
 		if(this.freezeTimer <= 0) {
 			this.envStatusEffect = game_StatusEffects.None;
-			this.ai.currentState = $bind(this,this.idle);
+			this.elementalAi.currentState = $bind(this,this.elementalIdle);
 		}
 	}
 	,__class__: game_char_SystemicEntity
@@ -49232,7 +49235,7 @@ var game_char_Enemy = function(x,y,path,monsterData) {
 	game_char_Actor.call(this,x,y,monsterData);
 	this.walkPath = path;
 	this.points = monsterData.points;
-	this.ai.currentState = $bind(this,this.idle);
+	this.elementalAi.currentState = $bind(this,this.elementalIdle);
 };
 $hxClasses["game.char.Enemy"] = game_char_Enemy;
 game_char_Enemy.__name__ = "game.char.Enemy";
@@ -49241,6 +49244,7 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 	update: function(elapsed) {
 		game_char_Actor.prototype.update.call(this,elapsed);
 		this.ai.update(elapsed);
+		this.elementalAi.update(elapsed);
 		this.updateMovement(elapsed);
 	}
 	,updateMovement: function(elapsed) {
@@ -49458,6 +49462,7 @@ game_objects_Fire.prototype = $extend(flixel_effects_particles_FlxTypedEmitter.p
 var game_objects_Grass = function(x,y) {
 	game_char_SystemicEntity.call(this,x,y);
 	this.ai = new game_State($bind(this,this.idle));
+	this.elementalAi = new game_State($bind(this,this.elementalIdle));
 	this.burnt = false;
 	this.loadGraphic("assets/images/grass-out.png",true,16,16,true);
 	this.animation.add("idle",[0]);
@@ -49476,8 +49481,9 @@ game_objects_Grass.prototype = $extend(game_char_SystemicEntity.prototype,{
 	,update: function(elapsed) {
 		game_char_SystemicEntity.prototype.update.call(this,elapsed);
 		this.ai.update(elapsed);
+		this.elementalAi.update(elapsed);
 	}
-	,idle: function(elapsed) {
+	,elementalIdle: function(elapsed) {
 		if(!this.burnt && this.envStatusEffect == game_StatusEffects.Burning) {
 			this.ai.currentState = $bind(this,this.burning);
 		}
@@ -68433,7 +68439,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 771681;
+	this.version = 312198;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
