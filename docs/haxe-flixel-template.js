@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "25";
+	app.meta.h["build"] = "26";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49088,7 +49088,9 @@ game_char_SystemicEntity.prototype = $extend(flixel_FlxSprite.prototype,{
 	,handleFireAtk: function(dmg,res) {
 		if(this.envStatusEffect != game_StatusEffects.Wet) {
 			this.envStatusEffect = game_StatusEffects.Burning;
-			this.burningTimer = 6;
+			if(this.burningTimer <= 0) {
+				this.burningTimer = 6;
+			}
 		}
 		this.health -= this.calculateElementalDamage(dmg,res);
 	}
@@ -49647,10 +49649,13 @@ game_objects_Grass.prototype = $extend(game_char_SystemicEntity.prototype,{
 		}
 	}
 	,handleFireAtk: function(dmg,res) {
-		game_char_SystemicEntity.prototype.handleFireAtk.call(this,dmg,res);
-		if(this.burningTimer <= 0 && !this.burnt) {
-			this.burningTimer = 6;
+		if(this.envStatusEffect != game_StatusEffects.Wet) {
+			this.envStatusEffect = game_StatusEffects.Burning;
+			if(this.burningTimer <= 0 && !this.burnt) {
+				this.burningTimer = 6;
+			}
 		}
+		this.health -= this.calculateElementalDamage(dmg,res);
 	}
 	,handleWaterAtk: function(dmg,res) {
 		game_char_SystemicEntity.prototype.handleWaterAtk.call(this,dmg,res);
@@ -68582,7 +68587,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 879266;
+	this.version = 951393;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
