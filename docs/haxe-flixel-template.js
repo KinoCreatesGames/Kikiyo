@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "26";
+	app.meta.h["build"] = "27";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4269,7 +4269,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i16855R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i4034R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i106R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i56968R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y39:assets%2Fimages%2Flove-flame-turret.pngR2i265R3R11R5R21R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R23R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R24R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR26hR6tgoR2i4578R3R25R5y31:assets%2Fsounds%2Fmenu-exit.wavR27aR28hR6tgoR2i39740R3R25R5y32:assets%2Fsounds%2Flow-health.wavR27aR29hR6tgoR2i6900R3R25R5y31:assets%2Fsounds%2Fmenu-open.wavR27aR30hR6tgoR2i3672R3R25R5y32:assets%2Fsounds%2Fmouse-over.wavR27aR31hR6tgoR2i8378R3R25R5y34:assets%2Fsounds%2Fbutton-click.wavR27aR32hR6tgoR2i8410R3R25R5y28:assets%2Fsounds%2Fimpact.wavR27aR33hR6tgoR2i19472R3R25R5y31:assets%2Fsounds%2Fpause-out.wavR27aR34hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R35R6tgoR2i22964R3R25R5y30:assets%2Fsounds%2Fpause-in.wavR27aR36hR6tgoR2i4584R3R25R5y33:assets%2Fsounds%2Fbullet-fire.wavR27aR37hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R27aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R27aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R25R5R42R27aR41R42hgoR2i5794R3R25R5R40R27aR39R40hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R43R44y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R50R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i17584R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i4034R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i106R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i56968R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y39:assets%2Fimages%2Flove-flame-turret.pngR2i265R3R11R5R21R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R23R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R24R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR26hR6tgoR2i4578R3R25R5y31:assets%2Fsounds%2Fmenu-exit.wavR27aR28hR6tgoR2i39740R3R25R5y32:assets%2Fsounds%2Flow-health.wavR27aR29hR6tgoR2i6900R3R25R5y31:assets%2Fsounds%2Fmenu-open.wavR27aR30hR6tgoR2i3672R3R25R5y32:assets%2Fsounds%2Fmouse-over.wavR27aR31hR6tgoR2i8378R3R25R5y34:assets%2Fsounds%2Fbutton-click.wavR27aR32hR6tgoR2i8410R3R25R5y28:assets%2Fsounds%2Fimpact.wavR27aR33hR6tgoR2i19472R3R25R5y31:assets%2Fsounds%2Fpause-out.wavR27aR34hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R35R6tgoR2i22964R3R25R5y30:assets%2Fsounds%2Fpause-in.wavR27aR36hR6tgoR2i4584R3R25R5y33:assets%2Fsounds%2Fbullet-fire.wavR27aR37hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R27aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R27aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R25R5R42R27aR41R42hgoR2i5794R3R25R5R40R27aR39R40hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R43R44y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R50R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -49344,6 +49344,29 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		default:
 		}
 	}
+	,startInvincibility: function() {
+		var _gthis = this;
+		this.isInvincible = true;
+		var Duration = 1.5;
+		var Interval = 0.04;
+		var EndVisibility = true;
+		var ForceRestart = true;
+		if(ForceRestart == null) {
+			ForceRestart = true;
+		}
+		if(EndVisibility == null) {
+			EndVisibility = true;
+		}
+		if(Interval == null) {
+			Interval = 0.04;
+		}
+		if(Duration == null) {
+			Duration = 1;
+		}
+		flixel_effects_FlxFlicker.flicker(this,Duration,Interval,EndVisibility,ForceRestart,function(_) {
+			_gthis.isInvincible = false;
+		},null);
+	}
 	,updateMovement: function(elapsed) {
 		var down = flixel_FlxG.keys.checkKeyArrayState([40,83],1);
 		var up = flixel_FlxG.keys.checkKeyArrayState([38,87],1);
@@ -49841,8 +49864,13 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		this.add(this.systemicEntitiesGrp);
 		this.add(this.player);
 		this.add(this.enemyBulletGrp);
+		this.add(this.hud);
 	}
 	,createUI: function() {
+		this.createPlayerHUD();
+	}
+	,createPlayerHUD: function() {
+		this.hud = new game_ui_PlayerHUD(0,0,this.player);
 	}
 	,processCollision: function() {
 		game_states_BaseTileState.prototype.processCollision.call(this);
@@ -49859,6 +49887,10 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		if(enemy.health <= 0) {
 			enemy.kill();
 		}
+		if(!player.isInvincible) {
+			player.health -= 1;
+			player.startInvincibility();
+		}
 		if(player.health <= 0) {
 			player.kill();
 		}
@@ -49866,6 +49898,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 	,playerTouchFire: function(player,fireGrp) {
 		flixel_FlxG.camera.shake(0.1,0.1);
 		player.handleElement(game_ElementalAtk.FireAtk(0));
+		player.startInvincibility();
 	}
 	,playerTouchRain: function(player,rainGrp) {
 		player.handleElement(game_ElementalAtk.WaterAtk(0));
@@ -49914,6 +49947,42 @@ game_states_LevelOneState.prototype = $extend(game_states_LevelState.prototype,{
 		entity.handleElement(game_ElementalAtk.WaterAtk(0));
 	}
 	,__class__: game_states_LevelOneState
+});
+var game_ui_PlayerHUD = function(x,y,player) {
+	flixel_group_FlxTypedGroup.call(this);
+	this.player = player;
+	this.position = new flixel_math_FlxPoint(x,y);
+	this.create();
+};
+$hxClasses["game.ui.PlayerHUD"] = game_ui_PlayerHUD;
+game_ui_PlayerHUD.__name__ = "game.ui.PlayerHUD";
+game_ui_PlayerHUD.__super__ = flixel_group_FlxTypedGroup;
+game_ui_PlayerHUD.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
+	create: function() {
+		this.createHealth();
+	}
+	,createHealth: function() {
+		var pos = this.position;
+		var padding = 12;
+		this.healthBar = new flixel_ui_FlxBar(pos.x + padding,pos.y + padding,flixel_ui_FlxBarFillDirection.LEFT_TO_RIGHT,64,16,this.player,"health",0,this.player.health);
+		this.healthBar.createFilledBar(-15790578,-37993,true,-28314);
+		this.healthText = new flixel_text_FlxText(this.healthBar.x,this.healthBar.y,-1,"" + this.player.health,12);
+		this.healthText.set_x(this.healthBar.x + this.healthBar.get_width() / 2 - this.healthText.get_width() / 2);
+		this.add(this.healthBar);
+		this.add(this.healthText);
+	}
+	,update: function(elapsed) {
+		flixel_group_FlxTypedGroup.prototype.update.call(this,elapsed);
+		this.updateHUD();
+	}
+	,updateHUD: function() {
+		this.updateHealth();
+	}
+	,updateHealth: function() {
+		this.healthText.set_text("" + this.player.health);
+		this.healthText.set_x(this.healthBar.x + this.healthBar.get_width() / 2 - this.healthText.get_width() / 2);
+	}
+	,__class__: game_ui_PlayerHUD
 });
 var haxe_StackItem = $hxEnums["haxe.StackItem"] = { __ename__ : "haxe.StackItem", __constructs__ : ["CFunction","Module","FilePos","Method","LocalFunction"]
 	,CFunction: {_hx_index:0,__enum__:"haxe.StackItem",toString:$estr}
@@ -68587,7 +68656,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 951393;
+	this.version = 576648;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -110061,9 +110130,9 @@ AssetPaths.pause_out__wav = "assets/sounds/pause-out.wav";
 AssetPaths.sounds_go_here__txt = "assets/sounds/sounds-go-here.txt";
 AssetPaths.pause_in__wav = "assets/sounds/pause-in.wav";
 AssetPaths.bullet_fire__wav = "assets/sounds/bullet-fire.wav";
-DepotData.Actors_Kikiyo = { spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, def : 0};
-DepotData.Actors_ActorName = { spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, def : 0};
-DepotData.Actors = { name : "Actors", lines : [{ spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, def : 0},{ spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, def : 0}], isProps : false, hidden : false, guid : "9ee981be-907f-4a41-9014-cbac2ab9b9a4", displayColumn : "id", description : "List of actors and enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Actors_Kikiyo = { spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, health : 5, def : 0};
+DepotData.Actors_ActorName = { spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, health : 5, def : 0};
+DepotData.Actors = { name : "Actors", lines : [{ spd : 250, name : "Kikiyo", guid : "a5cbeb88-acd3-46aa-a15b-0a9d849078f3", sprite : "", id : "0", atk : 1, health : 5, def : 0},{ spd : 100, name : "ActorName", guid : "817661b6-a5fb-434f-8b5f-57b72e87c913", sprite : "", id : "1", atk : 2, health : 5, def : 0}], isProps : false, hidden : false, guid : "9ee981be-907f-4a41-9014-cbac2ab9b9a4", displayColumn : "id", description : "List of actors and enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Switches_Met_Mentor = { name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"};
 DepotData.Switches = { name : "Switches", lines : [{ name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"}], isProps : false, hidden : false, guid : "585e7418-2ed3-4d65-a2d8-1944a6d4707b", displayColumn : "id", description : "A sheet used to define the number of switches in game", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Variables_Met_Mentor_Count = { name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"};
@@ -111299,6 +111368,7 @@ game_char_SystemicEntity.WET_TIME = 6;
 game_char_SystemicEntity.ICE_TIME = 6;
 game_char_SystemicEntity.FREEZE_TIME = 3;
 game_char_SystemicEntity.CHARGE_TIME = 6;
+game_char_Player.INVINCIBLE_TIME = 1.5;
 game_char_Turret.PROJECTILE_SPEED = 600;
 game_ext_KColor.WINTER_SKY = -14651649;
 game_ext_KColor.RICH_BLACK = -15986934;
