@@ -82,6 +82,23 @@
                         "description": "text",
                         "defaultValue": "text"
                     }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "a19e1f15-4b48-451f-83ac-e7426de29292",
+                    "description": "Health of the character",
+                    "name": "health",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 5,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
                 }
             ],
             "lines": [
@@ -92,7 +109,8 @@
                     "atk": 1,
                     "def": 0,
                     "spd": 250,
-                    "sprite": ""
+                    "sprite": "",
+                    "health": 5
                 },
                 {
                     "guid": "817661b6-a5fb-434f-8b5f-57b72e87c913",
@@ -101,7 +119,8 @@
                     "atk": 2,
                     "def": 0,
                     "spd": 100,
-                    "sprite": ""
+                    "sprite": "",
+                    "health": 5
                 }
             ],
             "hidden": false,

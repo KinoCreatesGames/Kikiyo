@@ -1,5 +1,6 @@
 package game.states;
 
+import game.ui.PlayerHUD;
 import game.objects.Snow;
 import game.objects.Rain;
 import game.objects.Fire;
@@ -15,6 +16,7 @@ import flixel.addons.editors.tiled.TiledMap;
 class LevelState extends BaseTileState {
 	public var player:Player;
 	public var systemicEntitiesGrp:FlxTypedGroup<SystemicEntity>;
+	public var hud:PlayerHUD;
 	// Could be generic later if necessary
 	public var enemyBulletGrp:FlxTypedGroup<Bullet>;
 	public var fireGrp:Fire;
@@ -77,9 +79,16 @@ class LevelState extends BaseTileState {
 		add(systemicEntitiesGrp);
 		add(player);
 		add(enemyBulletGrp);
+		add(hud);
 	}
 
-	override public function createUI() {}
+	override public function createUI() {
+		createPlayerHUD();
+	}
+
+	public function createPlayerHUD() {
+		hud = new PlayerHUD(0, 0, player);
+	}
 
 	override function processCollision() {
 		super.processCollision();
@@ -99,6 +108,11 @@ class LevelState extends BaseTileState {
 		if (enemy.health <= 0) {
 			enemy.kill();
 		}
+		// Touching an enemy always does 1 damage
+		if (!player.isInvincible) {
+			player.health -= 1;
+			player.startInvincibility();
+		}
 
 		if (player.health <= 0) {
 			player.kill();
@@ -109,6 +123,7 @@ class LevelState extends BaseTileState {
 		FlxG.camera.shake(0.1, 0.1);
 		player.handleElement(FireAtk(0));
 		// Do Fire Attack on player
+		player.startInvincibility();
 	}
 
 	public function playerTouchRain(player:Player, rainGrp:Rain) {
