@@ -3,6 +3,11 @@ package game.char;
 import flixel.math.FlxVector;
 
 class Player extends Actor {
+	public var isInvincible:Bool;
+	public var invincibilityTimer:Float;
+
+	public static inline var INVINCIBLE_TIME:Float = 1.5;
+
 	public function new(x:Float, y:Float, actorData:ActorData) {
 		super(x, y, actorData);
 		create();
@@ -38,6 +43,13 @@ class Player extends Actor {
 				// Do nothing
 				// color = KColor.WHITE;
 		}
+	}
+
+	public function startInvincibility() {
+		isInvincible = true;
+		this.flicker(INVINCIBLE_TIME, 0.04, true, true, (_) -> {
+			isInvincible = false;
+		});
 	}
 
 	public function updateMovement(elapsed) {
