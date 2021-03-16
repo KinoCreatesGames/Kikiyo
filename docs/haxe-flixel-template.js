@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "29";
+	app.meta.h["build"] = "31";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49840,6 +49840,7 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 	,__class__: game_char_Enemy
 });
 var game_char_Player = function(x,y,actorData) {
+	this.energyCap = 4;
 	this.energy = 3;
 	this.healthBoostCount = 0;
 	game_char_Actor.call(this,x,y,actorData);
@@ -50432,6 +50433,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		game_states_BaseTileState.prototype.createGroups.call(this);
 		this.systemicEntitiesGrp = new flixel_group_FlxTypedGroup();
 		this.enemyBulletGrp = new flixel_group_FlxTypedGroup();
+		this.collectiblesGrp = new flixel_group_FlxTypedGroup();
 	}
 	,addGroups: function() {
 		game_states_BaseTileState.prototype.addGroups.call(this);
@@ -50492,14 +50494,15 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 	,playerTouchCollectible: function(player,collectible) {
 		switch(js_Boot.getClass(collectible)) {
 		case game_objects_Energy:
-			player.energy += 1;
+			player.energy = Math.round(Math.min(Math.max(player.energy + 1,0),player.energyCap));
 			break;
 		case game_objects_HealthBooster:
 			player.healthBoostCount += 1;
 			break;
 		}
-		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 168, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
-		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 169, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+		collectible.kill();
+		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 170, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
+		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 171, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
 	}
 	,processLevel: function(elapsed) {
 	}
@@ -69316,7 +69319,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 750199;
+	this.version = 205932;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -111829,6 +111832,7 @@ game_char_SystemicEntity.ICE_TIME = 6;
 game_char_SystemicEntity.FREEZE_TIME = 3;
 game_char_SystemicEntity.CHARGE_TIME = 6;
 game_char_Player.INVINCIBLE_TIME = 1.5;
+game_char_Player.HEALTHBOOSTER_SPLIT = 3;
 game_char_Turret.PROJECTILE_SPEED = 600;
 game_ext_KColor.WINTER_SKY = -14651649;
 game_ext_KColor.RICH_BLACK = -15986934;
