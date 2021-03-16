@@ -23,6 +23,11 @@ typedef MonsterData = {
 	 */
 	public var ?range:Float;
 
+	/**
+	 * Used for armor on enemies
+	 */
+	public var armor:Int;
+
 	// public var patrol:Array<FlxPoint>;
 }
 

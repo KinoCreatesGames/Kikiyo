@@ -2,7 +2,10 @@ package game.char;
 
 import flixel.math.FlxVelocity;
 
-class Turret extends Enemy {
+/**
+ * Archer type enemy that patrols a set location.
+ */
+class Archer extends Enemy {
 	public var bullets:FlxTypedGroup<Bullet>;
 	public var fireSound:FlxSound;
 	public var fireCD:Float;
@@ -13,17 +16,12 @@ class Turret extends Enemy {
 			bulletGrp:FlxTypedGroup<Bullet>) {
 		super(x, y, null, data);
 		fireCD = 0;
-		fireSound = FlxG.sound.load(AssetPaths.bullet_fire__wav);
+		// fireSound = FlxG.sound
 		bullets = bulletGrp;
 	}
 
 	override public function assignStats() {
 		super.assignStats();
-		var monData:MonsterData = cast data;
-		var sprite = monData.sprite.replace('../../', 'assets/');
-		loadGraphic(sprite, true, 16, 16, true);
-		animation.add('idle', [0]);
-		animation.add('fire', [0, 1, 2], 6);
 	}
 
 	override public function update(elapsed:Float) {
