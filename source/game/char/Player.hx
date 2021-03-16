@@ -7,8 +7,15 @@ class Player extends Actor {
 	public var invincibilityTimer:Float;
 	public var healthBoostCount:Int = 0;
 	public var energy:Int = 3;
+	public var energyCap:Int = 4;
 
 	public static inline var INVINCIBLE_TIME:Float = 1.5;
+
+	/**
+	 * The amount of health boosters you have to pick up for you
+	 * to get your health extended.
+	 */
+	public static inline var HEALTHBOOSTER_SPLIT:Int = 3;
 
 	public function new(x:Float, y:Float, actorData:ActorData) {
 		super(x, y, actorData);

@@ -162,7 +162,7 @@ class LevelState extends BaseTileState {
 			collectible:Collectible) {
 		switch (Type.getClass(collectible)) {
 			case Energy:
-				player.energy += 1;
+				player.energy = (player.energy + 1).clamp(0, player.energyCap);
 			case HealthBooster:
 				player.healthBoostCount += 1;
 		}
