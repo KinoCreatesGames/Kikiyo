@@ -30,6 +30,7 @@ class LevelState extends BaseTileState {
 	public var snowGrp:Snow;
 
 	public static inline var REGION_TILESET_NAME = 'Regions';
+	public static inline var SPAWN_TILE = 25;
 	public static inline var GRASS_TILE = 26;
 	public static inline var ENERGY_TILE = 27;
 	public static inline var HEALTHBOOSTER_TILE = 28;
@@ -59,6 +60,9 @@ class LevelState extends BaseTileState {
 			var tile = regionLevel.getTileByIndex(index);
 			// Grass = 26 from Data
 			switch (tile) {
+				case SPAWN_TILE:
+					player.x = coords.x;
+					player.y = coords.y;
 				case GRASS_TILE:
 					systemicEntitiesGrp.add(new Grass(coords.x, coords.y));
 				case ENERGY_TILE:
