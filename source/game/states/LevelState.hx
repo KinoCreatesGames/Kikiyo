@@ -1,5 +1,6 @@
 package game.states;
 
+import game.ui.MsgWindow;
 import game.ui.PlayerHUD;
 import game.objects.Snow;
 import game.objects.Rain;
@@ -17,6 +18,7 @@ class LevelState extends BaseTileState {
 	public var player:Player;
 	public var systemicEntitiesGrp:FlxTypedGroup<SystemicEntity>;
 	public var hud:PlayerHUD;
+	public var msgWindow:MsgWindow;
 	// Could be generic later if necessary
 	public var enemyBulletGrp:FlxTypedGroup<Bullet>;
 	public var fireGrp:Fire;
@@ -79,11 +81,19 @@ class LevelState extends BaseTileState {
 		add(systemicEntitiesGrp);
 		add(player);
 		add(enemyBulletGrp);
+		add(msgWindow);
 		add(hud);
 	}
 
 	override public function createUI() {
+		createMsgWindow();
 		createPlayerHUD();
+	}
+
+	public function createMsgWindow() {
+		var x = (FlxG.width / 2) - (MsgWindow.WIDTH / 2);
+		var y = FlxG.height - MsgWindow.HEIGHT;
+		msgWindow = new MsgWindow(x, y);
 	}
 
 	public function createPlayerHUD() {

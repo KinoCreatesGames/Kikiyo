@@ -10,6 +10,8 @@ class Enemy extends game.char.Actor {
 	public var walkPath:Array<FlxPoint>;
 	public var points:Int;
 	public var player:Player;
+	public var range:Float;
+	public var atkSpd:Float;
 
 	public function new(x:Float, y:Float, path:Array<FlxPoint>,
 			monsterData:MonsterData) {
@@ -17,6 +19,13 @@ class Enemy extends game.char.Actor {
 		walkPath = path;
 		points = monsterData.points;
 		elementalAi.currentState = elementalIdle;
+	}
+
+	override public function assignStats() {
+		super.assignStats();
+		var monData:MonsterData = cast data;
+		atkSpd = monData.atkSpd;
+		range = monData.range;
 	}
 
 	override public function update(elapsed:Float) {
@@ -48,5 +57,16 @@ class Enemy extends game.char.Actor {
 			enemy.player = player;
 		}
 		return enemy;
+	}
+
+	public function playerInRange():Bool {
+		var currPlayer = null;
+		if (player != null) {
+			if (player.getMidpoint().distanceTo(this.getMidpoint()) < range
+				&& player.alive) {
+				currPlayer = player;
+			}
+		}
+		return currPlayer != null ? true : false;
 	}
 }

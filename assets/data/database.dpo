@@ -341,6 +341,23 @@
                         "max": "float",
                         "defaultValue": "float"
                     }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "3d6d899f-b26a-44ec-81e8-8348d9f993ae",
+                    "description": "Set of armor points for enemies if they wear armor",
+                    "name": "armor",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
                 }
             ],
             "lines": [
@@ -353,7 +370,8 @@
                     "def": 0,
                     "sprite": "../../images/love-flame-turret.png",
                     "atkSpd": 2.5,
-                    "range": 50
+                    "range": 50,
+                    "armor": 0
                 },
                 {
                     "guid": "4de45aee-d708-4dfe-96f8-0890fcdb68d4",
@@ -364,7 +382,8 @@
                     "def": 0,
                     "sprite": "",
                     "atkSpd": 2.5,
-                    "range": 50
+                    "range": 50,
+                    "armor": 0
                 }
             ],
             "hidden": false,
