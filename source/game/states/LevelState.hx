@@ -85,6 +85,7 @@ class LevelState extends BaseTileState {
 		super.createGroups();
 		systemicEntitiesGrp = new FlxTypedGroup<SystemicEntity>();
 		enemyBulletGrp = new FlxTypedGroup<Bullet>();
+		collectiblesGrp = new FlxTypedGroup<Collectible>();
 	}
 
 	override public function addGroups() {
@@ -165,6 +166,7 @@ class LevelState extends BaseTileState {
 			case HealthBooster:
 				player.healthBoostCount += 1;
 		}
+		collectible.kill();
 		trace('Energy Count', player.energy);
 		trace('HealthBoosterCount', player.healthBoostCount);
 	}
