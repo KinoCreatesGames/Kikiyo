@@ -1,5 +1,8 @@
 package game.states;
 
+import game.objects.HealthBooster;
+import game.objects.Energy;
+import game.objects.Collectible;
 import game.ui.MsgWindow;
 import game.ui.PlayerHUD;
 import game.objects.Snow;
@@ -17,6 +20,7 @@ import flixel.addons.editors.tiled.TiledMap;
 class LevelState extends BaseTileState {
 	public var player:Player;
 	public var systemicEntitiesGrp:FlxTypedGroup<SystemicEntity>;
+	public var collectiblesGrp:FlxTypedGroup<Collectible>;
 	public var hud:PlayerHUD;
 	public var msgWindow:MsgWindow;
 	// Could be generic later if necessary
@@ -27,6 +31,8 @@ class LevelState extends BaseTileState {
 
 	public static inline var REGION_TILESET_NAME = 'Regions';
 	public static inline var GRASS_TILE = 26;
+	public static inline var ENERGY_TILE = 27;
+	public static inline var HEALTHBOOSTER_TILE = 28;
 
 	override public function createLevelInfo() {
 		var tileLayer:TiledTileLayer = cast(map.getLayer('Level'));
@@ -52,8 +58,13 @@ class LevelState extends BaseTileState {
 			var coords = regionLevel.getTileCoordsByIndex(index, false);
 			var tile = regionLevel.getTileByIndex(index);
 			// Grass = 26 from Data
-			if (tile == GRASS_TILE) {
-				systemicEntitiesGrp.add(new Grass(coords.x, coords.y));
+			switch (tile) {
+				case GRASS_TILE:
+					systemicEntitiesGrp.add(new Grass(coords.x, coords.y));
+				case ENERGY_TILE:
+					collectiblesGrp.add(new Energy(coords.x, coords.y));
+				case HEALTHBOOSTER_TILE:
+					collectiblesGrp.add(new HealthBooster(coords.x, coords.y));
 			}
 		}
 	}
@@ -79,6 +90,7 @@ class LevelState extends BaseTileState {
 	override public function addGroups() {
 		super.addGroups();
 		add(systemicEntitiesGrp);
+		add(collectiblesGrp);
 		add(player);
 		add(enemyBulletGrp);
 		add(msgWindow);
@@ -111,6 +123,7 @@ class LevelState extends BaseTileState {
 		FlxG.overlap(player, fireGrp, playerTouchFire);
 		FlxG.overlap(player, rainGrp, playerTouchRain);
 		FlxG.overlap(player, snowGrp, playerTouchSnow);
+		FlxG.overlap(player, collectiblesGrp, playerTouchCollectible);
 	}
 
 	public function enemyTouchPlayer(enemy:Enemy, player:Player) {
@@ -142,6 +155,18 @@ class LevelState extends BaseTileState {
 
 	public function playerTouchSnow(player:Player, snowGrp:Snow) {
 		player.handleElement(IceAtk(0));
+	}
+
+	public function playerTouchCollectible(player:Player,
+			collectible:Collectible) {
+		switch (Type.getClass(collectible)) {
+			case Energy:
+				player.energy += 1;
+			case HealthBooster:
+				player.healthBoostCount += 1;
+		}
+		trace('Energy Count', player.energy);
+		trace('HealthBoosterCount', player.healthBoostCount);
 	}
 
 	override function processLevel(elapsed) {}

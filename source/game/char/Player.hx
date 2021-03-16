@@ -5,6 +5,8 @@ import flixel.math.FlxVector;
 class Player extends Actor {
 	public var isInvincible:Bool;
 	public var invincibilityTimer:Float;
+	public var healthBoostCount:Int = 0;
+	public var energy:Int = 3;
 
 	public static inline var INVINCIBLE_TIME:Float = 1.5;
 
