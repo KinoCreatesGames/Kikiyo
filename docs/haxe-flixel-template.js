@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "36";
+	app.meta.h["build"] = "37";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -50153,6 +50153,32 @@ game_objects_Energy.prototype = $extend(game_objects_Collectible.prototype,{
 	}
 	,__class__: game_objects_Energy
 });
+var game_objects_EntryPoint = function(x,y) {
+	flixel_FlxSprite.call(this,x,y);
+	this.setSprite();
+};
+$hxClasses["game.objects.EntryPoint"] = game_objects_EntryPoint;
+game_objects_EntryPoint.__name__ = "game.objects.EntryPoint";
+game_objects_EntryPoint.__super__ = flixel_FlxSprite;
+game_objects_EntryPoint.prototype = $extend(flixel_FlxSprite.prototype,{
+	setSprite: function() {
+		this.makeGraphic(16,16,-8388480);
+	}
+	,__class__: game_objects_EntryPoint
+});
+var game_objects_ExitPoint = function(x,y) {
+	flixel_FlxSprite.call(this,x,y);
+	this.setSprite();
+};
+$hxClasses["game.objects.ExitPoint"] = game_objects_ExitPoint;
+game_objects_ExitPoint.__name__ = "game.objects.ExitPoint";
+game_objects_ExitPoint.__super__ = flixel_FlxSprite;
+game_objects_ExitPoint.prototype = $extend(flixel_FlxSprite.prototype,{
+	setSprite: function() {
+		this.makeGraphic(16,16,-23296);
+	}
+	,__class__: game_objects_ExitPoint
+});
 var game_objects_Fire = function(x,y,size) {
 	flixel_effects_particles_FlxTypedEmitter.call(this,x,y,size);
 	this.makeParticles(8,8,-23296,size);
@@ -50423,6 +50449,12 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			case 28:
 				this.collectiblesGrp.add(new game_objects_HealthBooster(coords.x,coords.y));
 				break;
+			case 29:
+				this.entranceGrp.add(new game_objects_EntryPoint(coords.x,coords.y));
+				break;
+			case 30:
+				this.exitGrp.add(new game_objects_ExitPoint(coords.x,coords.y));
+				break;
 			}
 		}
 	}
@@ -50440,12 +50472,16 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		this.systemicEntitiesGrp = new flixel_group_FlxTypedGroup();
 		this.enemyBulletGrp = new flixel_group_FlxTypedGroup();
 		this.collectiblesGrp = new flixel_group_FlxTypedGroup();
+		this.exitGrp = new flixel_group_FlxTypedGroup();
+		this.entranceGrp = new flixel_group_FlxTypedGroup();
 	}
 	,addGroups: function() {
 		game_states_BaseTileState.prototype.addGroups.call(this);
 		this.add(this.systemicEntitiesGrp);
 		this.add(this.collectiblesGrp);
 		this.add(this.player);
+		this.add(this.entranceGrp);
+		this.add(this.exitGrp);
 		this.add(this.enemyBulletGrp);
 		this.add(this.msgWindow);
 		this.add(this.hud);
@@ -50472,6 +50508,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		flixel_FlxG.overlap(this.player,this.rainGrp,$bind(this,this.playerTouchRain));
 		flixel_FlxG.overlap(this.player,this.snowGrp,$bind(this,this.playerTouchSnow));
 		flixel_FlxG.overlap(this.player,this.collectiblesGrp,$bind(this,this.playerTouchCollectible));
+		flixel_FlxG.overlap(this.player,this.entranceGrp,$bind(this,this.playerTouchEntryPoint));
+		flixel_FlxG.overlap(this.player,this.exitGrp,$bind(this,this.playerTouchExitPoint));
 	}
 	,enemyTouchPlayer: function(enemy,player) {
 		flixel_FlxG.camera.shake(0.1,0.1);
@@ -50507,8 +50545,12 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			break;
 		}
 		collectible.kill();
-		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 179, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
-		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 180, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 193, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
+		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 194, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+	}
+	,playerTouchEntryPoint: function(player,entryPoint) {
+	}
+	,playerTouchExitPoint: function(player,exitPoint) {
 	}
 	,processLevel: function(elapsed) {
 	}
@@ -69325,7 +69367,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 489857;
+	this.version = 898029;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
