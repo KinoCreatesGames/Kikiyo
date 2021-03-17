@@ -27,6 +27,7 @@ class Actor extends SystemicEntity {
 
 	override public function update(elapsed:Float) {
 		super.update(elapsed);
+		elementalAi.update(elapsed);
 		ai.currentState(elapsed);
 	}
 }
