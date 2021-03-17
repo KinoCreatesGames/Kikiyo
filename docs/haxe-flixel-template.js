@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "34";
+	app.meta.h["build"] = "35";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49736,6 +49736,7 @@ game_char_Actor.prototype = $extend(game_char_SystemicEntity.prototype,{
 	}
 	,update: function(elapsed) {
 		game_char_SystemicEntity.prototype.update.call(this,elapsed);
+		this.elementalAi.update(elapsed);
 		this.ai.currentState(elapsed);
 	}
 	,__class__: game_char_Actor
@@ -69324,7 +69325,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 40995;
+	this.version = 561987;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
