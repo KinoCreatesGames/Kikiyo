@@ -36,7 +36,14 @@
 				"displayOpacity": 1,
 				"pxOffsetX": 0,
 				"pxOffsetY": 0,
-				"intGridValues": [ { "identifier": "spawnPoint", "color": "#8B86C1" }, { "identifier": "grass", "color": "#C9FF86" }, { "identifier": "energy", "color": "#C6FFF7" }, { "identifier": "healthBooster", "color": "#FF9898" } ],
+				"intGridValues": [
+					{ "identifier": "spawnPoint", "color": "#8B86C1" },
+					{ "identifier": "grass", "color": "#C9FF86" },
+					{ "identifier": "energy", "color": "#C6FFF7" },
+					{ "identifier": "healthBooster", "color": "#FF9898" },
+					{ "identifier": "enterPoint", "color": "#FFF7C1" },
+					{ "identifier": "exitPoint", "color": "#7A88ED" }
+				],
 				"autoTilesetDefUid": null,
 				"autoRuleGroups": [],
 				"autoSourceLayerDefUid": null,
