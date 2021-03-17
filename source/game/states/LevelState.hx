@@ -1,5 +1,7 @@
 package game.states;
 
+import game.objects.ExitPoint;
+import game.objects.EntryPoint;
 import game.objects.HealthBooster;
 import game.objects.Energy;
 import game.objects.Collectible;
@@ -21,6 +23,8 @@ class LevelState extends BaseTileState {
 	public var player:Player;
 	public var systemicEntitiesGrp:FlxTypedGroup<SystemicEntity>;
 	public var collectiblesGrp:FlxTypedGroup<Collectible>;
+	public var entranceGrp:FlxTypedGroup<EntryPoint>;
+	public var exitGrp:FlxTypedGroup<ExitPoint>;
 	public var hud:PlayerHUD;
 	public var msgWindow:MsgWindow;
 	// Could be generic later if necessary
@@ -74,6 +78,10 @@ class LevelState extends BaseTileState {
 					collectiblesGrp.add(new Energy(coords.x, coords.y));
 				case HEALTHBOOSTER_TILE:
 					collectiblesGrp.add(new HealthBooster(coords.x, coords.y));
+				case ENTER_POINT_TITLE:
+					entranceGrp.add(new EntryPoint(coords.x, coords.y));
+				case EXIT_POINT_TILE:
+					exitGrp.add(new ExitPoint(coords.x, coords.y));
 			}
 		}
 	}
@@ -95,6 +103,8 @@ class LevelState extends BaseTileState {
 		systemicEntitiesGrp = new FlxTypedGroup<SystemicEntity>();
 		enemyBulletGrp = new FlxTypedGroup<Bullet>();
 		collectiblesGrp = new FlxTypedGroup<Collectible>();
+		exitGrp = new FlxTypedGroup<ExitPoint>();
+		entranceGrp = new FlxTypedGroup<EntryPoint>();
 	}
 
 	override public function addGroups() {
@@ -102,6 +112,8 @@ class LevelState extends BaseTileState {
 		add(systemicEntitiesGrp);
 		add(collectiblesGrp);
 		add(player);
+		add(entranceGrp);
+		add(exitGrp);
 		add(enemyBulletGrp);
 		add(msgWindow);
 		add(hud);
@@ -134,6 +146,8 @@ class LevelState extends BaseTileState {
 		FlxG.overlap(player, rainGrp, playerTouchRain);
 		FlxG.overlap(player, snowGrp, playerTouchSnow);
 		FlxG.overlap(player, collectiblesGrp, playerTouchCollectible);
+		FlxG.overlap(player, entranceGrp, playerTouchEntryPoint);
+		FlxG.overlap(player, exitGrp, playerTouchExitPoint);
 	}
 
 	public function enemyTouchPlayer(enemy:Enemy, player:Player) {
@@ -179,6 +193,18 @@ class LevelState extends BaseTileState {
 		trace('Energy Count', player.energy);
 		trace('HealthBoosterCount', player.healthBoostCount);
 	}
+
+	/**
+	 * Made to be overridden on a level to level basis for defining exits and entrances.
+	 */
+	public function playerTouchEntryPoint(player:Player,
+		entryPoint:EntryPoint) {}
+
+	/**
+	 * Made to be overriden on a level to level basis for defining exits and entrances
+	 * during gameplay.
+	 */
+	public function playerTouchExitPoint(player:Player, exitPoint:ExitPoint) {}
 
 	override function processLevel(elapsed) {}
 
