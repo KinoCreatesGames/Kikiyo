@@ -63,6 +63,7 @@ class LevelState extends BaseTileState {
 				case SPAWN_TILE:
 					player.x = coords.x;
 					player.y = coords.y;
+
 				case GRASS_TILE:
 					systemicEntitiesGrp.add(new Grass(coords.x, coords.y));
 				case ENERGY_TILE:
