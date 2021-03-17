@@ -34,6 +34,8 @@ class LevelState extends BaseTileState {
 	public static inline var GRASS_TILE = 26;
 	public static inline var ENERGY_TILE = 27;
 	public static inline var HEALTHBOOSTER_TILE = 28;
+	public static inline var ENTER_POINT_TITLE = 29;
+	public static inline var EXIT_POINT_TILE = 30;
 
 	override public function createLevelInfo() {
 		var tileLayer:TiledTileLayer = cast(map.getLayer('Level'));
