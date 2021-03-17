@@ -38,6 +38,8 @@ class LevelState extends BaseTileState {
 	override public function createLevelInfo() {
 		var tileLayer:TiledTileLayer = cast(map.getLayer('Level'));
 		player = new Player(60, 60, cast DepotData.Actors_Kikiyo);
+		// Setup Player Camera
+		FlxG.camera.follow(player, TOPDOWN, 0.5);
 		createLevelMap(tileLayer);
 		createRegionEntities();
 		createEnemies();
