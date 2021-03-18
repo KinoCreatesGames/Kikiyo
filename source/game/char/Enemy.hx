@@ -12,6 +12,9 @@ class Enemy extends game.char.Actor {
 	public var player:Player;
 	public var range:Float;
 	public var atkSpd:Float;
+	public var isHit:Bool;
+
+	public static inline var HIT_TIME:Float = 0.5;
 
 	public function new(x:Float, y:Float, path:Array<FlxPoint>,
 			monsterData:MonsterData) {
@@ -68,5 +71,16 @@ class Enemy extends game.char.Actor {
 			}
 		}
 		return currPlayer != null ? true : false;
+	}
+
+	public function takeDamage(damage:Int) {
+		health -= damage;
+		isHit = true;
+		this.flicker(HIT_TIME, 0.04, true, true, (_) -> {
+			isHit = false;
+		});
+		if (health <= 0) {
+			this.kill();
+		}
 	}
 }
