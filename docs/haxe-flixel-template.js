@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "37";
+	app.meta.h["build"] = "38";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49841,6 +49841,8 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 	,__class__: game_char_Enemy
 });
 var game_char_Player = function(x,y,actorData) {
+	this.ssFrameCount = 0;
+	this.lsFrameCount = 0;
 	this.energyCap = 4;
 	this.energy = 3;
 	this.healthBoostCount = 0;
@@ -49855,14 +49857,34 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		this.makeGraphic(16,16,-1);
 		this.drag.set_x(this.drag.set_y(1600));
 		this.maxVelocity.set(300,300);
+		this.createWeaponHBoxes();
 	}
 	,assignStats: function() {
 		game_char_Actor.prototype.assignStats.call(this);
+	}
+	,createWeaponHBoxes: function() {
+		var x = this.x + this.get_width() / 2;
+		var y = this.y + this.get_height();
+		this.smallSword = new flixel_FlxSprite(x,y);
+		this.smallSword.makeGraphic(16,16,-256);
+		this.largeSword = new flixel_FlxSprite(x,y);
+		this.largeSword.makeGraphic(48,16,-37993);
+		this.smallSword.drag.set_x(this.smallSword.drag.set_y(1600));
+		this.smallSword.maxVelocity.set(300,300);
+		this.smallSword.set_visible(false);
+		this.largeSword.drag.set_x(this.largeSword.drag.set_y(1600));
+		this.largeSword.maxVelocity.set(300,300);
+		this.largeSword.set_visible(false);
+	}
+	,addWeaponHBoxes: function() {
+		flixel_FlxG.game._state.add(this.smallSword);
+		flixel_FlxG.game._state.add(this.largeSword);
 	}
 	,update: function(elapsed) {
 		game_char_Actor.prototype.update.call(this,elapsed);
 		this.updateMovement(elapsed);
 		this.updateStatusEffectResponse(elapsed);
+		this.updateCombat(elapsed);
 	}
 	,updateStatusEffectResponse: function(elapsed) {
 		switch(this.envStatusEffect._hx_index) {
@@ -49963,6 +49985,76 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 			var point1 = point;
 			point1._weak = true;
 			tmp.rotate(point1,newAngle);
+			this.smallSword.velocity.set(this.spd,0);
+			var tmp = this.smallSword.velocity;
+			var X = 0;
+			var Y = 0;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			tmp.rotate(point1,newAngle);
+			this.largeSword.velocity.set(this.spd,0);
+			var tmp = this.largeSword.velocity;
+			var X = 0;
+			var Y = 0;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			tmp.rotate(point1,newAngle);
+		}
+	}
+	,updateCombat: function(elapsed) {
+		var lightHit = flixel_FlxG.keys.checkKeyArrayState([90],2);
+		var heavyHit = flixel_FlxG.keys.checkKeyArrayState([88],2);
+		if(lightHit) {
+			this.smallSword.set_visible(true);
+			this.ssFrameCount = 6;
+		}
+		if(heavyHit) {
+			this.largeSword.set_visible(true);
+			this.lsFrameCount = 6;
+		}
+		if(this.ssFrameCount <= 0) {
+			this.smallSword.set_visible(false);
+		}
+		if(this.ssFrameCount > 0) {
+			this.ssFrameCount -= 1;
+		}
+		if(this.lsFrameCount <= 0) {
+			this.largeSword.set_visible(false);
+		}
+		if(this.lsFrameCount >= 0) {
+			this.lsFrameCount -= 1;
 		}
 	}
 	,handleFireAtk: function(dmg,res) {
@@ -49982,6 +50074,33 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 	}
 	,handleLightningAtk: function(dmg,res) {
 		game_char_Actor.prototype.handleLightningAtk.call(this,dmg,res);
+	}
+	,setPosition: function(x,y) {
+		if(y == null) {
+			y = 0;
+		}
+		if(x == null) {
+			x = 0;
+		}
+		this.setWeaponPositions(x,y);
+		game_char_Actor.prototype.setPosition.call(this,x,y);
+	}
+	,setWeaponPositions: function(x,y) {
+		var origPos = this.getMidpoint();
+		var offX = 8;
+		var offY = 8;
+		var _g = origPos;
+		_g.set_x(_g.x - offX);
+		var _g = origPos;
+		_g.set_y(_g.y - offY);
+		var smallSwordOffset = new flixel_math_FlxPoint(this.smallSword.x - origPos.x,this.smallSword.y - origPos.y);
+		var _g = smallSwordOffset;
+		_g.set_x(_g.x - offX);
+		this.smallSword.setPosition(x + smallSwordOffset.x,y + smallSwordOffset.y);
+		var largeSwordOffSet = new flixel_math_FlxPoint(this.largeSword.x - origPos.x,this.largeSword.y - origPos.y);
+		var _g = largeSwordOffSet;
+		_g.set_x(_g.x - (16. + offX));
+		this.largeSword.setPosition(x + largeSwordOffSet.x,y + largeSwordOffSet.y);
 	}
 	,__class__: game_char_Player
 });
@@ -50437,8 +50556,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			var tile = regionLevel.getTileByIndex(index);
 			switch(tile) {
 			case 25:
-				this.player.set_x(coords.x);
-				this.player.set_y(coords.y);
+				this.player.setPosition(coords.x,coords.y);
 				break;
 			case 26:
 				this.systemicEntitiesGrp.add(new game_objects_Grass(coords.x,coords.y));
@@ -50471,6 +50589,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		game_states_BaseTileState.prototype.createGroups.call(this);
 		this.systemicEntitiesGrp = new flixel_group_FlxTypedGroup();
 		this.enemyBulletGrp = new flixel_group_FlxTypedGroup();
+		this.playerBulletGrp = new flixel_group_FlxTypedGroup();
 		this.collectiblesGrp = new flixel_group_FlxTypedGroup();
 		this.exitGrp = new flixel_group_FlxTypedGroup();
 		this.entranceGrp = new flixel_group_FlxTypedGroup();
@@ -50480,8 +50599,10 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		this.add(this.systemicEntitiesGrp);
 		this.add(this.collectiblesGrp);
 		this.add(this.player);
+		this.player.addWeaponHBoxes();
 		this.add(this.entranceGrp);
 		this.add(this.exitGrp);
+		this.add(this.playerBulletGrp);
 		this.add(this.enemyBulletGrp);
 		this.add(this.msgWindow);
 		this.add(this.hud);
@@ -50510,6 +50631,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		flixel_FlxG.overlap(this.player,this.collectiblesGrp,$bind(this,this.playerTouchCollectible));
 		flixel_FlxG.overlap(this.player,this.entranceGrp,$bind(this,this.playerTouchEntryPoint));
 		flixel_FlxG.overlap(this.player,this.exitGrp,$bind(this,this.playerTouchExitPoint));
+		flixel_FlxG.overlap(this.player.smallSword,this.enemyGrp,$bind(this,this.playerWeaponTouch));
+		flixel_FlxG.overlap(this.player.largeSword,this.enemyGrp,$bind(this,this.playerWeaponTouch));
 	}
 	,enemyTouchPlayer: function(enemy,player) {
 		flixel_FlxG.camera.shake(0.1,0.1);
@@ -50545,8 +50668,13 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			break;
 		}
 		collectible.kill();
-		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 193, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
-		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 194, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 197, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
+		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 198, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+	}
+	,playerWeaponTouch: function(playerWeapon,enemy) {
+		if(playerWeapon.visible) {
+			enemy.kill();
+		}
 	}
 	,playerTouchEntryPoint: function(player,entryPoint) {
 	}
@@ -69367,7 +69495,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 898029;
+	this.version = 694508;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -111880,7 +112008,13 @@ game_char_SystemicEntity.ICE_TIME = 6;
 game_char_SystemicEntity.FREEZE_TIME = 3;
 game_char_SystemicEntity.CHARGE_TIME = 6;
 game_char_Player.INVINCIBLE_TIME = 1.5;
+game_char_Player.SMALL_SWORD_WIDTH = 16;
+game_char_Player.LARGE_SWORD_WIDTH = 48;
+game_char_Player.SS_ACTIVE_FRAME = 6;
+game_char_Player.LS_ACTIVE_FRAME = 6;
 game_char_Player.HEALTHBOOSTER_SPLIT = 3;
+game_char_Player.DRAG = 1600;
+game_char_Player.MAX_VELOCITY = 300;
 game_char_Turret.PROJECTILE_SPEED = 600;
 game_ext_KColor.WINTER_SKY = -14651649;
 game_ext_KColor.RICH_BLACK = -15986934;
