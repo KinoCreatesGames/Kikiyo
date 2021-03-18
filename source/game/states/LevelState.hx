@@ -29,6 +29,7 @@ class LevelState extends BaseTileState {
 	public var msgWindow:MsgWindow;
 	// Could be generic later if necessary
 	public var enemyBulletGrp:FlxTypedGroup<Bullet>;
+	public var playerBulletGrp:FlxTypedGroup<Bullet>;
 	public var fireGrp:Fire;
 	public var rainGrp:Rain;
 	public var snowGrp:Snow;
@@ -69,9 +70,7 @@ class LevelState extends BaseTileState {
 			// Grass = 26 from Data
 			switch (tile) {
 				case SPAWN_TILE:
-					player.x = coords.x;
-					player.y = coords.y;
-
+					player.setPosition(coords.x, coords.y);
 				case GRASS_TILE:
 					systemicEntitiesGrp.add(new Grass(coords.x, coords.y));
 				case ENERGY_TILE:
@@ -102,6 +101,7 @@ class LevelState extends BaseTileState {
 		super.createGroups();
 		systemicEntitiesGrp = new FlxTypedGroup<SystemicEntity>();
 		enemyBulletGrp = new FlxTypedGroup<Bullet>();
+		playerBulletGrp = new FlxTypedGroup<Bullet>();
 		collectiblesGrp = new FlxTypedGroup<Collectible>();
 		exitGrp = new FlxTypedGroup<ExitPoint>();
 		entranceGrp = new FlxTypedGroup<EntryPoint>();
@@ -112,8 +112,10 @@ class LevelState extends BaseTileState {
 		add(systemicEntitiesGrp);
 		add(collectiblesGrp);
 		add(player);
+		player.addWeaponHBoxes();
 		add(entranceGrp);
 		add(exitGrp);
+		add(playerBulletGrp);
 		add(enemyBulletGrp);
 		add(msgWindow);
 		add(hud);
@@ -148,6 +150,8 @@ class LevelState extends BaseTileState {
 		FlxG.overlap(player, collectiblesGrp, playerTouchCollectible);
 		FlxG.overlap(player, entranceGrp, playerTouchEntryPoint);
 		FlxG.overlap(player, exitGrp, playerTouchExitPoint);
+		FlxG.overlap(player.smallSword, enemyGrp, playerWeaponTouch);
+		FlxG.overlap(player.largeSword, enemyGrp, playerWeaponTouch);
 	}
 
 	public function enemyTouchPlayer(enemy:Enemy, player:Player) {
@@ -192,6 +196,12 @@ class LevelState extends BaseTileState {
 		collectible.kill();
 		trace('Energy Count', player.energy);
 		trace('HealthBoosterCount', player.healthBoostCount);
+	}
+
+	public function playerWeaponTouch(playerWeapon:FlxSprite, enemy:Enemy) {
+		if (playerWeapon.visible) {
+			enemy.kill();
+		}
 	}
 
 	/**
