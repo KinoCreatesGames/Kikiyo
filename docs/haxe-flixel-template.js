@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "38";
+	app.meta.h["build"] = "39";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49838,6 +49838,33 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 			return false;
 		}
 	}
+	,takeDamage: function(damage) {
+		var _gthis = this;
+		this.health -= damage;
+		this.isHit = true;
+		var Duration = 0.5;
+		var Interval = 0.04;
+		var EndVisibility = true;
+		var ForceRestart = true;
+		if(ForceRestart == null) {
+			ForceRestart = true;
+		}
+		if(EndVisibility == null) {
+			EndVisibility = true;
+		}
+		if(Interval == null) {
+			Interval = 0.04;
+		}
+		if(Duration == null) {
+			Duration = 1;
+		}
+		flixel_effects_FlxFlicker.flicker(this,Duration,Interval,EndVisibility,ForceRestart,function(_) {
+			_gthis.isHit = false;
+		},null);
+		if(this.health <= 0) {
+			this.kill();
+		}
+	}
 	,__class__: game_char_Enemy
 });
 var game_char_Player = function(x,y,actorData) {
@@ -50672,8 +50699,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 198, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
 	}
 	,playerWeaponTouch: function(playerWeapon,enemy) {
-		if(playerWeapon.visible) {
-			enemy.kill();
+		if(playerWeapon.visible && !enemy.isHit) {
+			enemy.takeDamage(1);
 		}
 	}
 	,playerTouchEntryPoint: function(player,entryPoint) {
@@ -69495,7 +69522,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 694508;
+	this.version = 616681;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -112007,6 +112034,7 @@ game_char_SystemicEntity.WET_TIME = 6;
 game_char_SystemicEntity.ICE_TIME = 6;
 game_char_SystemicEntity.FREEZE_TIME = 3;
 game_char_SystemicEntity.CHARGE_TIME = 6;
+game_char_Enemy.HIT_TIME = 0.5;
 game_char_Player.INVINCIBLE_TIME = 1.5;
 game_char_Player.SMALL_SWORD_WIDTH = 16;
 game_char_Player.LARGE_SWORD_WIDTH = 48;
