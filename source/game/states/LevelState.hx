@@ -199,8 +199,8 @@ class LevelState extends BaseTileState {
 	}
 
 	public function playerWeaponTouch(playerWeapon:FlxSprite, enemy:Enemy) {
-		if (playerWeapon.visible) {
-			enemy.kill();
+		if (playerWeapon.visible && !enemy.isHit) {
+			enemy.takeDamage(1);
 		}
 	}
 
