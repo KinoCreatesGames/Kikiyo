@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "40";
+	app.meta.h["build"] = "41";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49972,6 +49972,7 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		var newAngle = 0;
 		if(up || down || left || right) {
 			if(up) {
+				this.set_facing(256);
 				newAngle = -90;
 				if(left) {
 					newAngle -= 45;
@@ -49979,6 +49980,7 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 					newAngle += 45;
 				}
 			} else if(down) {
+				this.set_facing(4096);
 				newAngle = 90;
 				if(left) {
 					newAngle += 45;
@@ -49986,8 +49988,10 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 					newAngle -= 45;
 				}
 			} else if(left) {
+				this.set_facing(1);
 				newAngle = 180;
 			} else if(right) {
+				this.set_facing(16);
 				newAngle = 0;
 			}
 			this.velocity.set(this.spd,0);
@@ -50060,6 +50064,38 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 			point1._weak = true;
 			tmp.rotate(point1,newAngle);
 		}
+		this.updateWeaponPosition();
+	}
+	,updateWeaponPosition: function() {
+		var pos = this.getPosition().copyTo(new flixel_math_FlxPoint());
+		var width = this.get_width();
+		var height = this.get_height();
+		var lWidth = 48;
+		var lHeight = Math.round(16.);
+		switch(this.facing) {
+		case 1:
+			this.smallSword.setPosition(pos.x - width,pos.y);
+			this.largeSword.setPosition(pos.x - width,pos.y - height);
+			this.largeSword.setGraphicSize(lHeight,lWidth);
+			break;
+		case 16:
+			this.smallSword.setPosition(pos.x + width,pos.y);
+			this.largeSword.setPosition(pos.x + width,pos.y - height);
+			this.largeSword.setGraphicSize(lHeight,lWidth);
+			break;
+		case 256:
+			this.smallSword.setPosition(pos.x,pos.y - height);
+			this.largeSword.setPosition(pos.x - width,pos.y - height);
+			this.largeSword.setGraphicSize(lWidth,lHeight);
+			break;
+		case 4096:
+			this.smallSword.setPosition(pos.x,pos.y + height);
+			this.largeSword.setPosition(pos.x - width,pos.y + height);
+			this.largeSword.setGraphicSize(lWidth,lHeight);
+			break;
+		}
+		this.largeSword.updateHitbox();
+		this.smallSword.updateHitbox();
 	}
 	,updateCombat: function(elapsed) {
 		var lightHit = flixel_FlxG.keys.checkKeyArrayState([90],2);
@@ -69533,7 +69569,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 727564;
+	this.version = 482401;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
