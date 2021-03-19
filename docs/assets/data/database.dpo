@@ -371,7 +371,7 @@
                     "sprite": "../../images/love-flame-turret.png",
                     "atkSpd": 2.5,
                     "range": 50,
-                    "armor": 0
+                    "armor": 1
                 },
                 {
                     "guid": "4de45aee-d708-4dfe-96f8-0890fcdb68d4",

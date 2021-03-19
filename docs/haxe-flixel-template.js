@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "39";
+	app.meta.h["build"] = "40";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49813,6 +49813,7 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 		var monData = this.data;
 		this.atkSpd = monData.atkSpd;
 		this.range = monData.range;
+		this.armor = monData.armor;
 	}
 	,update: function(elapsed) {
 		game_char_Actor.prototype.update.call(this,elapsed);
@@ -50658,8 +50659,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		flixel_FlxG.overlap(this.player,this.collectiblesGrp,$bind(this,this.playerTouchCollectible));
 		flixel_FlxG.overlap(this.player,this.entranceGrp,$bind(this,this.playerTouchEntryPoint));
 		flixel_FlxG.overlap(this.player,this.exitGrp,$bind(this,this.playerTouchExitPoint));
-		flixel_FlxG.overlap(this.player.smallSword,this.enemyGrp,$bind(this,this.playerWeaponTouch));
-		flixel_FlxG.overlap(this.player.largeSword,this.enemyGrp,$bind(this,this.playerWeaponTouch));
+		flixel_FlxG.overlap(this.player.smallSword,this.enemyGrp,$bind(this,this.playerWeaponLightTouch));
+		flixel_FlxG.overlap(this.player.largeSword,this.enemyGrp,$bind(this,this.playerWeaponLargeTouch));
 	}
 	,enemyTouchPlayer: function(enemy,player) {
 		flixel_FlxG.camera.shake(0.1,0.1);
@@ -50698,9 +50699,19 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 197, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
 		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 198, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
 	}
-	,playerWeaponTouch: function(playerWeapon,enemy) {
-		if(playerWeapon.visible && !enemy.isHit) {
+	,playerWeaponLightTouch: function(playerWeapon,enemy) {
+		if(playerWeapon.visible && !enemy.isHit && enemy.armor <= 0) {
 			enemy.takeDamage(1);
+		}
+	}
+	,playerWeaponLargeTouch: function(playerWeapon,enemy) {
+		if(playerWeapon.visible && !enemy.isHit) {
+			if(enemy.armor > 0) {
+				enemy.armor = Math.round(Math.min(Math.max(enemy.armor - 1,0),2000000));
+				enemy.takeDamage(0);
+			} else {
+				enemy.takeDamage(1);
+			}
 		}
 	}
 	,playerTouchEntryPoint: function(player,entryPoint) {
@@ -69522,7 +69533,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 616681;
+	this.version = 727564;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -110801,9 +110812,9 @@ DepotData.Switches_Met_Mentor = { name : "Met Mentor", guid : "94fc7cdb-c962-4df
 DepotData.Switches = { name : "Switches", lines : [{ name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"}], isProps : false, hidden : false, guid : "585e7418-2ed3-4d65-a2d8-1944a6d4707b", displayColumn : "id", description : "A sheet used to define the number of switches in game", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Variables_Met_Mentor_Count = { name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"};
 DepotData.Variables = { name : "Variables", lines : [{ name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"}], isProps : false, hidden : false, guid : "90b1a923-6d73-42fc-a53a-67cc3267aaf6", displayColumn : "id", description : "A sheet used to track the progress of variables within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
-DepotData.Enemies_Fire_Turret = { atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 0, range : 50};
+DepotData.Enemies_Fire_Turret = { atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 1, range : 50};
 DepotData.Enemies_Water_Turret = { atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, armor : 0, range : 50};
-DepotData.Enemies = { name : "Enemies", lines : [{ atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 0, range : 50},{ atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, armor : 0, range : 50}], isProps : false, hidden : false, guid : "082d5ceb-87de-4069-a0bc-32bbf17d7428", displayColumn : "id", description : "List of enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Enemies = { name : "Enemies", lines : [{ atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 1, range : 50},{ atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, armor : 0, range : 50}], isProps : false, hidden : false, guid : "082d5ceb-87de-4069-a0bc-32bbf17d7428", displayColumn : "id", description : "List of enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Cutscenes_Intro = { name : "Intro", guid : "8dec0f29-1d42-4e4b-aaa0-5e199e87b146", cutsceneText : [{ text : "And so begins the story of our aimless hero.", guid : "765fee60-83ba-4af7-90c3-7baeff89fdf3", id : "0"}], id : "0"};
 DepotData.Cutscenes = { name : "Cutscenes", lines : [{ name : "Intro", guid : "8dec0f29-1d42-4e4b-aaa0-5e199e87b146", cutsceneText : [{ text : "And so begins the story of our aimless hero.", guid : "765fee60-83ba-4af7-90c3-7baeff89fdf3", id : "0"}], id : "0"}], isProps : false, hidden : false, guid : "5f3be929-2687-431b-bccd-fde8ef51fc7c", displayColumn : "id", description : "The cutscenes text and information used within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.CutsceneText = { parentSheetGUID : "5f3be929-2687-431b-bccd-fde8ef51fc7c", name : "cutsceneText", isProps : false, hidden : true, guid : "19e4a318-d45d-46ec-95f1-2f83ae5b5c31", displayColumn : "id", description : "list@5f3be929-2687-431b-bccd-fde8ef51fc7c", columnGUID : "1f9f2a40-6db1-4de9-b99b-b4a39475abb1"};
@@ -110826,6 +110837,7 @@ Globals.TEXT_VERSION = "Version: 0.0.1";
 Globals.TEXT_CREDITS = "Credits";
 Globals.TIME_BONUS = 100;
 Globals.CMD_TIME_SCALE = 0.015;
+Globals.MAX_INT_VALUE = 2000000;
 Globals.PLAYER_HEALTH_CAP = 3;
 Globals.PLAYER_BULLET_CD = 0.15;
 Globals.PLAYER_GAL_NAME = "Koyuki";
