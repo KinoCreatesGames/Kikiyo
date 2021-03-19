@@ -1,5 +1,6 @@
 package game.char;
 
+import flixel.FlxObject;
 import flixel.math.FlxVector;
 
 class Player extends Actor {
@@ -108,6 +109,7 @@ class Player extends Actor {
 		var newAngle:Float = 0;
 		if (up || down || left || right) {
 			if (up) {
+				facing = FlxObject.UP;
 				newAngle = -90;
 				if (left) {
 					newAngle -= 45;
@@ -115,6 +117,7 @@ class Player extends Actor {
 					newAngle += 45;
 				}
 			} else if (down) {
+				facing = FlxObject.DOWN;
 				newAngle = 90;
 				if (left) {
 					newAngle += 45;
@@ -122,8 +125,10 @@ class Player extends Actor {
 					newAngle -= 45;
 				}
 			} else if (left) {
+				facing = FlxObject.LEFT;
 				newAngle = 180;
 			} else if (right) {
+				facing = FlxObject.RIGHT;
 				newAngle = 0;
 			}
 			velocity.set(this.spd, 0);
@@ -134,6 +139,37 @@ class Player extends Actor {
 			largeSword.velocity.set(this.spd, 0);
 			largeSword.velocity.rotate(FlxPoint.weak(0, 0), newAngle);
 		}
+		updateWeaponPosition();
+	}
+
+	public function updateWeaponPosition() {
+		var pos = this.getPosition().copyTo(new FlxPoint());
+
+		var width = this.width;
+		var height = this.height;
+		var lWidth = LARGE_SWORD_WIDTH;
+		var lHeight = Math.round(LARGE_SWORD_WIDTH / 3);
+		switch (facing) {
+			case FlxObject.LEFT:
+				smallSword.setPosition(pos.x - width, pos.y);
+				largeSword.setPosition(pos.x - (width), pos.y - height);
+				largeSword.setGraphicSize(lHeight, lWidth);
+			case FlxObject.RIGHT:
+				smallSword.setPosition(pos.x + width, pos.y);
+				largeSword.setPosition(pos.x + width, pos.y - height);
+				largeSword.setGraphicSize(lHeight, lWidth);
+			case FlxObject.DOWN:
+				smallSword.setPosition(pos.x, pos.y + height);
+				largeSword.setPosition(pos.x - width, pos.y + height);
+				largeSword.setGraphicSize(lWidth, lHeight);
+
+			case FlxObject.UP:
+				smallSword.setPosition(pos.x, pos.y - height);
+				largeSword.setPosition(pos.x - width, pos.y - height);
+				largeSword.setGraphicSize(lWidth, lHeight);
+		}
+		largeSword.updateHitbox();
+		smallSword.updateHitbox();
 	}
 
 	public function updateCombat(elapsed:Float) {
