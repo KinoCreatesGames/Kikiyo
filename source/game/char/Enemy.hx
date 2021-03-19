@@ -11,6 +11,7 @@ class Enemy extends game.char.Actor {
 	public var points:Int;
 	public var player:Player;
 	public var range:Float;
+	public var armor:Int;
 	public var atkSpd:Float;
 	public var isHit:Bool;
 
@@ -29,6 +30,7 @@ class Enemy extends game.char.Actor {
 		var monData:MonsterData = cast data;
 		atkSpd = monData.atkSpd;
 		range = monData.range;
+		armor = monData.armor;
 	}
 
 	override public function update(elapsed:Float) {

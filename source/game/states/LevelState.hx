@@ -150,8 +150,8 @@ class LevelState extends BaseTileState {
 		FlxG.overlap(player, collectiblesGrp, playerTouchCollectible);
 		FlxG.overlap(player, entranceGrp, playerTouchEntryPoint);
 		FlxG.overlap(player, exitGrp, playerTouchExitPoint);
-		FlxG.overlap(player.smallSword, enemyGrp, playerWeaponTouch);
-		FlxG.overlap(player.largeSword, enemyGrp, playerWeaponTouch);
+		FlxG.overlap(player.smallSword, enemyGrp, playerWeaponLightTouch);
+		FlxG.overlap(player.largeSword, enemyGrp, playerWeaponLargeTouch);
 	}
 
 	public function enemyTouchPlayer(enemy:Enemy, player:Player) {
@@ -198,9 +198,22 @@ class LevelState extends BaseTileState {
 		trace('HealthBoosterCount', player.healthBoostCount);
 	}
 
-	public function playerWeaponTouch(playerWeapon:FlxSprite, enemy:Enemy) {
-		if (playerWeapon.visible && !enemy.isHit) {
+	public function playerWeaponLightTouch(playerWeapon:FlxSprite,
+			enemy:Enemy) {
+		if (playerWeapon.visible && !enemy.isHit && enemy.armor <= 0) {
 			enemy.takeDamage(1);
+		}
+	}
+
+	public function playerWeaponLargeTouch(playerWeapon:FlxSprite,
+			enemy:Enemy) {
+		if (playerWeapon.visible && !enemy.isHit) {
+			if (enemy.armor > 0) {
+				enemy.armor = (enemy.armor - 1).clamp(0, Globals.MAX_INT_VALUE);
+				enemy.takeDamage(0);
+			} else {
+				enemy.takeDamage(1);
+			}
 		}
 	}
 
