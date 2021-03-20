@@ -89,10 +89,21 @@ class LevelState extends BaseTileState {
 		var tileLayer:TiledObjectLayer = cast(map.getLayer('Enemy'));
 
 		tileLayer.objects.iter((enemy) -> {
-			var enemyName = enemy.properties.get('name');
-			// TODO: Add Pathing variable for enemies with paths
+			var enemyType = enemy.properties.get('enemytype');
+
+			var path = [];
+			for (key => value in enemy.properties.keys) {
+				if (key.contains('path')) {
+					var xy = enemy.properties.get(key)
+						.split(",")
+						.map((val) -> Std.parseInt(val));
+					path.push(new FlxPoint(xy[0] * map.tileWidth,
+						xy[1] * map.tileHeight));
+				}
+			}
+
 			var newEnemy:Enemy = Enemy.createEnemy(enemy.x, enemy.y, player,
-				enemyBulletGrp, null, enemyName);
+				enemyBulletGrp, path, EnemyType.createByName(enemyType));
 			enemyGrp.add(newEnemy);
 		});
 	}

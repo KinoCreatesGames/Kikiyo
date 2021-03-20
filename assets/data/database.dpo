@@ -358,6 +358,23 @@
                         "max": "int",
                         "defaultValue": "int"
                     }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "d5fb8d2b-b61f-483a-97e8-49baa59de69e",
+                    "description": "The amounto f speed the enemy has when moving.",
+                    "name": "spd",
+                    "min": -10000,
+                    "max": 100000,
+                    "defaultValue": 50,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
                 }
             ],
             "lines": [
@@ -370,8 +387,9 @@
                     "def": 0,
                     "sprite": "../../images/love-flame-turret.png",
                     "atkSpd": 2.5,
-                    "range": 50,
-                    "armor": 1
+                    "range": 75,
+                    "armor": 1,
+                    "spd": 50
                 },
                 {
                     "guid": "4de45aee-d708-4dfe-96f8-0890fcdb68d4",
@@ -382,8 +400,22 @@
                     "def": 0,
                     "sprite": "",
                     "atkSpd": 2.5,
-                    "range": 50,
-                    "armor": 0
+                    "range": 75,
+                    "armor": 0,
+                    "spd": 50
+                },
+                {
+                    "guid": "7dfb1ac1-72cb-410e-bfdd-5841413a3e6f",
+                    "id": "2",
+                    "name": "Ghoul",
+                    "atk": 1,
+                    "health": 5,
+                    "def": 0,
+                    "sprite": "",
+                    "atkSpd": 2.5,
+                    "range": 125,
+                    "armor": 0,
+                    "spd": 50
                 }
             ],
             "hidden": false,

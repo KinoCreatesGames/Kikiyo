@@ -147,8 +147,14 @@ enum ObjectTypes {
 	Magnetic;
 }
 
-enum abstract EnemyType(String) from String to String {
-	var FIRE_TURRET = 'Fire Turret';
-	var WATER_TURRET = 'Water Turret';
-	var DRAGGY = 'Draggy';
+/**
+ * Types of enemies in the game.
+ */
+enum EnemyType {
+	FireTurret;
+	WaterTurret;
+	Rusher;
+	SkelArcher;
+	Skeleton;
+	Ghoul;
 }
