@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "41";
+	app.meta.h["build"] = "42";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4269,7 +4269,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i18337R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i4042R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i138R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i57439R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y39:assets%2Fimages%2Flove-flame-turret.pngR2i265R3R11R5R21R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R23R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R24R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR26hR6tgoR2i4578R3R25R5y31:assets%2Fsounds%2Fmenu-exit.wavR27aR28hR6tgoR2i39740R3R25R5y32:assets%2Fsounds%2Flow-health.wavR27aR29hR6tgoR2i6900R3R25R5y31:assets%2Fsounds%2Fmenu-open.wavR27aR30hR6tgoR2i3672R3R25R5y32:assets%2Fsounds%2Fmouse-over.wavR27aR31hR6tgoR2i8378R3R25R5y34:assets%2Fsounds%2Fbutton-click.wavR27aR32hR6tgoR2i8410R3R25R5y28:assets%2Fsounds%2Fimpact.wavR27aR33hR6tgoR2i19472R3R25R5y31:assets%2Fsounds%2Fpause-out.wavR27aR34hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R35R6tgoR2i22964R3R25R5y30:assets%2Fsounds%2Fpause-in.wavR27aR36hR6tgoR2i4584R3R25R5y33:assets%2Fsounds%2Fbullet-fire.wavR27aR37hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R27aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R27aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R25R5R42R27aR41R42hgoR2i5794R3R25R5R40R27aR39R40hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R43R44y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R50R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i19514R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i4191R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i138R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i61197R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y39:assets%2Fimages%2Flove-flame-turret.pngR2i265R3R11R5R21R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R23R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R24R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR26hR6tgoR2i4578R3R25R5y31:assets%2Fsounds%2Fmenu-exit.wavR27aR28hR6tgoR2i39740R3R25R5y32:assets%2Fsounds%2Flow-health.wavR27aR29hR6tgoR2i6900R3R25R5y31:assets%2Fsounds%2Fmenu-open.wavR27aR30hR6tgoR2i3672R3R25R5y32:assets%2Fsounds%2Fmouse-over.wavR27aR31hR6tgoR2i8378R3R25R5y34:assets%2Fsounds%2Fbutton-click.wavR27aR32hR6tgoR2i8410R3R25R5y28:assets%2Fsounds%2Fimpact.wavR27aR33hR6tgoR2i19472R3R25R5y31:assets%2Fsounds%2Fpause-out.wavR27aR34hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R35R6tgoR2i22964R3R25R5y30:assets%2Fsounds%2Fpause-in.wavR27aR36hR6tgoR2i4584R3R25R5y33:assets%2Fsounds%2Fbullet-fire.wavR27aR37hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R27aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R27aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R25R5R42R27aR41R42hgoR2i5794R3R25R5R40R27aR39R40hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R43R44y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R50R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -49491,6 +49491,14 @@ var game_ObjectTypes = $hxEnums["game.ObjectTypes"] = { __ename__ : "game.Object
 	,Wettable: {_hx_index:3,__enum__:"game.ObjectTypes",toString:$estr}
 	,Magnetic: {_hx_index:4,__enum__:"game.ObjectTypes",toString:$estr}
 };
+var game_EnemyType = $hxEnums["game.EnemyType"] = { __ename__ : "game.EnemyType", __constructs__ : ["FireTurret","WaterTurret","Rusher","SkelArcher","Skeleton","Ghoul"]
+	,FireTurret: {_hx_index:0,__enum__:"game.EnemyType",toString:$estr}
+	,WaterTurret: {_hx_index:1,__enum__:"game.EnemyType",toString:$estr}
+	,Rusher: {_hx_index:2,__enum__:"game.EnemyType",toString:$estr}
+	,SkelArcher: {_hx_index:3,__enum__:"game.EnemyType",toString:$estr}
+	,Skeleton: {_hx_index:4,__enum__:"game.EnemyType",toString:$estr}
+	,Ghoul: {_hx_index:5,__enum__:"game.EnemyType",toString:$estr}
+};
 var game_State = function(initialState) {
 	this.currentState = initialState;
 };
@@ -49786,18 +49794,21 @@ var game_char_Enemy = function(x,y,path,monsterData) {
 	game_char_Actor.call(this,x,y,monsterData);
 	this.walkPath = path;
 	this.points = monsterData.points;
-	this.elementalAi.currentState = $bind(this,this.elementalIdle);
 };
 $hxClasses["game.char.Enemy"] = game_char_Enemy;
 game_char_Enemy.__name__ = "game.char.Enemy";
-game_char_Enemy.createEnemy = function(x,y,player,bulletGrp,path,enemyName) {
+game_char_Enemy.createEnemy = function(x,y,player,bulletGrp,path,enemyType) {
 	var enemy;
-	switch(enemyName) {
-	case "Fire Turret":
+	switch(enemyType._hx_index) {
+	case 0:
 		enemy = new game_char_Turret(x,y,DepotData.Enemies_Fire_Turret,bulletGrp);
 		break;
-	case "Water Turret":
-		return new game_char_Turret(x,y,DepotData.Enemies_Water_Turret,bulletGrp);
+	case 1:
+		enemy = new game_char_Turret(x,y,DepotData.Enemies_Water_Turret,bulletGrp);
+		break;
+	case 5:
+		enemy = new game_char_Ghoul(x,y,DepotData.Enemies_Ghoul,path);
+		break;
 	default:
 		enemy = null;
 	}
@@ -49867,6 +49878,32 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 		}
 	}
 	,__class__: game_char_Enemy
+});
+var game_char_Ghoul = function(x,y,data,path) {
+	game_char_Enemy.call(this,x,y,path,data);
+	this.set_path(new flixel_util_FlxPath(this.walkPath));
+	this.makeGraphic(16,16,-16777216);
+	this.path.start(null,this.spd,16);
+};
+$hxClasses["game.char.Ghoul"] = game_char_Ghoul;
+game_char_Ghoul.__name__ = "game.char.Ghoul";
+game_char_Ghoul.__super__ = game_char_Enemy;
+game_char_Ghoul.prototype = $extend(game_char_Enemy.prototype,{
+	idle: function(elapsed) {
+		if(this.playerInRange()) {
+			this.path.cancel();
+			this.ai.currentState = $bind(this,this.attacking);
+		}
+	}
+	,attacking: function(elapsed) {
+		if(this.playerInRange()) {
+			flixel_math_FlxVelocity.moveTowardsObject(this,this.player,this.spd);
+		} else {
+			this.path.start(this.walkPath,this.spd,16);
+			this.ai.currentState = $bind(this,this.idle);
+		}
+	}
+	,__class__: game_char_Ghoul
 });
 var game_char_Player = function(x,y,actorData) {
 	this.ssFrameCount = 0;
@@ -50644,8 +50681,27 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		var _gthis = this;
 		var tileLayer = this.map.getLayer("Enemy");
 		Lambda.iter(tileLayer.objects,function(enemy) {
-			var enemyName = enemy.properties.keys.h["name"];
-			var newEnemy = game_char_Enemy.createEnemy(enemy.x,enemy.y,_gthis.player,_gthis.enemyBulletGrp,null,enemyName);
+			var enemyType = enemy.properties.keys.h["enemytype"];
+			var path = [];
+			var _g = haxe_ds_StringMap.kvIterator(enemy.properties.keys.h);
+			while(_g.hasNext()) {
+				var _g1 = _g.next();
+				var key = _g1.key;
+				var value = _g1.value;
+				if(key.indexOf("path") != -1) {
+					var _this = enemy.properties.keys.h[key].split(",");
+					var result = new Array(_this.length);
+					var _g2 = 0;
+					var _g3 = _this.length;
+					while(_g2 < _g3) {
+						var i = _g2++;
+						result[i] = Std.parseInt(_this[i]);
+					}
+					var xy = result;
+					path.push(new flixel_math_FlxPoint(xy[0] * _gthis.map.tileWidth,xy[1] * _gthis.map.tileHeight));
+				}
+			}
+			var newEnemy = game_char_Enemy.createEnemy(enemy.x,enemy.y,_gthis.player,_gthis.enemyBulletGrp,path,Type.createEnum(game_EnemyType,enemyType,null));
 			_gthis.enemyGrp.add(newEnemy);
 		});
 	}
@@ -50732,8 +50788,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			break;
 		}
 		collectible.kill();
-		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 197, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
-		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 198, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 208, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
+		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 209, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
 	}
 	,playerWeaponLightTouch: function(playerWeapon,enemy) {
 		if(playerWeapon.visible && !enemy.isHit && enemy.armor <= 0) {
@@ -52742,6 +52798,18 @@ haxe_ds_StringMap.valueIterator = function(h) {
 	}, next : function() {
 		idx += 1;
 		return h[keys[idx - 1]];
+	}};
+};
+haxe_ds_StringMap.kvIterator = function(h) {
+	var keys = Object.keys(h);
+	var len = keys.length;
+	var idx = 0;
+	return { hasNext : function() {
+		return idx < len;
+	}, next : function() {
+		idx += 1;
+		var k = keys[idx - 1];
+		return { key : k, value : h[k]};
 	}};
 };
 haxe_ds_StringMap.prototype = {
@@ -69569,7 +69637,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 482401;
+	this.version = 799357;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -110848,9 +110916,10 @@ DepotData.Switches_Met_Mentor = { name : "Met Mentor", guid : "94fc7cdb-c962-4df
 DepotData.Switches = { name : "Switches", lines : [{ name : "Met Mentor", guid : "94fc7cdb-c962-4df6-a48e-470088c50894", id : "0"}], isProps : false, hidden : false, guid : "585e7418-2ed3-4d65-a2d8-1944a6d4707b", displayColumn : "id", description : "A sheet used to define the number of switches in game", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Variables_Met_Mentor_Count = { name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"};
 DepotData.Variables = { name : "Variables", lines : [{ name : "Met Mentor Count", guid : "cd45808c-7ca1-471f-b1fc-af82cc72e71a", id : "0"}], isProps : false, hidden : false, guid : "90b1a923-6d73-42fc-a53a-67cc3267aaf6", displayColumn : "id", description : "A sheet used to track the progress of variables within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
-DepotData.Enemies_Fire_Turret = { atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 1, range : 50};
-DepotData.Enemies_Water_Turret = { atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, armor : 0, range : 50};
-DepotData.Enemies = { name : "Enemies", lines : [{ atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 1, range : 50},{ atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, armor : 0, range : 50}], isProps : false, hidden : false, guid : "082d5ceb-87de-4069-a0bc-32bbf17d7428", displayColumn : "id", description : "List of enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
+DepotData.Enemies_Fire_Turret = { spd : 50, atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 1, range : 75};
+DepotData.Enemies_Water_Turret = { spd : 50, atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, armor : 0, range : 75};
+DepotData.Enemies_Ghoul = { spd : 50, atkSpd : 2.5, name : "Ghoul", guid : "7dfb1ac1-72cb-410e-bfdd-5841413a3e6f", sprite : "", id : "2", atk : 1, health : 5, def : 0, armor : 0, range : 125};
+DepotData.Enemies = { name : "Enemies", lines : [{ spd : 50, atkSpd : 2.5, name : "Fire Turret", guid : "85bde5c6-df9e-4b9c-a08f-e8d678849bab", sprite : "../../images/love-flame-turret.png", id : "0", atk : 1, health : 5, def : 0, armor : 1, range : 75},{ spd : 50, atkSpd : 2.5, name : "Water Turret", guid : "4de45aee-d708-4dfe-96f8-0890fcdb68d4", sprite : "", id : "1", atk : 1, health : 5, def : 0, armor : 0, range : 75},{ spd : 50, atkSpd : 2.5, name : "Ghoul", guid : "7dfb1ac1-72cb-410e-bfdd-5841413a3e6f", sprite : "", id : "2", atk : 1, health : 5, def : 0, armor : 0, range : 125}], isProps : false, hidden : false, guid : "082d5ceb-87de-4069-a0bc-32bbf17d7428", displayColumn : "id", description : "List of enemies in the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.Cutscenes_Intro = { name : "Intro", guid : "8dec0f29-1d42-4e4b-aaa0-5e199e87b146", cutsceneText : [{ text : "And so begins the story of our aimless hero.", guid : "765fee60-83ba-4af7-90c3-7baeff89fdf3", id : "0"}], id : "0"};
 DepotData.Cutscenes = { name : "Cutscenes", lines : [{ name : "Intro", guid : "8dec0f29-1d42-4e4b-aaa0-5e199e87b146", cutsceneText : [{ text : "And so begins the story of our aimless hero.", guid : "765fee60-83ba-4af7-90c3-7baeff89fdf3", id : "0"}], id : "0"}], isProps : false, hidden : false, guid : "5f3be929-2687-431b-bccd-fde8ef51fc7c", displayColumn : "id", description : "The cutscenes text and information used within the game.", configurable : { name : "text", description : "text", displayColumn : "columnSelect@name", "columnSelect@name@displayColumn" : { allowedTypes : ["int","float","text","longtext"]}}};
 DepotData.CutsceneText = { parentSheetGUID : "5f3be929-2687-431b-bccd-fde8ef51fc7c", name : "cutsceneText", isProps : false, hidden : true, guid : "19e4a318-d45d-46ec-95f1-2f83ae5b5c31", displayColumn : "id", description : "list@5f3be929-2687-431b-bccd-fde8ef51fc7c", columnGUID : "1f9f2a40-6db1-4de9-b99b-b4a39475abb1"};
