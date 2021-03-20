@@ -14,7 +14,7 @@
 	"defaultGridSize": 16,
 	"bgColor": "#676877",
 	"defaultLevelBgColor": "#7F8093",
-	"nextUid": 16,
+	"nextUid": 23,
 	"minifyJson": false,
 	"externalLevels": false,
 	"exportTiled": true,
@@ -138,25 +138,40 @@
 				"pivotY": 0,
 				"fieldDefs": [
 					{
-						"identifier": "name",
-						"__type": "String",
-						"uid": 9,
-						"type": "F_String",
+						"identifier": "enemytype",
+						"__type": "ExternEnum.EnemyType",
+						"uid": 21,
+						"type": { "id": "F_Enum", "params": [20] },
 						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "NameAndValue",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": true,
+						"min": null,
+						"max": null,
+						"regex": null,
+						"acceptFileTypes": null,
+						"defaultOverride": null
+					},
+					{
+						"identifier": "path",
+						"__type": "Array<Point>",
+						"uid": 22,
+						"type": "F_Point",
+						"isArray": true,
 						"canBeNull": true,
 						"arrayMinLength": null,
 						"arrayMaxLength": null,
-						"editorDisplayMode": "Hidden",
+						"editorDisplayMode": "PointPath",
 						"editorDisplayPos": "Above",
 						"editorAlwaysShow": false,
 						"min": null,
 						"max": null,
 						"regex": null,
 						"acceptFileTypes": null,
-						"defaultOverride": {
-							"id": "V_String",
-							"params": ["Gobby"]
-						}
+						"defaultOverride": null
 					}
 				]
 			},
@@ -233,7 +248,46 @@
 			}
 		],
 		"enums": [],
-		"externalEnums": []
+		"externalEnums": [
+			{ "identifier": "Rating", "uid": 16, "values": [
+				{ "id": "Amazing", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Good", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Great", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			{ "identifier": "ElementTypes", "uid": 17, "values": [
+				{ "id": "Fire", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Ice", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Lightning", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Magneto", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Water", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Wind", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			{ "identifier": "StatusEffects", "uid": 18, "values": [
+				{ "id": "Burning", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Charged", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Frozen", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Icy", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Magnetized", "tileId": null, "__tileSrcRect": null },
+				{ "id": "None", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Wet", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Windy", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			{ "identifier": "ObjectTypes", "uid": 19, "values": [
+				{ "id": "Flammable", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Iceable", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Magnetic", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Pourus", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Wettable", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			{ "identifier": "EnemyType", "uid": 20, "values": [
+				{ "id": "FireTurret", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Ghoul", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Rusher", "tileId": null, "__tileSrcRect": null },
+				{ "id": "SkelArcher", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Skeleton", "tileId": null, "__tileSrcRect": null },
+				{ "id": "WaterTurret", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" }
+		]
 	},
 	"levels": [
 		{
@@ -357,16 +411,37 @@
 					"autoLayerTiles": [],
 					"seed": 2020981,
 					"gridTiles": [],
-					"entityInstances": [{ "__identifier": "Enemy", "__grid": [10,6], "__pivot": [0,0], "__tile": null, "defUid": 6, "px": [160,96], "fieldInstances": [{
-						"__identifier": "name",
-						"__value": "Fire Turret",
-						"__type": "String",
-						"defUid": 9,
-						"realEditorValues": [{
-							"id": "V_String",
-							"params": ["Fire Turret"]
-						}]
-					}] }]
+					"entityInstances": [{ "__identifier": "Enemy", "__grid": [10,6], "__pivot": [0,0], "__tile": null, "defUid": 6, "px": [160,96], "fieldInstances": [
+						{
+							"__identifier": "enemytype",
+							"__value": "Ghoul",
+							"__type": "ExternEnum.EnemyType",
+							"defUid": 21,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Ghoul"]
+							}]
+						},
+						{
+							"__identifier": "path",
+							"__value": [ { "cx": 10, "cy": 3 }, { "cx": 7, "cy": 3 }, { "cx": 7, "cy": 6 }, { "cx": 10, "cy": 6 } ],
+							"__type": "Array<Point>",
+							"defUid": 22,
+							"realEditorValues": [ {
+								"id": "V_String",
+								"params": ["10,3"]
+							}, {
+								"id": "V_String",
+								"params": ["7,3"]
+							}, {
+								"id": "V_String",
+								"params": ["7,6"]
+							}, {
+								"id": "V_String",
+								"params": ["10,6"]
+							} ]
+						}
+					] }]
 				},
 				{
 					"__identifier": "Decoration",

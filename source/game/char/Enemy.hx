@@ -22,7 +22,6 @@ class Enemy extends game.char.Actor {
 		super(x, y, monsterData);
 		walkPath = path;
 		points = monsterData.points;
-		elementalAi.currentState = elementalIdle;
 	}
 
 	override public function assignStats() {
@@ -46,24 +45,6 @@ class Enemy extends game.char.Actor {
 		super.handleFireAtk(dmg, res);
 	}
 
-	public static function createEnemy(x:Float, y:Float, player,
-			bulletGrp:FlxTypedGroup<Bullet>, path:Array<FlxPoint>,
-			enemyName:String):Enemy {
-		var enemy = switch (enemyName) {
-			case EnemyType.FIRE_TURRET:
-				new Turret(x, y, cast DepotData.Enemies_Fire_Turret, bulletGrp);
-			case EnemyType.WATER_TURRET:
-				return new Turret(x, y, cast DepotData.Enemies_Water_Turret,
-					bulletGrp);
-			case _:
-				null;
-		}
-		if (enemy != null) {
-			enemy.player = player;
-		}
-		return enemy;
-	}
-
 	public function playerInRange():Bool {
 		var currPlayer = null;
 		if (player != null) {
@@ -84,5 +65,28 @@ class Enemy extends game.char.Actor {
 		if (health <= 0) {
 			this.kill();
 		}
+	}
+
+	public static function createEnemy(x:Float, y:Float, player,
+			bulletGrp:FlxTypedGroup<Bullet>, path:Array<FlxPoint>,
+			enemyType:EnemyType):Enemy {
+		// Using Return Statements in the switch case returns the whole
+		// function
+		var enemy = switch (enemyType) {
+			case FireTurret:
+				new Turret(x, y, cast DepotData.Enemies_Fire_Turret, bulletGrp);
+			case WaterTurret:
+				new Turret(x, y, cast DepotData.Enemies_Water_Turret,
+					bulletGrp);
+
+			case Ghoul:
+				new Ghoul(x, y, cast DepotData.Enemies_Ghoul, path);
+			case _:
+				null;
+		}
+		if (enemy != null) {
+			enemy.player = player;
+		}
+		return enemy;
 	}
 }

@@ -2,6 +2,11 @@ package game.char;
 
 import flixel.math.FlxVelocity;
 
+enum abstract TurretName(String) from String to String {
+	var FIRE_TURRET = 'Fire Turret';
+	var WATER_TURRET = 'Water Turret';
+}
+
 class Turret extends Enemy {
 	public var bullets:FlxTypedGroup<Bullet>;
 	public var fireSound:FlxSound;
