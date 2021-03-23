@@ -11,13 +11,18 @@ class Player extends Actor {
 	public var energyCap:Int = 4;
 	public var smallSword:FlxSprite;
 	public var largeSword:FlxSprite;
+	public var shield:FlxSprite;
 	public var playerBullets:FlxTypedGroup<Bullet>;
 	public var lsFrameCount:Int = 0;
 	public var ssFrameCount:Int = 0;
 
+	// TODO: Determine if the shield is a good addition the game.
 	public static inline var INVINCIBLE_TIME:Float = 1.5;
 	public static inline var SMALL_SWORD_WIDTH:Int = 16;
 	public static inline var LARGE_SWORD_WIDTH:Int = 48;
+	public static inline var SHIELD_WIDTH:Int = 16;
+	public static inline var ARROW_WIDTH:Int = 8;
+	public static inline var PROJECTILE_SPEED:Int = 800;
 
 	public static inline var SS_ACTIVE_FRAME = 6;
 	public static inline var LS_ACTIVE_FRAME = 6;
@@ -63,12 +68,17 @@ class Player extends Actor {
 		largeSword.drag.x = largeSword.drag.y = DRAG;
 		largeSword.maxVelocity.set(MAX_VELOCITY, MAX_VELOCITY);
 		largeSword.visible = false;
+
+		shield = new FlxSprite(x, y);
+		shield.makeGraphic(SHIELD_WIDTH, 16, KColor.BEAU_BLUE);
+		shield.visible = false;
 	}
 
 	public function addWeaponHBoxes() {
 		FlxG.state.add(smallSword);
 		FlxG.state.add(largeSword);
-	};
+		FlxG.state.add(shield);
+	}
 
 	override public function update(elapsed:Float) {
 		super.update(elapsed);
@@ -175,6 +185,7 @@ class Player extends Actor {
 	public function updateCombat(elapsed:Float) {
 		var lightHit = FlxG.keys.anyJustPressed([Z]);
 		var heavyHit = FlxG.keys.anyJustPressed([X]);
+		var fireBullet = FlxG.keys.anyJustPressed([C]);
 
 		if (lightHit) {
 			smallSword.visible = true;
@@ -184,6 +195,18 @@ class Player extends Actor {
 		if (heavyHit) {
 			largeSword.visible = true;
 			lsFrameCount = LS_ACTIVE_FRAME;
+		}
+
+		if (fireBullet) {
+			// TODO: Make dedicated arrow class
+			var bullet = playerBullets.recycle(Bullet);
+			bullet.bulletSize = ARROW_WIDTH;
+			bullet.setBulletType(FireAtk(atk));
+			energy = (energy - 1).clamp(0, energyCap);
+			var dir = facingToVector();
+			bullet.setPosition(this.x, this.y);
+			bullet.velocity.set(dir.x * PROJECTILE_SPEED,
+				dir.y * PROJECTILE_SPEED);
 		}
 
 		if (ssFrameCount <= 0) {
@@ -245,5 +268,20 @@ class Player extends Actor {
 			largeSword.y - origPos.y);
 		largeSwordOffSet.x -= (LARGE_SWORD_WIDTH / 3) + offX;
 		largeSword.setPosition(x + largeSwordOffSet.x, y + largeSwordOffSet.y);
+	}
+
+	public function facingToVector():FlxVector {
+		switch (facing) {
+			case FlxObject.LEFT:
+				return FlxPoint.weak(-1, 0);
+			case FlxObject.RIGHT:
+				return FlxPoint.weak(1, 0);
+			case FlxObject.DOWN:
+				return FlxPoint.weak(0, 1);
+			case FlxObject.UP:
+				return FlxPoint.weak(0, -1);
+			case _:
+				return FlxPoint.weak(0, 0);
+		}
 	}
 }

@@ -14,7 +14,7 @@
 	"defaultGridSize": 16,
 	"bgColor": "#676877",
 	"defaultLevelBgColor": "#7F8093",
-	"nextUid": 23,
+	"nextUid": 24,
 	"minifyJson": false,
 	"externalLevels": false,
 	"exportTiled": true,
@@ -253,7 +253,7 @@
 				{ "id": "Amazing", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Good", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Great", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
 			{ "identifier": "ElementTypes", "uid": 17, "values": [
 				{ "id": "Fire", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Ice", "tileId": null, "__tileSrcRect": null },
@@ -261,7 +261,7 @@
 				{ "id": "Magneto", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Water", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Wind", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
 			{ "identifier": "StatusEffects", "uid": 18, "values": [
 				{ "id": "Burning", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Charged", "tileId": null, "__tileSrcRect": null },
@@ -271,14 +271,14 @@
 				{ "id": "None", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Wet", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Windy", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
 			{ "identifier": "ObjectTypes", "uid": 19, "values": [
 				{ "id": "Flammable", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Iceable", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Magnetic", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Pourus", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Wettable", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
 			{ "identifier": "EnemyType", "uid": 20, "values": [
 				{ "id": "FireTurret", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Ghoul", "tileId": null, "__tileSrcRect": null },
@@ -286,7 +286,8 @@
 				{ "id": "SkelArcher", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Skeleton", "tileId": null, "__tileSrcRect": null },
 				{ "id": "WaterTurret", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "334676e901fba608035cf4dc2b494b77" }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
+			{ "identifier": "Interactables", "uid": 23, "values": [ { "id": "Cutscene", "tileId": null, "__tileSrcRect": null }, { "id": "Npc", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" }
 		]
 	},
 	"levels": [

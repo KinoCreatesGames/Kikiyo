@@ -124,6 +124,7 @@ class LevelState extends BaseTileState {
 		add(collectiblesGrp);
 		add(player);
 		player.addWeaponHBoxes();
+		player.playerBullets = playerBulletGrp;
 		add(entranceGrp);
 		add(exitGrp);
 		add(playerBulletGrp);
@@ -163,6 +164,11 @@ class LevelState extends BaseTileState {
 		FlxG.overlap(player, exitGrp, playerTouchExitPoint);
 		FlxG.overlap(player.smallSword, enemyGrp, playerWeaponLightTouch);
 		FlxG.overlap(player.largeSword, enemyGrp, playerWeaponLargeTouch);
+		FlxG.overlap(player.playerBullets, enemyGrp, playerBulletTouchEnemy);
+		FlxG.overlap(player.smallSword, systemicEntitiesGrp,
+			playerSWeaponTouch);
+		FlxG.overlap(player.largeSword, systemicEntitiesGrp,
+			playerLWeaponTouch);
 	}
 
 	public function enemyTouchPlayer(enemy:Enemy, player:Player) {
@@ -228,6 +234,30 @@ class LevelState extends BaseTileState {
 		}
 	}
 
+	public function playerLWeaponTouch(playerWeapon:FlxSprite,
+			entity:SystemicEntity) {
+		if (playerWeapon.visible) {
+			switch (Type.getClass(entity)) {
+				case Grass:
+					entity.kill();
+				case _:
+					// Do nothing for now
+			}
+		}
+	}
+
+	public function playerSWeaponTouch(playerWeapon:FlxSprite,
+			entity:SystemicEntity) {
+		if (playerWeapon.visible) {
+			switch (Type.getClass(entity)) {
+				case Grass:
+					entity.kill();
+				case _:
+					// Do nothing for now
+			}
+		}
+	}
+
 	/**
 	 * Made to be overridden on a level to level basis for defining exits and entrances.
 	 */
@@ -239,6 +269,10 @@ class LevelState extends BaseTileState {
 	 * during gameplay.
 	 */
 	public function playerTouchExitPoint(player:Player, exitPoint:ExitPoint) {}
+
+	public function playerBulletTouchEnemy(bullet:Bullet, enemy:Enemy) {
+		enemy.takeDamage(bullet.atk);
+	}
 
 	override function processLevel(elapsed) {}
 
