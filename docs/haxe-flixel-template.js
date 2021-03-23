@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "42";
+	app.meta.h["build"] = "43";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4269,7 +4269,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i19514R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i4191R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i138R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i61197R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y39:assets%2Fimages%2Flove-flame-turret.pngR2i265R3R11R5R21R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R23R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R24R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR26hR6tgoR2i4578R3R25R5y31:assets%2Fsounds%2Fmenu-exit.wavR27aR28hR6tgoR2i39740R3R25R5y32:assets%2Fsounds%2Flow-health.wavR27aR29hR6tgoR2i6900R3R25R5y31:assets%2Fsounds%2Fmenu-open.wavR27aR30hR6tgoR2i3672R3R25R5y32:assets%2Fsounds%2Fmouse-over.wavR27aR31hR6tgoR2i8378R3R25R5y34:assets%2Fsounds%2Fbutton-click.wavR27aR32hR6tgoR2i8410R3R25R5y28:assets%2Fsounds%2Fimpact.wavR27aR33hR6tgoR2i19472R3R25R5y31:assets%2Fsounds%2Fpause-out.wavR27aR34hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R35R6tgoR2i22964R3R25R5y30:assets%2Fsounds%2Fpause-in.wavR27aR36hR6tgoR2i4584R3R25R5y33:assets%2Fsounds%2Fbullet-fire.wavR27aR37hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R27aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R27aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R25R5R42R27aR41R42hgoR2i5794R3R25R5R40R27aR39R40hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R43R44y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R50R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy34:assets%2Fdata%2Fdata-goes-here.txty4:sizezy4:typey4:TEXTy2:idR1y7:preloadtgoR0y28:assets%2Fdata%2Fdatabase.dpoR2i19514R3R4R5R7R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevelOne.tmxR2i4191R3R4R5R8R6tgoR0y45:assets%2Fmaps%2Fkikiyo%2Ftiled%2Fkikiyo.worldR2i79R3R4R5R9R6tgoR0y52:assets%2Fmaps%2Fkikiyo%2Ftiled%2FRegions.intgrid.pngR2i138R3y5:IMAGER5R10R6tgoR0y42:assets%2Fmaps%2Fkikiyo%2Ftiled%2FLevel.tmxR2i2006R3R4R5R12R6tgoR0y27:assets%2Fmaps%2Fkikiyo.ldtkR2i61514R3R4R5R13R6tgoR0y42:assets%2Fmaps%2FTilemap-data-goes-here.txtR2zR3R4R5R14R6tgoR0y36:assets%2Fimages%2Fimages-go-here.txtR2zR3R4R5R15R6tgoR0y31:assets%2Fimages%2Fgrass-out.pngR2i596R3R11R5R16R6tgoR0y29:assets%2Fimages%2Fcog-two.pngR2i512R3R11R5R17R6tgoR0y35:assets%2Fimages%2Ffloor-tileset.pngR2i691R3R11R5R18R6tgoR0y28:assets%2Fimages%2Fbutton.pngR2i1126R3R11R5R19R6tgoR0y34:assets%2Fimages%2Fdialog-arrow.pngR2i261R3R11R5R20R6tgoR0y39:assets%2Fimages%2Flove-flame-turret.pngR2i265R3R11R5R21R6tgoR0y37:assets%2Fimages%2Faffection-heart.pngR2i685R3R11R5R22R6tgoR0y31:assets%2Fimages%2Fexit-door.pngR2i382R3R11R5R23R6tgoR0y36:assets%2Fmusic%2Fmusic-goes-here.txtR2zR3R4R5R24R6tgoR2i12492R3y5:SOUNDR5y34:assets%2Fsounds%2Fenemy-impact.wavy9:pathGroupaR26hR6tgoR2i4578R3R25R5y31:assets%2Fsounds%2Fmenu-exit.wavR27aR28hR6tgoR2i39740R3R25R5y32:assets%2Fsounds%2Flow-health.wavR27aR29hR6tgoR2i6900R3R25R5y31:assets%2Fsounds%2Fmenu-open.wavR27aR30hR6tgoR2i3672R3R25R5y32:assets%2Fsounds%2Fmouse-over.wavR27aR31hR6tgoR2i8378R3R25R5y34:assets%2Fsounds%2Fbutton-click.wavR27aR32hR6tgoR2i8410R3R25R5y28:assets%2Fsounds%2Fimpact.wavR27aR33hR6tgoR2i19472R3R25R5y31:assets%2Fsounds%2Fpause-out.wavR27aR34hR6tgoR0y36:assets%2Fsounds%2Fsounds-go-here.txtR2zR3R4R5R35R6tgoR2i22964R3R25R5y30:assets%2Fsounds%2Fpause-in.wavR27aR36hR6tgoR2i4584R3R25R5y33:assets%2Fsounds%2Fbullet-fire.wavR27aR37hR6tgoR2i2114R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R27aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R27aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i33629R3R25R5R42R27aR41R42hgoR2i5794R3R25R5R40R27aR39R40hgoR2i15744R3y4:FONTy9:classNamey35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R43R44y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i519R3R11R5R49R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i3280R3R11R5R50R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -49499,6 +49499,15 @@ var game_EnemyType = $hxEnums["game.EnemyType"] = { __ename__ : "game.EnemyType"
 	,Skeleton: {_hx_index:4,__enum__:"game.EnemyType",toString:$estr}
 	,Ghoul: {_hx_index:5,__enum__:"game.EnemyType",toString:$estr}
 };
+var game_InteractableActivation = $hxEnums["game.InteractableActivation"] = { __ename__ : "game.InteractableActivation", __constructs__ : ["OnTouch","OnButtonPress"]
+	,OnTouch: {_hx_index:0,__enum__:"game.InteractableActivation",toString:$estr}
+	,OnButtonPress: {_hx_index:1,__enum__:"game.InteractableActivation",toString:$estr}
+};
+var game_InteractablePriority = $hxEnums["game.InteractablePriority"] = { __ename__ : "game.InteractablePriority", __constructs__ : ["Above","Below","Same"]
+	,Above: {_hx_index:0,__enum__:"game.InteractablePriority",toString:$estr}
+	,Below: {_hx_index:1,__enum__:"game.InteractablePriority",toString:$estr}
+	,Same: {_hx_index:2,__enum__:"game.InteractablePriority",toString:$estr}
+};
 var game_State = function(initialState) {
 	this.currentState = initialState;
 };
@@ -49940,10 +49949,14 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		this.largeSword.drag.set_x(this.largeSword.drag.set_y(1600));
 		this.largeSword.maxVelocity.set(300,300);
 		this.largeSword.set_visible(false);
+		this.shield = new flixel_FlxSprite(x,y);
+		this.shield.makeGraphic(16,16,-4532238);
+		this.shield.set_visible(false);
 	}
 	,addWeaponHBoxes: function() {
 		flixel_FlxG.game._state.add(this.smallSword);
 		flixel_FlxG.game._state.add(this.largeSword);
+		flixel_FlxG.game._state.add(this.shield);
 	}
 	,update: function(elapsed) {
 		game_char_Actor.prototype.update.call(this,elapsed);
@@ -50137,6 +50150,7 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 	,updateCombat: function(elapsed) {
 		var lightHit = flixel_FlxG.keys.checkKeyArrayState([90],2);
 		var heavyHit = flixel_FlxG.keys.checkKeyArrayState([88],2);
+		var fireBullet = flixel_FlxG.keys.checkKeyArrayState([67],2);
 		if(lightHit) {
 			this.smallSword.set_visible(true);
 			this.ssFrameCount = 6;
@@ -50144,6 +50158,15 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		if(heavyHit) {
 			this.largeSword.set_visible(true);
 			this.lsFrameCount = 6;
+		}
+		if(fireBullet) {
+			var bullet = this.playerBullets.recycle(game_char_Bullet);
+			bullet.bulletSize = 8;
+			bullet.setBulletType(game_ElementalAtk.FireAtk(this.atk));
+			this.energy = Math.round(Math.min(Math.max(this.energy - 1,0),this.energyCap));
+			var dir = this.facingToVector();
+			bullet.setPosition(this.x,this.y);
+			bullet.velocity.set(dir.x * 800,dir.y * 800);
 		}
 		if(this.ssFrameCount <= 0) {
 			this.smallSword.set_visible(false);
@@ -50202,6 +50225,120 @@ game_char_Player.prototype = $extend(game_char_Actor.prototype,{
 		var _g = largeSwordOffSet;
 		_g.set_x(_g.x - (16. + offX));
 		this.largeSword.setPosition(x + largeSwordOffSet.x,y + largeSwordOffSet.y);
+	}
+	,facingToVector: function() {
+		switch(this.facing) {
+		case 1:
+			var X = -1;
+			var Y = 0;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			return point1;
+		case 16:
+			var X = 1;
+			var Y = 0;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			return point1;
+		case 256:
+			var X = 0;
+			var Y = -1;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			return point1;
+		case 4096:
+			var X = 0;
+			var Y = 1;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			return point1;
+		default:
+			var X = 0;
+			var Y = 0;
+			if(Y == null) {
+				Y = 0;
+			}
+			if(X == null) {
+				X = 0;
+			}
+			var X1 = X;
+			var Y1 = Y;
+			if(Y1 == null) {
+				Y1 = 0;
+			}
+			if(X1 == null) {
+				X1 = 0;
+			}
+			var point = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+			point._inPool = false;
+			var point1 = point;
+			point1._weak = true;
+			return point1;
+		}
 	}
 	,__class__: game_char_Player
 });
@@ -50720,6 +50857,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		this.add(this.collectiblesGrp);
 		this.add(this.player);
 		this.player.addWeaponHBoxes();
+		this.player.playerBullets = this.playerBulletGrp;
 		this.add(this.entranceGrp);
 		this.add(this.exitGrp);
 		this.add(this.playerBulletGrp);
@@ -50753,6 +50891,9 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		flixel_FlxG.overlap(this.player,this.exitGrp,$bind(this,this.playerTouchExitPoint));
 		flixel_FlxG.overlap(this.player.smallSword,this.enemyGrp,$bind(this,this.playerWeaponLightTouch));
 		flixel_FlxG.overlap(this.player.largeSword,this.enemyGrp,$bind(this,this.playerWeaponLargeTouch));
+		flixel_FlxG.overlap(this.player.playerBullets,this.enemyGrp,$bind(this,this.playerBulletTouchEnemy));
+		flixel_FlxG.overlap(this.player.smallSword,this.systemicEntitiesGrp,$bind(this,this.playerSWeaponTouch));
+		flixel_FlxG.overlap(this.player.largeSword,this.systemicEntitiesGrp,$bind(this,this.playerLWeaponTouch));
 	}
 	,enemyTouchPlayer: function(enemy,player) {
 		flixel_FlxG.camera.shake(0.1,0.1);
@@ -50788,8 +50929,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			break;
 		}
 		collectible.kill();
-		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 208, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
-		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 209, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 214, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
+		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 215, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
 	}
 	,playerWeaponLightTouch: function(playerWeapon,enemy) {
 		if(playerWeapon.visible && !enemy.isHit && enemy.armor <= 0) {
@@ -50806,9 +50947,26 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			}
 		}
 	}
+	,playerLWeaponTouch: function(playerWeapon,entity) {
+		if(playerWeapon.visible) {
+			if(js_Boot.getClass(entity) == game_objects_Grass) {
+				entity.kill();
+			}
+		}
+	}
+	,playerSWeaponTouch: function(playerWeapon,entity) {
+		if(playerWeapon.visible) {
+			if(js_Boot.getClass(entity) == game_objects_Grass) {
+				entity.kill();
+			}
+		}
+	}
 	,playerTouchEntryPoint: function(player,entryPoint) {
 	}
 	,playerTouchExitPoint: function(player,exitPoint) {
+	}
+	,playerBulletTouchEnemy: function(bullet,enemy) {
+		enemy.takeDamage(bullet.atk);
 	}
 	,processLevel: function(elapsed) {
 	}
@@ -69637,7 +69795,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 799357;
+	this.version = 655950;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -112155,6 +112313,9 @@ game_char_Enemy.HIT_TIME = 0.5;
 game_char_Player.INVINCIBLE_TIME = 1.5;
 game_char_Player.SMALL_SWORD_WIDTH = 16;
 game_char_Player.LARGE_SWORD_WIDTH = 48;
+game_char_Player.SHIELD_WIDTH = 16;
+game_char_Player.ARROW_WIDTH = 8;
+game_char_Player.PROJECTILE_SPEED = 800;
 game_char_Player.SS_ACTIVE_FRAME = 6;
 game_char_Player.LS_ACTIVE_FRAME = 6;
 game_char_Player.HEALTHBOOSTER_SPLIT = 3;
