@@ -158,3 +158,28 @@ enum EnemyType {
 	Skeleton;
 	Ghoul;
 }
+
+/**
+ * Interactable Activation
+ * How Interactions are handled for an Interactable.
+ * OnTouch - will activate when the player touches it. (Items could fit into this)
+ * OnButtonPress - will activate when the player presses the confirmation button.
+ * 
+ */
+enum InteractableActivation {
+	OnTouch;
+	OnButtonPress;
+}
+
+/**
+ * Interactable Priority
+ * The priority of collision an interacable can be interacted with.
+ * If Below, the player can step on it.
+ * If Above, it sits above the player.
+ * If Same, the player can collide with it.
+ */
+enum InteractablePriority {
+	Above;
+	Below;
+	Same;
+}
