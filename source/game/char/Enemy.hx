@@ -1,5 +1,9 @@
 package game.char;
 
+import flixel.math.FlxMath;
+import flixel.math.FlxAngle;
+import flixel.math.FlxVector;
+import flixel.FlxObject;
 import flixel.math.FlxVelocity;
 
 /**
@@ -16,6 +20,8 @@ class Enemy extends game.char.Actor {
 	public var isHit:Bool;
 
 	public static inline var HIT_TIME:Float = 0.5;
+	// TODO: Add Smooth dampening to knockback so it's not as jerky
+	public static inline var KNOCKBACK_FORCE:Float = 1000;
 
 	public function new(x:Float, y:Float, path:Array<FlxPoint>,
 			monsterData:MonsterData) {
@@ -56,7 +62,9 @@ class Enemy extends game.char.Actor {
 		return currPlayer != null ? true : false;
 	}
 
-	public function takeDamage(damage:Int) {
+	public function takeDamage(damage:Int, attackFacing:Int) {
+		// Knock Back Target
+		knockback(attackFacing);
 		health -= damage;
 		isHit = true;
 		this.flicker(HIT_TIME, 0.04, true, true, (_) -> {
@@ -65,6 +73,26 @@ class Enemy extends game.char.Actor {
 		if (health <= 0) {
 			this.kill();
 		}
+	}
+
+	public function knockback(facing:Int) {
+		var angle = FlxAngle.angleFromFacing(facing);
+		var vel = FlxPoint.get(FlxMath.fastCos(angle) * KNOCKBACK_FORCE,
+			FlxMath.fastSin(angle) * KNOCKBACK_FORCE);
+		vel.x = vel.x * -1;
+		vel.y = vel.y * -1;
+		switch (facing) {
+			case FlxObject.LEFT:
+			// var vel = FlxVelocity.velocityFromFacing(this, this.spd * 2);
+			// this.velocity.subtractPoint(vel);
+			case FlxObject.RIGHT:
+
+			case FlxObject.UP:
+
+			case FlxObject.DOWN:
+		}
+
+		this.velocity.subtractPoint(vel);
 	}
 
 	public static function createEnemy(x:Float, y:Float, player,

@@ -167,8 +167,8 @@ enum EnemyType {
  * 
  */
 enum InteractableActivation {
-	OnTouch;
-	OnButtonPress;
+	Touch;
+	ButtonPress;
 }
 
 /**

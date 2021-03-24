@@ -14,7 +14,7 @@
 	"defaultGridSize": 16,
 	"bgColor": "#676877",
 	"defaultLevelBgColor": "#7F8093",
-	"nextUid": 24,
+	"nextUid": 29,
 	"minifyJson": false,
 	"externalLevels": false,
 	"exportTiled": true,
@@ -53,7 +53,7 @@
 			},
 			{
 				"__type": "Entities",
-				"identifier": "Event",
+				"identifier": "Interactables",
 				"type": "Entities",
 				"uid": 5,
 				"gridSize": 16,
@@ -176,7 +176,7 @@
 				]
 			},
 			{
-				"identifier": "Event",
+				"identifier": "Interactable",
 				"uid": 10,
 				"width": 16,
 				"height": 16,
@@ -202,7 +202,7 @@
 						"arrayMaxLength": null,
 						"editorDisplayMode": "ValueOnly",
 						"editorDisplayPos": "Above",
-						"editorAlwaysShow": false,
+						"editorAlwaysShow": true,
 						"min": null,
 						"max": null,
 						"regex": null,
@@ -210,9 +210,9 @@
 						"defaultOverride": null
 					},
 					{
-						"identifier": "description",
+						"identifier": "name",
 						"__type": "String",
-						"uid": 13,
+						"uid": 28,
 						"type": "F_String",
 						"isArray": false,
 						"canBeNull": true,
@@ -221,6 +221,45 @@
 						"editorDisplayMode": "ValueOnly",
 						"editorDisplayPos": "Above",
 						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"regex": null,
+						"acceptFileTypes": null,
+						"defaultOverride": {
+							"id": "V_String",
+							"params": ["Name"]
+						}
+					},
+					{
+						"identifier": "activation",
+						"__type": "ExternEnum.InteractableActivation",
+						"uid": 26,
+						"type": { "id": "F_Enum", "params": [24] },
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "NameAndValue",
+						"editorDisplayPos": "Beneath",
+						"editorAlwaysShow": true,
+						"min": null,
+						"max": null,
+						"regex": null,
+						"acceptFileTypes": null,
+						"defaultOverride": null
+					},
+					{
+						"identifier": "priority",
+						"__type": "ExternEnum.InteractablePriority",
+						"uid": 27,
+						"type": { "id": "F_Enum", "params": [25] },
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "NameAndValue",
+						"editorDisplayPos": "Beneath",
+						"editorAlwaysShow": true,
 						"min": null,
 						"max": null,
 						"regex": null,
@@ -253,7 +292,7 @@
 				{ "id": "Amazing", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Good", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Great", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "07481f2d23d26d3a44a44b5572e3eb1d" },
 			{ "identifier": "ElementTypes", "uid": 17, "values": [
 				{ "id": "Fire", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Ice", "tileId": null, "__tileSrcRect": null },
@@ -261,7 +300,7 @@
 				{ "id": "Magneto", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Water", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Wind", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "07481f2d23d26d3a44a44b5572e3eb1d" },
 			{ "identifier": "StatusEffects", "uid": 18, "values": [
 				{ "id": "Burning", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Charged", "tileId": null, "__tileSrcRect": null },
@@ -271,14 +310,14 @@
 				{ "id": "None", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Wet", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Windy", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "07481f2d23d26d3a44a44b5572e3eb1d" },
 			{ "identifier": "ObjectTypes", "uid": 19, "values": [
 				{ "id": "Flammable", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Iceable", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Magnetic", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Pourus", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Wettable", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "07481f2d23d26d3a44a44b5572e3eb1d" },
 			{ "identifier": "EnemyType", "uid": 20, "values": [
 				{ "id": "FireTurret", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Ghoul", "tileId": null, "__tileSrcRect": null },
@@ -286,8 +325,13 @@
 				{ "id": "SkelArcher", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Skeleton", "tileId": null, "__tileSrcRect": null },
 				{ "id": "WaterTurret", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" },
-			{ "identifier": "Interactables", "uid": 23, "values": [ { "id": "Cutscene", "tileId": null, "__tileSrcRect": null }, { "id": "Npc", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "6c9f6c16553b60bc5f951c9b1f07c777" }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "07481f2d23d26d3a44a44b5572e3eb1d" },
+			{ "identifier": "InteractableActivation", "uid": 24, "values": [ { "id": "ButtonPress", "tileId": null, "__tileSrcRect": null }, { "id": "Touch", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "07481f2d23d26d3a44a44b5572e3eb1d" },
+			{ "identifier": "InteractablePriority", "uid": 25, "values": [
+				{ "id": "Above", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Below", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Same", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../source/game/GameTypes.hx", "externalFileChecksum": "07481f2d23d26d3a44a44b5572e3eb1d" }
 		]
 	},
 	"levels": [
@@ -373,7 +417,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Event",
+					"__identifier": "Interactables",
 					"__type": "Entities",
 					"__cWid": 31,
 					"__cHei": 22,
@@ -391,7 +435,45 @@
 					"autoLayerTiles": [],
 					"seed": 1867791,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [{ "__identifier": "Interactable", "__grid": [4,16], "__pivot": [0,0], "__tile": null, "defUid": 10, "px": [64,256], "fieldInstances": [
+						{
+							"__identifier": "id",
+							"__value": 1,
+							"__type": "Int",
+							"defUid": 12,
+							"realEditorValues": [{ "id": "V_Int", "params": [1] }]
+						},
+						{
+							"__identifier": "activation",
+							"__value": "ButtonPress",
+							"__type": "ExternEnum.InteractableActivation",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["ButtonPress"]
+							}]
+						},
+						{
+							"__identifier": "priority",
+							"__value": "Same",
+							"__type": "ExternEnum.InteractablePriority",
+							"defUid": 27,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Same"]
+							}]
+						},
+						{
+							"__identifier": "name",
+							"__value": "SayHello",
+							"__type": "String",
+							"defUid": 28,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["SayHello"]
+							}]
+						}
+					] }]
 				},
 				{
 					"__identifier": "Enemy",

@@ -1,5 +1,7 @@
 package game.states;
 
+import game.objects.InteractableSprite;
+import game.objects.Interactable;
 import game.objects.ExitPoint;
 import game.objects.EntryPoint;
 import game.objects.HealthBooster;
@@ -34,6 +36,14 @@ class LevelState extends BaseTileState {
 	public var rainGrp:Rain;
 	public var snowGrp:Snow;
 
+	/**
+	 * Interactable Grp when overlap is called actually splits the
+	 * group contents into individual FlxSprites and processes them
+	 * individually. Therefore, we need to update the type of FlxSprites
+	 * within our new Interactable Group.
+	 */
+	public var interactableGrp:FlxTypedGroup<Interactable>;
+
 	public static inline var REGION_TILESET_NAME = 'Regions';
 	public static inline var SPAWN_TILE = 25;
 	public static inline var GRASS_TILE = 26;
@@ -49,6 +59,7 @@ class LevelState extends BaseTileState {
 		FlxG.camera.follow(player, TOPDOWN, 0.5);
 		createLevelMap(tileLayer);
 		createRegionEntities();
+		createInteractables();
 		createEnemies();
 	}
 
@@ -85,6 +96,21 @@ class LevelState extends BaseTileState {
 		}
 	}
 
+	public function createInteractables() {
+		var tileLayer:TiledObjectLayer = cast(map.getLayer('Interactables'));
+
+		tileLayer.objects.iter((obj) -> {
+			var priority = InteractablePriority.createByName(obj.properties.get('priority'));
+
+			var activation = InteractableActivation.createByName(obj.properties.get('activation'));
+			var newInteractable = new Interactable(obj.x, obj.y, activation,
+				priority);
+			trace(interactableGrp);
+			trace(newInteractable.priority);
+			interactableGrp.add(newInteractable);
+		});
+	}
+
 	public function createEnemies() {
 		var tileLayer:TiledObjectLayer = cast(map.getLayer('Enemy'));
 
@@ -114,6 +140,7 @@ class LevelState extends BaseTileState {
 		enemyBulletGrp = new FlxTypedGroup<Bullet>();
 		playerBulletGrp = new FlxTypedGroup<Bullet>();
 		collectiblesGrp = new FlxTypedGroup<Collectible>();
+		interactableGrp = new FlxTypedGroup<Interactable>();
 		exitGrp = new FlxTypedGroup<ExitPoint>();
 		entranceGrp = new FlxTypedGroup<EntryPoint>();
 	}
@@ -128,6 +155,7 @@ class LevelState extends BaseTileState {
 		add(entranceGrp);
 		add(exitGrp);
 		add(playerBulletGrp);
+		add(interactableGrp);
 		add(enemyBulletGrp);
 		add(msgWindow);
 		add(hud);
@@ -169,6 +197,7 @@ class LevelState extends BaseTileState {
 			playerSWeaponTouch);
 		FlxG.overlap(player.largeSword, systemicEntitiesGrp,
 			playerLWeaponTouch);
+		FlxG.overlap(player, interactableGrp, playerTouchInteractable);
 	}
 
 	public function enemyTouchPlayer(enemy:Enemy, player:Player) {
@@ -218,7 +247,7 @@ class LevelState extends BaseTileState {
 	public function playerWeaponLightTouch(playerWeapon:FlxSprite,
 			enemy:Enemy) {
 		if (playerWeapon.visible && !enemy.isHit && enemy.armor <= 0) {
-			enemy.takeDamage(1);
+			enemy.takeDamage(1, player.facing);
 		}
 	}
 
@@ -227,9 +256,9 @@ class LevelState extends BaseTileState {
 		if (playerWeapon.visible && !enemy.isHit) {
 			if (enemy.armor > 0) {
 				enemy.armor = (enemy.armor - 1).clamp(0, Globals.MAX_INT_VALUE);
-				enemy.takeDamage(0);
+				enemy.takeDamage(0, player.facing);
 			} else {
-				enemy.takeDamage(1);
+				enemy.takeDamage(1, player.facing);
 			}
 		}
 	}
@@ -258,6 +287,28 @@ class LevelState extends BaseTileState {
 		}
 	}
 
+	public function playerTouchInteractable(player:Player,
+			interactableSpr:InteractableSprite) {
+		var interactable = interactableSpr.parent;
+		switch (interactable.priority) {
+			case Above:
+			// Do nothing
+			case Below:
+			// Do nothing
+			case Same:
+				FlxObject.separate(player, interactable.interactionCollider);
+		}
+		switch (interactable.activation) {
+			case ButtonPress:
+				if (FlxG.keys.anyJustPressed([E])) {
+					// Trigger Interaction
+					interactable.triggerInteraction();
+				}
+			case Touch:
+				interactable.triggerInteraction();
+		}
+	}
+
 	/**
 	 * Made to be overridden on a level to level basis for defining exits and entrances.
 	 */
@@ -271,7 +322,7 @@ class LevelState extends BaseTileState {
 	public function playerTouchExitPoint(player:Player, exitPoint:ExitPoint) {}
 
 	public function playerBulletTouchEnemy(bullet:Bullet, enemy:Enemy) {
-		enemy.takeDamage(bullet.atk);
+		enemy.takeDamage(bullet.atk, player.facing);
 	}
 
 	override function processLevel(elapsed) {}
