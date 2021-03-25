@@ -29,6 +29,7 @@ class LevelState extends BaseTileState {
 	public var exitGrp:FlxTypedGroup<ExitPoint>;
 	public var hud:PlayerHUD;
 	public var msgWindow:MsgWindow;
+	public var interpreter:GameInterpreter;
 	// Could be generic later if necessary
 	public var enemyBulletGrp:FlxTypedGroup<Bullet>;
 	public var playerBulletGrp:FlxTypedGroup<Bullet>;
@@ -61,6 +62,7 @@ class LevelState extends BaseTileState {
 		createRegionEntities();
 		createInteractables();
 		createEnemies();
+		createInterpreter();
 	}
 
 	/**
@@ -170,6 +172,13 @@ class LevelState extends BaseTileState {
 		var x = (FlxG.width / 2) - (MsgWindow.WIDTH / 2);
 		var y = FlxG.height - MsgWindow.HEIGHT;
 		msgWindow = new MsgWindow(x, y);
+		msgWindow.hide();
+	}
+
+	public function createInterpreter() {
+		interpreter = new GameInterpreter(0, 0);
+		interpreter.msgWindow = msgWindow;
+		interpreter.addCommand(SendMsg('Hello World', 'Kino'));
 	}
 
 	public function createPlayerHUD() {
