@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "46";
+	app.meta.h["build"] = "47";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -4252,6 +4252,9 @@ Lambda.iter = function(it,f) {
 		var x1 = x.next();
 		f(x1);
 	}
+};
+Lambda.empty = function(it) {
+	return !$getIterator(it).hasNext();
 };
 var ManifestResources = function() { };
 $hxClasses["ManifestResources"] = ManifestResources;
@@ -49438,6 +49441,70 @@ flixel_util_helpers_FlxRangeBounds.prototype = {
 	}
 	,__class__: flixel_util_helpers_FlxRangeBounds
 };
+var game_KCommand = $hxEnums["game.KCommand"] = { __ename__ : "game.KCommand", __constructs__ : ["SendMsg","Wait","PromptChoice"]
+	,SendMsg: ($_=function(msg,name,face) { return {_hx_index:0,msg:msg,name:name,face:face,__enum__:"game.KCommand",toString:$estr}; },$_.__params__ = ["msg","name","face"],$_)
+	,Wait: ($_=function(frames) { return {_hx_index:1,frames:frames,__enum__:"game.KCommand",toString:$estr}; },$_.__params__ = ["frames"],$_)
+	,PromptChoice: ($_=function(choices) { return {_hx_index:2,choices:choices,__enum__:"game.KCommand",toString:$estr}; },$_.__params__ = ["choices"],$_)
+};
+var game_ChoiceType = $hxEnums["game.ChoiceType"] = { __ename__ : "game.ChoiceType", __constructs__ : ["Choice"]
+	,Choice: ($_=function(choiceStr,action) { return {_hx_index:0,choiceStr:choiceStr,action:action,__enum__:"game.ChoiceType",toString:$estr}; },$_.__params__ = ["choiceStr","action"],$_)
+};
+var game_GameInterpreter = function(x,y) {
+	this.paused = false;
+	this.wait = 0;
+	this.commandList = [];
+	flixel_FlxObject.call(this);
+};
+$hxClasses["game.GameInterpreter"] = game_GameInterpreter;
+game_GameInterpreter.__name__ = "game.GameInterpreter";
+game_GameInterpreter.__super__ = flixel_FlxObject;
+game_GameInterpreter.prototype = $extend(flixel_FlxObject.prototype,{
+	update: function(elapsed) {
+		if(!Lambda.empty(this.commandList) && !this.paused && this.wait <= 0) {
+			this.currentCommand = this.commandList.shift();
+			this.processCommand(this.currentCommand);
+		}
+		if(this.wait >= 0) {
+			this.wait--;
+		}
+	}
+	,processCommand: function(command) {
+		var _gthis = this;
+		switch(command._hx_index) {
+		case 0:
+			var face = command.face;
+			var name = command.name;
+			var msg = command.msg;
+			this.msgWindow.show();
+			this.msgWindow.sendMessage(msg,name,function() {
+				_gthis.paused = false;
+				_gthis.msgWindow.hide();
+			});
+			this.paused = true;
+			break;
+		case 1:
+			var frames = command.frames;
+			this.wait = frames;
+			break;
+		case 2:
+			var choices = command.choices;
+			break;
+		}
+	}
+	,setCommands: function(commands) {
+		this.commandList = commands;
+	}
+	,addCommands: function(commands) {
+		this.commandList = this.commandList.concat(commands);
+	}
+	,addCommand: function(command) {
+		this.commandList.push(command);
+	}
+	,removeCommand: function(command) {
+		HxOverrides.remove(this.commandList,command);
+	}
+	,__class__: game_GameInterpreter
+});
 var game_Splash = $hxEnums["game.Splash"] = { __ename__ : "game.Splash", __constructs__ : ["Delay","Click","ClickDelay"]
 	,Delay: ($_=function(imageName,seconds) { return {_hx_index:0,imageName:imageName,seconds:seconds,__enum__:"game.Splash",toString:$estr}; },$_.__params__ = ["imageName","seconds"],$_)
 	,Click: ($_=function(imageName) { return {_hx_index:1,imageName:imageName,__enum__:"game.Splash",toString:$estr}; },$_.__params__ = ["imageName"],$_)
@@ -50865,6 +50932,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		this.createRegionEntities();
 		this.createInteractables();
 		this.createEnemies();
+		this.createInterpreter();
 	}
 	,createRegionEntities: function() {
 		var tileset = this.map.getTileSet("Regions");
@@ -50906,8 +50974,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			var priority = Type.createEnum(game_InteractablePriority,obj.properties.keys.h["priority"],null);
 			var activation = Type.createEnum(game_InteractableActivation,obj.properties.keys.h["activation"],null);
 			var newInteractable = new game_objects_Interactable(obj.x,obj.y,activation,priority);
-			haxe_Log.trace(_gthis.interactableGrp,{ fileName : "source/game/states/LevelState.hx", lineNumber : 108, className : "game.states.LevelState", methodName : "createInteractables"});
-			haxe_Log.trace(newInteractable.priority,{ fileName : "source/game/states/LevelState.hx", lineNumber : 109, className : "game.states.LevelState", methodName : "createInteractables"});
+			haxe_Log.trace(_gthis.interactableGrp,{ fileName : "source/game/states/LevelState.hx", lineNumber : 110, className : "game.states.LevelState", methodName : "createInteractables"});
+			haxe_Log.trace(newInteractable.priority,{ fileName : "source/game/states/LevelState.hx", lineNumber : 111, className : "game.states.LevelState", methodName : "createInteractables"});
 			_gthis.interactableGrp.add(newInteractable);
 		});
 	}
@@ -50972,6 +51040,12 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		var x = flixel_FlxG.width / 2 - 200.;
 		var y = flixel_FlxG.height - 200;
 		this.msgWindow = new game_ui_MsgWindow(x,y);
+		this.msgWindow.hide();
+	}
+	,createInterpreter: function() {
+		this.interpreter = new game_GameInterpreter(0,0);
+		this.interpreter.msgWindow = this.msgWindow;
+		this.interpreter.addCommand(game_KCommand.SendMsg("Hello World","Kino"));
 	}
 	,createPlayerHUD: function() {
 		this.hud = new game_ui_PlayerHUD(0,0,this.player);
@@ -51029,8 +51103,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			break;
 		}
 		collectible.kill();
-		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 243, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
-		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 244, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 252, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
+		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 253, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
 	}
 	,playerWeaponLightTouch: function(playerWeapon,enemy) {
 		if(playerWeapon.visible && !enemy.isHit && enemy.armor <= 0) {
@@ -69920,7 +69994,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 155795;
+	this.version = 443127;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
