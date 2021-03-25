@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "48";
+	app.meta.h["build"] = "50";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49457,6 +49457,36 @@ var game_GameInterpreter = function(x,y) {
 };
 $hxClasses["game.GameInterpreter"] = game_GameInterpreter;
 game_GameInterpreter.__name__ = "game.GameInterpreter";
+game_GameInterpreter.parseCommandFromstr = function(command) {
+	var newCommand = null;
+	var _g = command.toLowerCase();
+	var _hx_tmp;
+	var _hx_tmp1;
+	if(_g.indexOf("sendmsg") != -1 == true) {
+		var args = command.split("|");
+		args.shift();
+		haxe_Log.trace(args,{ fileName : "source/game/GameInterpreter.hx", lineNumber : 78, className : "game.GameInterpreter", methodName : "parseCommandFromstr"});
+		return game_KCommand.SendMsg(args[1],args[0]);
+	} else {
+		_hx_tmp = _g.indexOf("choice") != -1;
+		if(_hx_tmp == true) {
+			var args = command.split("|");
+			args.shift();
+			haxe_Log.trace(args,{ fileName : "source/game/GameInterpreter.hx", lineNumber : 83, className : "game.GameInterpreter", methodName : "parseCommandFromstr"});
+			return game_KCommand.PromptChoice([]);
+		} else {
+			_hx_tmp1 = _g.indexOf("wait") != -1;
+			if(_hx_tmp1 == true) {
+				var args = command.split("|");
+				args.shift();
+				haxe_Log.trace(args,{ fileName : "source/game/GameInterpreter.hx", lineNumber : 88, className : "game.GameInterpreter", methodName : "parseCommandFromstr"});
+				return game_KCommand.Wait(Std.parseInt(args[0]));
+			} else {
+				return game_KCommand.Wait(0);
+			}
+		}
+	}
+};
 game_GameInterpreter.__super__ = flixel_FlxObject;
 game_GameInterpreter.prototype = $extend(flixel_FlxObject.prototype,{
 	update: function(elapsed) {
@@ -69994,7 +70024,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 294998;
+	this.version = 395768;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
