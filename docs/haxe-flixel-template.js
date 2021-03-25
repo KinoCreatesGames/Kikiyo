@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "44";
+	app.meta.h["build"] = "45";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -50698,6 +50698,7 @@ game_objects_Interactable.prototype = $extend(flixel_group_FlxTypedGroup.prototy
 		this.sprite = new game_objects_InteractableSprite(this.position.x,this.position.y,this);
 		this.sprite.set_immovable(true);
 		this.sprite.makeGraphic(width + interactionSpace,height + interactionSpace,0);
+		this.sprite.isTrigger = true;
 		this.interactionCollider = new game_objects_InteractableSprite(this.sprite.x,this.sprite.y,this);
 		this.interactionCollider.makeGraphic(width,height,-37993);
 		this.interactionCollider.set_immovable(true);
@@ -50705,11 +50706,12 @@ game_objects_Interactable.prototype = $extend(flixel_group_FlxTypedGroup.prototy
 		this.add(this.interactionCollider);
 	}
 	,triggerInteraction: function() {
-		haxe_Log.trace("Triggered Interaction",{ fileName : "source/game/objects/Interactable.hx", lineNumber : 65, className : "game.objects.Interactable", methodName : "triggerInteraction"});
+		haxe_Log.trace("Triggered Interaction",{ fileName : "source/game/objects/Interactable.hx", lineNumber : 66, className : "game.objects.Interactable", methodName : "triggerInteraction"});
 	}
 	,__class__: game_objects_Interactable
 });
 var game_objects_InteractableSprite = function(x,y,interactable) {
+	this.isTrigger = false;
 	flixel_FlxSprite.call(this,x,y);
 	this.parent = interactable;
 };
@@ -51060,25 +51062,27 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		}
 	}
 	,playerTouchInteractable: function(player,interactableSpr) {
-		var interactable = interactableSpr.parent;
-		switch(interactable.priority._hx_index) {
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			flixel_FlxObject.separate(player,interactable.interactionCollider);
-			break;
-		}
-		switch(interactable.activation._hx_index) {
-		case 0:
-			interactable.triggerInteraction();
-			break;
-		case 1:
-			if(flixel_FlxG.keys.checkKeyArrayState([69],2)) {
-				interactable.triggerInteraction();
+		if(interactableSpr.isTrigger) {
+			var interactable = interactableSpr.parent;
+			switch(interactable.priority._hx_index) {
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				flixel_FlxObject.separate(player,interactable.interactionCollider);
+				break;
 			}
-			break;
+			switch(interactable.activation._hx_index) {
+			case 0:
+				interactable.triggerInteraction();
+				break;
+			case 1:
+				if(flixel_FlxG.keys.checkKeyArrayState([69],2)) {
+					interactable.triggerInteraction();
+				}
+				break;
+			}
 		}
 	}
 	,playerTouchEntryPoint: function(player,entryPoint) {
@@ -69915,7 +69919,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 588742;
+	this.version = 439928;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
