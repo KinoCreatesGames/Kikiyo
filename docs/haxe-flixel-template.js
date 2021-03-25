@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "45";
+	app.meta.h["build"] = "46";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -51176,7 +51176,7 @@ game_ui_MsgWindow.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
 	,update: function(elapsed) {
 		flixel_group_FlxTypedGroup.prototype.update.call(this,elapsed);
 	}
-	,sendMessage: function(text,speakerName) {
+	,sendMessage: function(text,speakerName,callBack) {
 		var _gthis = this;
 		if(speakerName != null) {
 			this.text.resetText("" + speakerName + ": " + text);
@@ -51186,9 +51186,10 @@ game_ui_MsgWindow.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
 		this.nextArrow.set_visible(false);
 		this.nextArrow.animation.stop();
 		this.text.start(0.05,false,false,null,function() {
-			haxe_Log.trace("Play Arrow",{ fileName : "source/game/ui/MsgWindow.hx", lineNumber : 77, className : "game.ui.MsgWindow", methodName : "sendMessage"});
+			haxe_Log.trace("Play Arrow",{ fileName : "source/game/ui/MsgWindow.hx", lineNumber : 78, className : "game.ui.MsgWindow", methodName : "sendMessage"});
 			_gthis.nextArrow.set_visible(true);
 			_gthis.nextArrow.animation.play("spin");
+			callBack();
 		});
 	}
 	,show: function() {
@@ -69919,7 +69920,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 439928;
+	this.version = 155795;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
