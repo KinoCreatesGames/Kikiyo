@@ -289,23 +289,26 @@ class LevelState extends BaseTileState {
 
 	public function playerTouchInteractable(player:Player,
 			interactableSpr:InteractableSprite) {
-		var interactable = interactableSpr.parent;
-		switch (interactable.priority) {
-			case Above:
-			// Do nothing
-			case Below:
-			// Do nothing
-			case Same:
-				FlxObject.separate(player, interactable.interactionCollider);
-		}
-		switch (interactable.activation) {
-			case ButtonPress:
-				if (FlxG.keys.anyJustPressed([E])) {
-					// Trigger Interaction
+		if (interactableSpr.isTrigger) {
+			var interactable = interactableSpr.parent;
+			switch (interactable.priority) {
+				case Above:
+				// Do nothing
+				case Below:
+				// Do nothing
+				case Same:
+					FlxObject.separate(player,
+						interactable.interactionCollider);
+			}
+			switch (interactable.activation) {
+				case ButtonPress:
+					if (FlxG.keys.anyJustPressed([E])) {
+						// Trigger Interaction
+						interactable.triggerInteraction();
+					}
+				case Touch:
 					interactable.triggerInteraction();
-				}
-			case Touch:
-				interactable.triggerInteraction();
+			}
 		}
 	}
 
