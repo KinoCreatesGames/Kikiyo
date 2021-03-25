@@ -64,7 +64,8 @@ class MsgWindow extends FlxTypedGroup<FlxSprite> {
 		super.update(elapsed);
 	}
 
-	public function sendMessage(text:String, ?speakerName:String) {
+	public function sendMessage(text:String, ?speakerName:String,
+			?callBack:Void -> Void) {
 		if (speakerName != null) {
 			this.text.resetText('${speakerName}: ${text}');
 		} else {
@@ -77,6 +78,7 @@ class MsgWindow extends FlxTypedGroup<FlxSprite> {
 			trace('Play Arrow');
 			nextArrow.visible = true;
 			nextArrow.animation.play('spin');
+			callBack();
 		});
 	}
 
