@@ -62,7 +62,6 @@ class LevelState extends BaseTileState {
 		createRegionEntities();
 		createInteractables();
 		createEnemies();
-		createInterpreter();
 	}
 
 	/**
@@ -166,6 +165,7 @@ class LevelState extends BaseTileState {
 	override public function createUI() {
 		createMsgWindow();
 		createPlayerHUD();
+		createInterpreter();
 	}
 
 	public function createMsgWindow() {
@@ -337,7 +337,9 @@ class LevelState extends BaseTileState {
 		enemy.takeDamage(bullet.atk, player.facing);
 	}
 
-	override function processLevel(elapsed) {}
+	override function processLevel(elapsed) {
+		interpreter.update(elapsed);
+	}
 
 	override public function tilesetPath():String {
 		return AssetPaths.floor_tileset__png;

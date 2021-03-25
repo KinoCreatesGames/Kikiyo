@@ -48,7 +48,6 @@ class GameInterpreter extends FlxObject {
 				msgWindow.show();
 				msgWindow.sendMessage(msg, name, () -> {
 					paused = false;
-					msgWindow.hide();
 				});
 				paused = true;
 			case Wait(frames):
