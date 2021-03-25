@@ -68,7 +68,7 @@ class GameInterpreter extends FlxObject {
 	 * Commands will be parsed and turn into KCommands
 	 * @param command 
 	 */
-	public function parseCommandFromstr(command:String):KCommand {
+	public static function parseCommandFromstr(command:String):KCommand {
 		// TODO: Parse the command from a string so we can get it from the Database
 		var newCommand:KCommand = null;
 		newCommand = switch (command.toLowerCase()) {
