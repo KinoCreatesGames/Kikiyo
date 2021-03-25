@@ -57,6 +57,44 @@ class GameInterpreter extends FlxObject {
 		}
 	}
 
+	/**
+	 * Command Parser that parses strings line by line into game commands
+	 * 
+	 * Commands for use
+	 * SendMsg: Name, String, ?
+	 * Choice: ChoiceStr, ChoiceStr --> think about this later
+	 * Wait: numFrames
+	 * 
+	 * Commands will be parsed and turn into KCommands
+	 * @param command 
+	 */
+	public function parseCommandFromstr(command:String):KCommand {
+		// TODO: Parse the command from a string so we can get it from the Database
+		var newCommand:KCommand = null;
+		newCommand = switch (command.toLowerCase()) {
+			case _.contains('sendmsg') => true:
+				var args = command.split("|");
+				args.shift();
+				trace(args);
+				return SendMsg(args[1], args[0]);
+			case _.contains('choice') => true:
+				var args = command.split("|");
+				args.shift();
+				trace(args);
+				return PromptChoice([]);
+			case _.contains('wait') => true:
+				var args = command.split("|");
+				args.shift();
+				trace(args);
+				return Wait(Std.parseInt(args[0]));
+			case _:
+				return Wait(0);
+				// Do nothing
+		}
+
+		return newCommand;
+	}
+
 	public function setCommands(commands:Array<KCommand>) {
 		commandList = commands;
 	}
