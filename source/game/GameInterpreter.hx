@@ -45,8 +45,10 @@ class GameInterpreter extends FlxObject {
 		switch (command) {
 			case SendMsg(msg, name, face):
 				// TODO: Improve messaging system
+				msgWindow.show();
 				msgWindow.sendMessage(msg, name, () -> {
 					paused = false;
+					msgWindow.hide();
 				});
 				paused = true;
 			case Wait(frames):
