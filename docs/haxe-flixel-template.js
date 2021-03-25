@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "47";
+	app.meta.h["build"] = "48";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49478,7 +49478,6 @@ game_GameInterpreter.prototype = $extend(flixel_FlxObject.prototype,{
 			this.msgWindow.show();
 			this.msgWindow.sendMessage(msg,name,function() {
 				_gthis.paused = false;
-				_gthis.msgWindow.hide();
 			});
 			this.paused = true;
 			break;
@@ -50932,7 +50931,6 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		this.createRegionEntities();
 		this.createInteractables();
 		this.createEnemies();
-		this.createInterpreter();
 	}
 	,createRegionEntities: function() {
 		var tileset = this.map.getTileSet("Regions");
@@ -50974,8 +50972,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			var priority = Type.createEnum(game_InteractablePriority,obj.properties.keys.h["priority"],null);
 			var activation = Type.createEnum(game_InteractableActivation,obj.properties.keys.h["activation"],null);
 			var newInteractable = new game_objects_Interactable(obj.x,obj.y,activation,priority);
-			haxe_Log.trace(_gthis.interactableGrp,{ fileName : "source/game/states/LevelState.hx", lineNumber : 110, className : "game.states.LevelState", methodName : "createInteractables"});
-			haxe_Log.trace(newInteractable.priority,{ fileName : "source/game/states/LevelState.hx", lineNumber : 111, className : "game.states.LevelState", methodName : "createInteractables"});
+			haxe_Log.trace(_gthis.interactableGrp,{ fileName : "source/game/states/LevelState.hx", lineNumber : 109, className : "game.states.LevelState", methodName : "createInteractables"});
+			haxe_Log.trace(newInteractable.priority,{ fileName : "source/game/states/LevelState.hx", lineNumber : 110, className : "game.states.LevelState", methodName : "createInteractables"});
 			_gthis.interactableGrp.add(newInteractable);
 		});
 	}
@@ -51035,6 +51033,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 	,createUI: function() {
 		this.createMsgWindow();
 		this.createPlayerHUD();
+		this.createInterpreter();
 	}
 	,createMsgWindow: function() {
 		var x = flixel_FlxG.width / 2 - 200.;
@@ -51167,6 +51166,7 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 		enemy.takeDamage(bullet.atk,this.player.facing);
 	}
 	,processLevel: function(elapsed) {
+		this.interpreter.update(elapsed);
 	}
 	,tilesetPath: function() {
 		return "assets/images/floor-tileset.png";
@@ -69994,7 +69994,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 443127;
+	this.version = 294998;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
