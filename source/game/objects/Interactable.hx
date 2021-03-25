@@ -50,6 +50,7 @@ class Interactable extends FlxTypedGroup<FlxSprite> {
 		sprite.immovable = true;
 		sprite.makeGraphic(width + interactionSpace,
 			height + interactionSpace, KColor.TRANSPARENT);
+		sprite.isTrigger = true;
 		interactionCollider = new InteractableSprite(sprite.x, sprite.y, this);
 		interactionCollider.makeGraphic(width, height, KColor.PRETTY_PINK);
 		interactionCollider.immovable = true;
