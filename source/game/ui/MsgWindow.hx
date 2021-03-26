@@ -8,11 +8,14 @@ class MsgWindow extends FlxTypedGroup<FlxSprite> {
 	public var nextArrow:FlxSprite;
 	public var text:FlxTypeText;
 	public var borderSize:Float;
+	public var faceSprite:FlxSprite;
 
 	public static inline var WIDTH:Int = 400;
 	public static inline var HEIGHT:Int = 200;
 	public static inline var BGCOLOR:Int = KColor.RICH_BLACK;
 	public static inline var FONTSIZE:Int = 12;
+
+	public var initialTextLocation:FlxPoint;
 
 	public function new(x:Float, y:Float) {
 		super();
@@ -24,6 +27,7 @@ class MsgWindow extends FlxTypedGroup<FlxSprite> {
 	public function create() {
 		createBackground(position);
 		createDownArrow(position);
+		createFace(position);
 		createText(position);
 	}
 
@@ -50,13 +54,21 @@ class MsgWindow extends FlxTypedGroup<FlxSprite> {
 		add(nextArrow);
 	}
 
+	public function createFace(position:FlxPoint) {
+		var padding = 12;
+		var x = position.x + padding + borderSize;
+		var y = position.y + padding + borderSize;
+		faceSprite = new FlxSprite(x, y);
+		add(faceSprite);
+	}
+
 	public function createText(position:FlxPoint) {
 		var x = position.x + 12 + borderSize;
 		var y = position.y + 12 + borderSize;
 		text = new FlxTypeText(x, y, cast WIDTH - (12 + borderSize),
 			'Test Text', FONTSIZE);
 		text.wordWrap = true;
-
+		initialTextLocation = text.getPosition().copyTo(new FlxPoint());
 		add(text);
 	}
 
@@ -65,7 +77,16 @@ class MsgWindow extends FlxTypedGroup<FlxSprite> {
 	}
 
 	public function sendMessage(text:String, ?speakerName:String,
-			?callBack:Void -> Void) {
+			?face:String, ?callBack:Void -> Void) {
+		// Adjust text if face is present otherwise move back
+		if (face != null) {
+			// face is the path to the face image file.
+			faceSprite.loadGraphic(face);
+			this.text.x += faceSprite.width;
+		} else {
+			this.text.x = initialTextLocation.x;
+		}
+
 		if (speakerName != null) {
 			this.text.resetText('${speakerName}: ${text}');
 		} else {
