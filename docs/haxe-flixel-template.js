@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "50";
+	app.meta.h["build"] = "51";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49506,7 +49506,7 @@ game_GameInterpreter.prototype = $extend(flixel_FlxObject.prototype,{
 			var name = command.name;
 			var msg = command.msg;
 			this.msgWindow.show();
-			this.msgWindow.sendMessage(msg,name,function() {
+			this.msgWindow.sendMessage(msg,name,null,function() {
 				_gthis.paused = false;
 			});
 			this.paused = true;
@@ -51251,6 +51251,7 @@ game_ui_MsgWindow.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
 	create: function() {
 		this.createBackground(this.position);
 		this.createDownArrow(this.position);
+		this.createFace(this.position);
 		this.createText(this.position);
 	}
 	,createBackground: function(positioin) {
@@ -51270,18 +51271,33 @@ game_ui_MsgWindow.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
 		this.nextArrow.set_visible(false);
 		this.add(this.nextArrow);
 	}
+	,createFace: function(position) {
+		var padding = 12;
+		var x = position.x + padding + this.borderSize;
+		var y = position.y + padding + this.borderSize;
+		this.faceSprite = new flixel_FlxSprite(x,y);
+		this.add(this.faceSprite);
+	}
 	,createText: function(position) {
 		var x = position.x + 12 + this.borderSize;
 		var y = position.y + 12 + this.borderSize;
 		this.text = new flixel_addons_text_FlxTypeText(x,y,400 - (12 + this.borderSize),"Test Text",12);
 		this.text.set_wordWrap(true);
+		this.initialTextLocation = this.text.getPosition().copyTo(new flixel_math_FlxPoint());
 		this.add(this.text);
 	}
 	,update: function(elapsed) {
 		flixel_group_FlxTypedGroup.prototype.update.call(this,elapsed);
 	}
-	,sendMessage: function(text,speakerName,callBack) {
+	,sendMessage: function(text,speakerName,face,callBack) {
 		var _gthis = this;
+		if(face != null) {
+			this.faceSprite.loadGraphic(face);
+			var _g = this.text;
+			_g.set_x(_g.x + this.faceSprite.get_width());
+		} else {
+			this.text.set_x(this.initialTextLocation.x);
+		}
 		if(speakerName != null) {
 			this.text.resetText("" + speakerName + ": " + text);
 		} else {
@@ -51290,7 +51306,7 @@ game_ui_MsgWindow.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
 		this.nextArrow.set_visible(false);
 		this.nextArrow.animation.stop();
 		this.text.start(0.05,false,false,null,function() {
-			haxe_Log.trace("Play Arrow",{ fileName : "source/game/ui/MsgWindow.hx", lineNumber : 78, className : "game.ui.MsgWindow", methodName : "sendMessage"});
+			haxe_Log.trace("Play Arrow",{ fileName : "source/game/ui/MsgWindow.hx", lineNumber : 99, className : "game.ui.MsgWindow", methodName : "sendMessage"});
 			_gthis.nextArrow.set_visible(true);
 			_gthis.nextArrow.animation.play("spin");
 			callBack();
@@ -70024,7 +70040,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 395768;
+	this.version = 651056;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
