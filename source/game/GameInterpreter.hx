@@ -46,7 +46,7 @@ class GameInterpreter extends FlxObject {
 			case SendMsg(msg, name, face):
 				// TODO: Improve messaging system
 				msgWindow.show();
-				msgWindow.sendMessage(msg, name, () -> {
+				msgWindow.sendMessage(msg, name, face, () -> {
 					paused = false;
 				});
 				paused = true;
@@ -76,7 +76,7 @@ class GameInterpreter extends FlxObject {
 				var args = command.split("|");
 				args.shift();
 				trace(args);
-				return SendMsg(args[1], args[0]);
+				return SendMsg(args[2], args[0], args[1]);
 			case _.contains('choice') => true:
 				var args = command.split("|");
 				args.shift();

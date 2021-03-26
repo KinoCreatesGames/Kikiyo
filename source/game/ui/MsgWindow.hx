@@ -82,9 +82,11 @@ class MsgWindow extends FlxTypedGroup<FlxSprite> {
 		if (face != null) {
 			// face is the path to the face image file.
 			faceSprite.loadGraphic(face);
+			faceSprite.visible = true;
 			this.text.x += faceSprite.width;
 		} else {
 			this.text.x = initialTextLocation.x;
+			this.faceSprite.visible = false;
 		}
 
 		if (speakerName != null) {

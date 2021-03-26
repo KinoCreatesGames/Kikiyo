@@ -38,6 +38,12 @@ class LevelState extends BaseTileState {
 	public var snowGrp:Snow;
 
 	/**
+	 * Checkpoint position is established when entering
+	 * the level for the first time.
+	 */
+	public var checkPointPos:FlxPoint;
+
+	/**
 	 * Interactable Grp when overlap is called actually splits the
 	 * group contents into individual FlxSprites and processes them
 	 * individually. Therefore, we need to update the type of FlxSprites
@@ -339,6 +345,15 @@ class LevelState extends BaseTileState {
 
 	override function processLevel(elapsed) {
 		interpreter.update(elapsed);
+		processLevelState(elapsed);
+	}
+
+	public function processLevelState(elapsed:Float) {
+		if (!player.alive) {
+			gameOver = true;
+		} else {
+			gameOver = false;
+		}
 	}
 
 	override public function tilesetPath():String {
