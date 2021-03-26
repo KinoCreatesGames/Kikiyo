@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "51";
+	app.meta.h["build"] = "52";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -49466,7 +49466,7 @@ game_GameInterpreter.parseCommandFromstr = function(command) {
 		var args = command.split("|");
 		args.shift();
 		haxe_Log.trace(args,{ fileName : "source/game/GameInterpreter.hx", lineNumber : 78, className : "game.GameInterpreter", methodName : "parseCommandFromstr"});
-		return game_KCommand.SendMsg(args[1],args[0]);
+		return game_KCommand.SendMsg(args[2],args[0],args[1]);
 	} else {
 		_hx_tmp = _g.indexOf("choice") != -1;
 		if(_hx_tmp == true) {
@@ -49506,7 +49506,7 @@ game_GameInterpreter.prototype = $extend(flixel_FlxObject.prototype,{
 			var name = command.name;
 			var msg = command.msg;
 			this.msgWindow.show();
-			this.msgWindow.sendMessage(msg,name,null,function() {
+			this.msgWindow.sendMessage(msg,name,face,function() {
 				_gthis.paused = false;
 			});
 			this.paused = true;
@@ -51002,8 +51002,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			var priority = Type.createEnum(game_InteractablePriority,obj.properties.keys.h["priority"],null);
 			var activation = Type.createEnum(game_InteractableActivation,obj.properties.keys.h["activation"],null);
 			var newInteractable = new game_objects_Interactable(obj.x,obj.y,activation,priority);
-			haxe_Log.trace(_gthis.interactableGrp,{ fileName : "source/game/states/LevelState.hx", lineNumber : 109, className : "game.states.LevelState", methodName : "createInteractables"});
-			haxe_Log.trace(newInteractable.priority,{ fileName : "source/game/states/LevelState.hx", lineNumber : 110, className : "game.states.LevelState", methodName : "createInteractables"});
+			haxe_Log.trace(_gthis.interactableGrp,{ fileName : "source/game/states/LevelState.hx", lineNumber : 115, className : "game.states.LevelState", methodName : "createInteractables"});
+			haxe_Log.trace(newInteractable.priority,{ fileName : "source/game/states/LevelState.hx", lineNumber : 116, className : "game.states.LevelState", methodName : "createInteractables"});
 			_gthis.interactableGrp.add(newInteractable);
 		});
 	}
@@ -51132,8 +51132,8 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 			break;
 		}
 		collectible.kill();
-		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 252, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
-		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 253, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
+		haxe_Log.trace("Energy Count",{ fileName : "source/game/states/LevelState.hx", lineNumber : 258, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.energy]});
+		haxe_Log.trace("HealthBoosterCount",{ fileName : "source/game/states/LevelState.hx", lineNumber : 259, className : "game.states.LevelState", methodName : "playerTouchCollectible", customParams : [player.healthBoostCount]});
 	}
 	,playerWeaponLightTouch: function(playerWeapon,enemy) {
 		if(playerWeapon.visible && !enemy.isHit && enemy.armor <= 0) {
@@ -51197,6 +51197,14 @@ game_states_LevelState.prototype = $extend(game_states_BaseTileState.prototype,{
 	}
 	,processLevel: function(elapsed) {
 		this.interpreter.update(elapsed);
+		this.processLevelState(elapsed);
+	}
+	,processLevelState: function(elapsed) {
+		if(!this.player.alive) {
+			this.gameOver = true;
+		} else {
+			this.gameOver = false;
+		}
 	}
 	,tilesetPath: function() {
 		return "assets/images/floor-tileset.png";
@@ -51293,10 +51301,12 @@ game_ui_MsgWindow.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
 		var _gthis = this;
 		if(face != null) {
 			this.faceSprite.loadGraphic(face);
+			this.faceSprite.set_visible(true);
 			var _g = this.text;
 			_g.set_x(_g.x + this.faceSprite.get_width());
 		} else {
 			this.text.set_x(this.initialTextLocation.x);
+			this.faceSprite.set_visible(false);
 		}
 		if(speakerName != null) {
 			this.text.resetText("" + speakerName + ": " + text);
@@ -51306,7 +51316,7 @@ game_ui_MsgWindow.prototype = $extend(flixel_group_FlxTypedGroup.prototype,{
 		this.nextArrow.set_visible(false);
 		this.nextArrow.animation.stop();
 		this.text.start(0.05,false,false,null,function() {
-			haxe_Log.trace("Play Arrow",{ fileName : "source/game/ui/MsgWindow.hx", lineNumber : 99, className : "game.ui.MsgWindow", methodName : "sendMessage"});
+			haxe_Log.trace("Play Arrow",{ fileName : "source/game/ui/MsgWindow.hx", lineNumber : 101, className : "game.ui.MsgWindow", methodName : "sendMessage"});
 			_gthis.nextArrow.set_visible(true);
 			_gthis.nextArrow.animation.play("spin");
 			callBack();
@@ -70040,7 +70050,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 651056;
+	this.version = 682155;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
