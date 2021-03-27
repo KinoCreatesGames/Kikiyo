@@ -1,5 +1,6 @@
 package game.char;
 
+import flixel.util.FlxPath;
 import flixel.math.FlxVelocity;
 
 /**
@@ -13,9 +14,12 @@ class Archer extends Enemy {
 	public static inline var PROJECTILE_SPEED:Float = 600;
 
 	public function new(x:Float, y:Float, data:MonsterData,
-			bulletGrp:FlxTypedGroup<Bullet>) {
-		super(x, y, null, data);
+			path:Array<FlxPoint>, bulletGrp:FlxTypedGroup<Bullet>) {
+		super(x, y, path, data);
 		fireCD = 0;
+		this.path = new FlxPath(walkPath);
+		makeGraphic(16, 16, KColor.EMERALD);
+		this.path.start(null, spd, FlxPath.LOOP_FORWARD);
 		// fireSound = FlxG.sound
 		bullets = bulletGrp;
 	}
@@ -31,6 +35,9 @@ class Archer extends Enemy {
 	override public function idle(elapsed:Float) {
 		if (playerInRange()) {
 			ai.currentState = attack;
+		} else {
+			var currentPoint = this.path.nodes[this.path.nodeIndex];
+			updateFacingRelationToPoint(currentPoint);
 		}
 		animation.play('idle');
 		handleCD(elapsed);
@@ -38,9 +45,11 @@ class Archer extends Enemy {
 
 	public function attack(elapsed:Float) {
 		if (playerInRange()) {
+			updateFacingRelationToPoint(player.getPosition());
 			fireAtPlayer();
 			animation.play('fire');
 		} else {
+			this.path.cancel();
 			ai.currentState = idle;
 		}
 		handleCD(elapsed);
