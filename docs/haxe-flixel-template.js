@@ -888,7 +888,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "52";
+	app.meta.h["build"] = "53";
 	app.meta.h["company"] = "KinoCreatesGames";
 	app.meta.h["file"] = "haxe-flixel-template";
 	app.meta.h["name"] = "Kikiyo";
@@ -50024,6 +50024,44 @@ game_char_Enemy.prototype = $extend(game_char_Actor.prototype,{
 		}
 		this.velocity.subtractPoint(vel);
 	}
+	,updateFacingRelationToPoint: function(point) {
+		var X = 0;
+		var Y = 0;
+		if(Y == null) {
+			Y = 0;
+		}
+		if(X == null) {
+			X = 0;
+		}
+		var X1 = X;
+		var Y1 = Y;
+		if(Y1 == null) {
+			Y1 = 0;
+		}
+		if(X1 == null) {
+			X1 = 0;
+		}
+		var point1 = flixel_math_FlxPoint._pool.get().set(X1,Y1);
+		point1._inPool = false;
+		var point2 = point1;
+		point2._weak = true;
+		var copy = point.copyTo(point2);
+		var heightDiff = 30;
+		var diffPoint = copy.subtractPoint(this.getPosition());
+		var left = diffPoint.x < 0;
+		var right = diffPoint.x > 0;
+		var up = diffPoint.y < -heightDiff;
+		var down = diffPoint.y > heightDiff;
+		if(up) {
+			this.set_facing(256);
+		} else if(down) {
+			this.set_facing(4096);
+		} else if(left) {
+			this.set_facing(1);
+		} else if(right) {
+			this.set_facing(16);
+		}
+	}
 	,__class__: game_char_Enemy
 });
 var game_char_Ghoul = function(x,y,data,path) {
@@ -50040,11 +50078,15 @@ game_char_Ghoul.prototype = $extend(game_char_Enemy.prototype,{
 		if(this.playerInRange()) {
 			this.path.cancel();
 			this.ai.currentState = $bind(this,this.attacking);
+		} else {
+			var currentPoint = this.path.get_nodes()[this.path.nodeIndex];
+			this.updateFacingRelationToPoint(currentPoint);
 		}
 	}
 	,attacking: function(elapsed) {
 		if(this.playerInRange()) {
 			flixel_math_FlxVelocity.moveTowardsObject(this,this.player,this.spd);
+			this.updateFacingRelationToPoint(this.player.getPosition());
 		} else {
 			this.path.start(this.walkPath,this.spd,16);
 			this.ai.currentState = $bind(this,this.idle);
@@ -70050,7 +70092,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 682155;
+	this.version = 555427;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
