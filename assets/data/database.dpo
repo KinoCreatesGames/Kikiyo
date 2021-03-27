@@ -416,6 +416,45 @@
                     "range": 125,
                     "armor": 0,
                     "spd": 50
+                },
+                {
+                    "guid": "b44ea402-0cee-4a8a-90ff-cb1be639d53b",
+                    "id": "3",
+                    "name": "Archer",
+                    "atk": 1,
+                    "health": 3,
+                    "def": 0,
+                    "sprite": "",
+                    "atkSpd": 2.5,
+                    "range": 150,
+                    "armor": 0,
+                    "spd": 70
+                },
+                {
+                    "guid": "3af1d7f7-db53-44e1-9831-0630f48b21ca",
+                    "id": "4",
+                    "name": "Skeleton",
+                    "atk": 2,
+                    "health": 5,
+                    "def": 0,
+                    "sprite": "",
+                    "atkSpd": 2.5,
+                    "range": 90,
+                    "armor": 0,
+                    "spd": 80
+                },
+                {
+                    "guid": "bbb775a7-8edd-43f7-b1b9-c8ed24cac6f4",
+                    "id": "5",
+                    "name": "Rusher",
+                    "atk": 2,
+                    "health": 5,
+                    "def": 0,
+                    "sprite": "",
+                    "atkSpd": 2.5,
+                    "range": 90,
+                    "armor": 0,
+                    "spd": 100
                 }
             ],
             "hidden": false,
