@@ -73,10 +73,10 @@ class Archer extends Enemy {
 
 	public function bulletType():ElementalAtk {
 		switch (name) {
-			case FIRE_TURRET:
-				return FireAtk(atk);
-			case WATER_TURRET:
-				return WaterAtk(atk);
+			// case FIRE_TURRET:
+			// 	return FireAtk(atk);
+			// case WATER_TURRET:
+			// 	return WaterAtk(atk);
 
 			case _:
 				return PhysAtk(atk);

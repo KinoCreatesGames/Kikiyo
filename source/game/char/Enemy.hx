@@ -117,4 +117,23 @@ class Enemy extends game.char.Actor {
 		}
 		return enemy;
 	}
+
+	public function updateFacingRelationToPoint(point:FlxPoint) {
+		var copy = point.copyTo(FlxPoint.weak(0, 0));
+		var heightDiff = 30;
+		var diffPoint = copy.subtractPoint(this.getPosition());
+		var left = diffPoint.x < 0;
+		var right = diffPoint.x > 0;
+		var up = diffPoint.y < heightDiff.negate();
+		var down = diffPoint.y > heightDiff;
+		if (up) {
+			facing = FlxObject.UP;
+		} else if (down) {
+			facing = FlxObject.DOWN;
+		} else if (left) {
+			facing = FlxObject.LEFT;
+		} else if (right) {
+			facing = FlxObject.RIGHT;
+		}
+	}
 }

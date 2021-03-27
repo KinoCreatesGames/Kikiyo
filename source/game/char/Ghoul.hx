@@ -16,12 +16,16 @@ class Ghoul extends Enemy {
 		if (playerInRange()) {
 			this.path.cancel();
 			ai.currentState = attacking;
+		} else {
+			var currentPoint = this.path.nodes[this.path.nodeIndex];
+			updateFacingRelationToPoint(currentPoint);
 		}
 	}
 
 	public function attacking(elapsed:Float) {
 		if (playerInRange()) {
 			FlxVelocity.moveTowardsObject(this, player, spd);
+			updateFacingRelationToPoint(player.getPosition());
 		} else {
 			this.path.start(walkPath, spd, FlxPath.LOOP_FORWARD);
 			ai.currentState = idle;
